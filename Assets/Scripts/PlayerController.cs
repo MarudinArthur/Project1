@@ -2,10 +2,16 @@
 
 public class PlayerController : MonoBehaviour
 {
-    private float _speed = 10;
+    [SerializeField] private float _speed = 10f;
+
+    public GameObject projectilePrefab;
+
     private float _horizontalInput;
     private float _verticalInput;
-    public GameObject projectilePrefab;
+    private float _horizontalBounds = 9f;
+    private float _topBound = 5f;
+    private float _lowerBound = -11.7f;
+
 
     void Update()
     {
@@ -18,6 +24,26 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(projectilePrefab, transform.position, transform.rotation);
+        }
+
+        if (transform.position.x > _horizontalBounds)
+        {
+            transform.position = new Vector3(_horizontalBounds, transform.position.y, transform.position.z);
+        }
+
+        if (transform.position.x < -_horizontalBounds)
+        {
+            transform.position = new Vector3(-_horizontalBounds, transform.position.y, transform.position.z);
+        }
+
+        if (transform.position.z > _topBound)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, _topBound);
+        }
+
+        if (transform.position.z < _lowerBound)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y, _lowerBound);
         }
     }
 }
