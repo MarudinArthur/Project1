@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     private float _topBound = 5f;
     private float _lowerBound = -11.7f;
 
-
     void Update()
     {
         _horizontalInput = Input.GetAxis("Horizontal");
