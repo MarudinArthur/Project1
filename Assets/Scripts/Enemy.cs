@@ -16,12 +16,4 @@ public class Enemy : MonoBehaviour
         Vector3 lookDirection = (transform.position - _player.transform.position).normalized;
         transform.Translate(lookDirection * _speed * Time.deltaTime);
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Projectile"))
-        {
-            Destroy(gameObject);
-        }
-    }
 }

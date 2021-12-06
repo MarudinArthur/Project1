@@ -3,12 +3,15 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public TextMeshProUGUI timer;
-    private float _time = 5f;
+    [HideInInspector] public float score = 0f;
+    public TextMeshProUGUI timerCounter;
+    public TextMeshProUGUI scoreCounter;
+    private float _time = 60f;
 
     private void Update()
     {
         Timer();
+        Score();
     }
 
     public void Timer()
@@ -17,7 +20,12 @@ public class GameManager : MonoBehaviour
         {
             _time -= Time.deltaTime;
             float totalTime = ((int)(_time * 100)) / 100f;
-            timer.text = "" + totalTime;
+            timerCounter.text = "" + totalTime;
         }
+    }
+
+    public void Score()
+    {
+        scoreCounter.text = "score: " + score;
     }
 }
