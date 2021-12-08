@@ -3,9 +3,9 @@
 public class SpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
+    private GameManager _gameManager;
     private float _spawnDelay = 2f;
     private float _repeatRate = 2f;
-    private GameManager _gameManager;
 
     void Start()
     {

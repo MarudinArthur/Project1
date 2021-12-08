@@ -5,15 +5,9 @@ public class GameManager : MonoBehaviour
 {
     [HideInInspector] public float score = 0f;
     [HideInInspector] public bool gameOver = false;
-    private Canvas canvas;
     public TextMeshProUGUI timerCounter;
     public TextMeshProUGUI scoreCounter;
     private float _time = 10f;
-
-    private void Start()
-    {
-        //canvas = GameObject.Find("Canvas");
-    }
 
     private void Update()
     {
@@ -48,9 +42,6 @@ public class GameManager : MonoBehaviour
 
     private void GameOverPopUp()
     {
-        //gameObject.transform.GetChild(0).gameObject.SetActive(true)
-        //canvas.transform.GetChild(4).gameObject.SetActive(true);
-        //_gameOverPopUp.SetActive(true);
         GameObject.Find("Canvas").transform.GetChild(4).gameObject.SetActive(true);
     }
 }
