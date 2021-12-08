@@ -29,5 +29,4 @@ public class SpawnManager : MonoBehaviour
         Vector3 SpawnPos = new Vector3(rndSpawnPosX, 0, spawnPosZ);
         return SpawnPos;
     }
-    
 }
