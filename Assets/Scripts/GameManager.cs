@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public float score = 0f;
     public TextMeshProUGUI timerCounter;
     public TextMeshProUGUI scoreCounter;
-    private float _time = 60f;
+    private float _time = 10f;
+    public bool gameOver = false;
 
     private void Update()
     {
@@ -21,6 +22,10 @@ public class GameManager : MonoBehaviour
             _time -= Time.deltaTime;
             float totalTime = ((int)(_time * 100)) / 100f;
             timerCounter.text = "" + totalTime;
+        }
+        else
+        {
+            gameOver = true;
         }
     }
 

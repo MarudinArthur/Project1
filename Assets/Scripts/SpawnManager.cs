@@ -5,16 +5,21 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] enemyPrefabs;
     private float _spawnDelay = 2f;
     private float _repeatRate = 2f;
+    private GameManager _gameManager;
 
     void Start()
     {
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         InvokeRepeating("SpawnEnemies", _spawnDelay, _repeatRate);
     }
 
      private void SpawnEnemies()
     {
-        int randomEnemyIndex = Random.Range(0, 2);
-        Instantiate(enemyPrefabs[randomEnemyIndex], GenerateSpawnRandomPosition(), enemyPrefabs[randomEnemyIndex].transform.rotation);
+        if (!_gameManager.gameOver)
+        {
+            int randomEnemyIndex = Random.Range(0, 2);
+            Instantiate(enemyPrefabs[randomEnemyIndex], GenerateSpawnRandomPosition(), enemyPrefabs[randomEnemyIndex].transform.rotation);
+        }    
     }
     
     private Vector3 GenerateSpawnRandomPosition()
