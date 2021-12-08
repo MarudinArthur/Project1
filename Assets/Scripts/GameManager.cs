@@ -17,11 +17,16 @@ public class GameManager : MonoBehaviour
 
     public void Timer()
     {
-        if (_time > 0.00f)
+        if (_time > (int)0)
         {
             _time -= Time.deltaTime;
             float totalTime = ((int)(_time * 100)) / 100f;
             timerCounter.text = "" + totalTime;
+
+            if (_time < 5)
+            {
+                timerCounter.color = Color.red;
+            }
         }
         else
         {
