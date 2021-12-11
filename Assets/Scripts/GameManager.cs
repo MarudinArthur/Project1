@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -59,25 +58,5 @@ public class GameManager : MonoBehaviour
     private void GameOverPopUp()
     {
         GameObject.Find("Canvas").transform.GetChild(4).gameObject.SetActive(true);
-    }
-
-    public void BackToMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
-
-    public void StartGame()
-    {
-        SceneManager.LoadScene(1);
-    }
-
-    public void Settings()
-    {
-        //some code
-    }
-
-    public void Exit()
-    {
-        //some code
     }
 }
