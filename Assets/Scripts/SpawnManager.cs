@@ -15,7 +15,7 @@ public class SpawnManager : MonoBehaviour
 
      private void SpawnEnemies()
     {
-        if (!_gameManager.gameOver)
+        if (!_gameManager.gameOver & !_gameManager.stopGame)
         {
             int randomEnemyIndex = Random.Range(0, 2);
             Instantiate(enemyPrefabs[randomEnemyIndex], GenerateSpawnRandomPosition(), enemyPrefabs[randomEnemyIndex].transform.rotation);

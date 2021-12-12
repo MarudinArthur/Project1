@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     [HideInInspector] public float score = 0f;
     [HideInInspector] public bool gameOver = false;
+    [HideInInspector] public bool stopGame = false;
     public static GameManager Instance;
     public TextMeshProUGUI timerCounter;
     public TextMeshProUGUI scoreCounter;
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     public void Timer()
     {
-        if (_time > (int)0)
+        if (_time > (int)0 & !stopGame)
         {
             _time -= Time.deltaTime;
             float totalTime = ((int)(_time * 100)) / 100f;
