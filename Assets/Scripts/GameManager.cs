@@ -33,21 +33,24 @@ public class GameManager : MonoBehaviour
 
     public void Timer()
     {
-        if (_time > (int)0 & !stopGame)
+        if(stopGame != true)
         {
-            _time -= Time.deltaTime;
-            float totalTime = ((int)(_time * 100)) / 100f;
-            timerCounter.text = "" + totalTime;
-
-            if (_time < 5)
+            if (_time > (int)0)
             {
-                timerCounter.color = Color.red;
+                _time -= Time.deltaTime;
+                float totalTime = ((int)(_time * 100)) / 100f;
+                timerCounter.text = "" + totalTime;
+
+                if (_time < 5)
+                {
+                    timerCounter.color = Color.red;
+                }
             }
-        }
-        else
-        {
-            gameOver = true;
-            GameOverPopUp();
+            else
+            {
+                gameOver = true;
+                GameOverPopUp();
+            }
         }
     }
 

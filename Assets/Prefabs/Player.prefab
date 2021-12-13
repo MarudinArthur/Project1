@@ -2254,6 +2254,7 @@ MonoBehaviour:
   _speed: 10
   projectilePrefab: {fileID: 7019778604139025116, guid: 07f1578297d6640b1976af3eee9de342,
     type: 3}
+  animator: {fileID: 0}
 --- !u!54 &8126499716972365844
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _speed = 10f;
 
     public GameObject projectilePrefab;
-    private GameManager gameManager;
+    private GameManager _gameManager;
     public Animator animator;
 
     private float _horizontalInput;
@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         animator = GetComponent<Animator>();
     }
 
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
         _horizontalInput = Input.GetAxis("Horizontal");
         _verticalInput = Input.GetAxis("Vertical");
 
-        if (!gameManager.gameOver)
+        if (!_gameManager.gameOver && !_gameManager.stopGame)
         {
             transform.Translate(Vector3.forward * _speed * Time.deltaTime * _verticalInput);
             transform.Translate(Vector3.right * _speed * Time.deltaTime * _horizontalInput);
@@ -60,21 +60,13 @@ public class PlayerController : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, _lowerBound);
             }
-        }
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-        {
-            _state = 1;
+
+            animator.SetInteger("state", _state);
         }
         else
         {
-            _state = 0;
+            animator.gameObject.GetComponent<Animator>().enabled = false;
         }
-        /*if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-        {
-
-        }*/
-
-        animator.SetInteger("state", _state);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -82,8 +74,6 @@ public class PlayerController : MonoBehaviour
         if (!collision.gameObject.CompareTag("Ground") & !collision.gameObject.CompareTag("Projectile"))
         {
             Destroy(collision.gameObject);
-
-    
         }
     }
 }
