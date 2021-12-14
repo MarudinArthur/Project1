@@ -2030,9 +2030,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 7859201471930588658, guid: 4c32f1f846ee94452b93ac49d4d9f481, type: 3}
-  - {fileID: 6637659695465185833, guid: ac5f545193f9849a2aefc30557350da3, type: 3}
-  - {fileID: 5317892132574037781, guid: d544623860a794465a44ec77717761a2, type: 3}
+  - {fileID: 8608268426342923715, guid: 9e5126bc6eca440c2ba61614c5b78ea9, type: 3}
+  - {fileID: 8111282298951623842, guid: 13d8ca27a56a0424496ecd2e4d65146a, type: 3}
+  - {fileID: 8091861729460440880, guid: c0f0c75890327472f8db2cdfd9f9f545, type: 3}
 --- !u!1 &1369326499
 GameObject:
   m_ObjectHideFlags: 0

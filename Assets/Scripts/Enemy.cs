@@ -15,9 +15,9 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        Vector3 lookDirection = (transform.position - _player.transform.position).normalized;
         if (!_gameManager.stopGame)
         {
-            Vector3 lookDirection = (transform.position - _player.transform.position).normalized;
             transform.Translate(lookDirection * _speed * Time.deltaTime);
         }
     }
