@@ -71,9 +71,26 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Ground") & !collision.gameObject.CompareTag("Projectile"))
+        if (!collision.gameObject.CompareTag("Ground") && !collision.gameObject.CompareTag("Projectile") && !collision.gameObject.CompareTag("TriggerArea"))
         {
             Destroy(collision.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("TriggerArea"))
+        {
+            SkinChanger();
+        }
+    }
+
+    private void SkinChanger()
+    {
+        if (gameObject.transform.GetChild(0))
+        {
+            gameObject.transform.GetChild(0).gameObject.SetActive(false);
+            gameObject.transform.GetChild(1).gameObject.SetActive(true);
         }
     }
 }

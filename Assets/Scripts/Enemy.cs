@@ -6,11 +6,13 @@ public class Enemy : MonoBehaviour
 
     private GameObject _player;
     private GameManager _gameManager;
+    public Animator animator;
 
     private void Start()
     {
         _player = GameObject.Find("Player");
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -19,6 +21,11 @@ public class Enemy : MonoBehaviour
         if (!_gameManager.stopGame)
         {
             transform.Translate(lookDirection * _speed * Time.deltaTime);
+            animator.gameObject.GetComponent<Animator>().enabled = true;
+        }
+        else
+        {
+            animator.gameObject.GetComponent<Animator>().enabled = false;
         }
     }
 }

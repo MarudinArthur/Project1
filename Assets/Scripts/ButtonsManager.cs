@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ButtonsManager : MonoBehaviour
@@ -27,7 +28,11 @@ public class ButtonsManager : MonoBehaviour
 
     public void Exit()
     {
-        //some code
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
+        Application.Quit(); 
+#endif
     }
 
     public void HomeButton()
