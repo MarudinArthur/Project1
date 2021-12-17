@@ -1,23 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class TextOnTheGround : MonoBehaviour
 {
     public TMP_Text textOnTheGround;
-    //private float time = 0;
-    private float speed = 10;
+    private float speed = 1.5f;
 
-    private void LateUpdate()
+    private void Update()
     {
-        textOnTheGround.transform.position = Vector3.forward * speed * Time.deltaTime;
-/*
-        time += Time.deltaTime;
-        if (time == 5.0f)
-        {
-            textOnTheGround.transform.position = Vector3.forward * speed * Time.deltaTime;
-        }
-*/
+        StartCoroutine("ShowTextOnTheGround");
+    }
+
+    IEnumerator ShowTextOnTheGround()
+    {
+        yield return new WaitForSeconds(3);
+        textOnTheGround.GetComponent<MeshRenderer>().enabled = true;
+        textOnTheGround.transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
 }
