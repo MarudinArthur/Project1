@@ -23,7 +23,8 @@ public class ButtonsManager : MonoBehaviour
 
     public void Settings()
     {
-        //some code
+        GameObject.Find("Canvas").transform.GetChild(10).gameObject.SetActive(true);
+        _gameManager.stopGame = true;
     }
 
     public void Exit()
@@ -44,6 +45,13 @@ public class ButtonsManager : MonoBehaviour
     public void CloseHomePopUp()
     {
         GameObject.Find("Canvas").transform.GetChild(8).gameObject.SetActive(false);
+        _gameManager.stopGame = false;
+        GameObject.Find("Player").GetComponent<Animator>().enabled = true;
+    }
+
+    public void CloseSettingsPopUp()
+    {
+        GameObject.Find("Canvas").transform.GetChild(10).gameObject.SetActive(false);
         _gameManager.stopGame = false;
         GameObject.Find("Player").GetComponent<Animator>().enabled = true;
     }
