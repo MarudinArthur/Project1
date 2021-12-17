@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public GameObject projectilePrefab;
     private GameManager _gameManager;
     public Animator animator;
+    public TextMeshProUGUI skinChangerClues;
 
     private float _horizontalInput;
     private float _verticalInput;
@@ -67,6 +69,14 @@ public class PlayerController : MonoBehaviour
         {
             animator.gameObject.GetComponent<Animator>().enabled = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            gameObject.transform.GetChild(1).gameObject.SetActive(false);
+
+            GameObject.Find("Canvas").transform.GetChild(9).gameObject.SetActive(false);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -91,6 +101,12 @@ public class PlayerController : MonoBehaviour
         {
             gameObject.transform.GetChild(0).gameObject.SetActive(false);
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
+
+            GameObject.Find("Canvas").transform.GetChild(9).gameObject.SetActive(true);
+        }
+        else
+        {
+            GameObject.Find("Canvas").transform.GetChild(9).gameObject.SetActive(false);
         }
     }
 }
