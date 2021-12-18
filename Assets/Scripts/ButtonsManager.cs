@@ -55,4 +55,10 @@ public class ButtonsManager : MonoBehaviour
         _gameManager.stopGame = false;
         GameObject.Find("Player").GetComponent<Animator>().enabled = true;
     }
+
+    public void ToggleChanged()
+    {
+        var toggle = GameObject.Find("Game Manager").GetComponent<AudioSource>();
+        toggle.mute = !toggle.mute;
+    }
 }
