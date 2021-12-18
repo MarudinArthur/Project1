@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class PlayerController : MonoBehaviour
     private GameManager _gameManager;
     public Animator animator;
     public TextMeshProUGUI skinChangerClues;
+    public int maxHealth = 100;
+    public int currentHealth;
+    public HealthBar healthBar;
+    public Image fill;
 
     private float _horizontalInput;
     private float _verticalInput;
@@ -21,6 +26,8 @@ public class PlayerController : MonoBehaviour
     {
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         animator = GetComponent<Animator>();
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     void Update()
@@ -77,6 +84,11 @@ public class PlayerController : MonoBehaviour
 
             GameObject.Find("Canvas").transform.GetChild(9).gameObject.SetActive(false);
         }
+
+        if (currentHealth <= 50)
+        {
+            fill.color = new Color(0.6f, 0, 0, 0.6f);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -84,6 +96,7 @@ public class PlayerController : MonoBehaviour
         if (!collision.gameObject.CompareTag("Ground") && !collision.gameObject.CompareTag("Projectile") && !collision.gameObject.CompareTag("TriggerArea"))
         {
             Destroy(collision.gameObject);
+            TakeDamage(20);
         }
     }
 
@@ -108,5 +121,11 @@ public class PlayerController : MonoBehaviour
         {
             GameObject.Find("Canvas").transform.GetChild(9).gameObject.SetActive(false);
         }
+    }
+
+    private void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
     }
 }
