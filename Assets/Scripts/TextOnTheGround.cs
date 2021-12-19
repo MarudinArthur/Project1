@@ -17,9 +17,9 @@ public class TextOnTheGround : MonoBehaviour
     {
         StartCoroutine("ShowTextOnTheGround");
         if (textOnTheGround.transform.position.z > 15)
-            {
-                Destroy(gameObject);
-            }
+        {
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator ShowTextOnTheGround()

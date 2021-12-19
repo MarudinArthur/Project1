@@ -56,11 +56,15 @@ public class GameManager : MonoBehaviour
 
     public void Score()
     {
+        // show current score
         scoreCounter.text = "score: " + score;
     }
 
-    private void GameOverPopUp()
+    public void GameOverPopUp()
     {
+        // show pop-up
         GameObject.Find("Canvas").transform.GetChild(4).gameObject.SetActive(true);
+        // disable skin change clues (if enable)
+        GameObject.Find("Canvas").transform.GetChild(9).gameObject.SetActive(false);
     }
 }

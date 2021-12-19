@@ -1954,7 +1954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf39b2a6c0ba4c4f9cd39b46a942dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
+  _speed: 4
   animator: {fileID: 0}
 --- !u!54 &7699573374215215124
 Rigidbody:

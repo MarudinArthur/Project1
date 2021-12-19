@@ -88,7 +88,15 @@ public class PlayerController : MonoBehaviour
         if (currentHealth <= 50)
         {
             fill.color = new Color(0.6f, 0, 0, 0.6f);
+
+            if (currentHealth == 0)
+            {
+                _gameManager.gameOver = true;
+                _gameManager.stopGame = true;
+                _gameManager.GameOverPopUp();
+            }
         }
+
     }
 
     private void OnCollisionEnter(Collision collision)
