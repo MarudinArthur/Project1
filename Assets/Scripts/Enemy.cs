@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -7,12 +8,18 @@ public class Enemy : MonoBehaviour
     private GameObject _player;
     private GameManager _gameManager;
     public Animator animator;
+    public int enemyMaxHealth = 60;
+    public int enemyCurrentHealth;
+    public HealthBar enemyHealthBar;
+    public Image fill;
 
     private void Start()
     {
         _player = GameObject.Find("Player");
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         animator = GetComponent<Animator>();
+        enemyCurrentHealth = enemyMaxHealth;
+        enemyHealthBar.SetMaxHealth(enemyMaxHealth);
     }
 
     void Update()
@@ -27,6 +34,26 @@ public class Enemy : MonoBehaviour
         else
         {
             animator.gameObject.GetComponent<Animator>().enabled = false;
+        }
+
+        if (enemyCurrentHealth == 0)
+        {
+            Destroy(gameObject);
+            _gameManager.score++;
+        }
+    }
+
+    public void TakeDamageEnemy(int damage)
+    {
+        enemyCurrentHealth -= damage;
+        enemyHealthBar.SetHealth(enemyCurrentHealth);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Projectile"))
+        {
+            TakeDamageEnemy(20);
         }
     }
 }
