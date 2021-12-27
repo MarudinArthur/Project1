@@ -7,14 +7,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _speed = 10f;
 
     public GameObject projectilePrefab;
-    private GameManager _gameManager;
-    public Animator animator;
-    public TextMeshProUGUI skinChangerClues;
     public int maxHealth = 100;
-    public int currentHealth;
     public HealthBar healthBar;
     public Image fill;
 
+    private int _currentHealth;
+    private GameManager _gameManager;
+    private Animator _animator;
+    private TextMeshProUGUI _skinChangerClues;
     private float _horizontalInput;
     private float _verticalInput;
     private float _horizontalBounds = 9f;
@@ -25,8 +25,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        animator = GetComponent<Animator>();
-        currentHealth = maxHealth;
+        _animator = GetComponent<Animator>();
+        _currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
 
@@ -70,11 +70,11 @@ public class PlayerController : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, transform.position.y, _lowerBound);
             }
 
-            animator.SetInteger("state", _state);
+            _animator.SetInteger("state", _state);
         }
         else
         {
-            animator.gameObject.GetComponent<Animator>().enabled = false;
+            _animator.gameObject.GetComponent<Animator>().enabled = false;
         }
 
         if (Input.GetKeyDown(KeyCode.T))
@@ -85,18 +85,23 @@ public class PlayerController : MonoBehaviour
             GameObject.Find("Canvas").transform.GetChild(9).gameObject.SetActive(false);
         }
 
-        if (currentHealth <= 50)
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            // потом это можно использовать как усиление на ХП
+            TakeHealth();
+        }
+
+        if (_currentHealth <= 50)
         {
             fill.color = new Color(0.6f, 0, 0, 0.6f);
 
-            if (currentHealth == 0)
+            if (_currentHealth == 0)
             {
                 _gameManager.gameOver = true;
                 _gameManager.stopGame = true;
                 _gameManager.GameOverPopUp();
             }
         }
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -133,7 +138,14 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
+        _currentHealth -= damage;
+        healthBar.SetHealth(_currentHealth);
+    }
+
+    public void TakeHealth()
+    {
+        // потом это можно использовать как усиление на ХП
+        _currentHealth += 20;
+        healthBar.SetHealth(_currentHealth);
     }
 }

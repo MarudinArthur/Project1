@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public TextMeshProUGUI timerCounter;
     public TextMeshProUGUI scoreCounter;
-    private float _time = 15f;
+    private float _time = 30f;
 
     /*
     void Awake()

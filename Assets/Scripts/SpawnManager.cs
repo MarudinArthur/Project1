@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using TMPro;
-using System.Collections;
 
 public class SpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
     private GameManager _gameManager;
     public TextMeshProUGUI waveCounter;
+    private int _enemyToSpawn = 3;
 
     private int waveNumber = 0;
     private int maxWave = 9;
@@ -34,8 +34,10 @@ public class SpawnManager : MonoBehaviour
 
         if (enemyCount == 0 && !_gameManager.stopGame && !_gameManager.gameOver)
         {
+            SpawnEnemies(_enemyToSpawn);
             waveNumber++;
-            SpawnEnemies(6);
+            _enemyToSpawn += 2;
+
             waveCounter.text = "wave " + waveNumber + " of " + maxWave;
         }
     }
