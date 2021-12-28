@@ -8,6 +8,9 @@ TagManager:
   - Projectile
   - Enemy
   - TriggerArea
+  - PowerUpHealth
+  - PowerUpExplosion
+  - PowerUpTime
   layers:
   - Default
   - TransparentFX

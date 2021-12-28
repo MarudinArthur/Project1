@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
 
     private int _currentHealth;
     private GameManager _gameManager;
+    private Powerups _powerUps;
     private Animator _animator;
     private TextMeshProUGUI _skinChangerClues;
     private float _horizontalInput;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        _powerUps = GameObject.Find("Game Manager").GetComponent<Powerups>();
         _animator = GetComponent<Animator>();
         _currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
@@ -118,6 +120,24 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("TriggerArea"))
         {
             SkinChanger();
+        }
+
+        if (other.gameObject.CompareTag("PowerUpHealth"))
+        {
+            _powerUps.AddHealth();
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("PowerUpExplosion"))
+        {
+            _powerUps.Explosion();
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("PowerUpTime"))
+        {
+            _powerUps.AddTime();
+            Destroy(other.gameObject);
         }
     }
 
