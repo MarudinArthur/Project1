@@ -1,21 +1,19 @@
 ﻿using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _speed = 10f;
+    [HideInInspector] public int currentHealth;
 
     public GameObject projectilePrefab;
     public int maxHealth = 100;
     public HealthBar healthBar;
     public Image fill;
 
-    private int _currentHealth;
     private GameManager _gameManager;
     private Powerups _powerUps;
-    private Animator _animator;
-    private TextMeshProUGUI _skinChangerClues;
+    public Animator _animator;
     private float _horizontalInput;
     private float _verticalInput;
     private float _horizontalBounds = 9f;
@@ -28,7 +26,7 @@ public class PlayerController : MonoBehaviour
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         _powerUps = GameObject.Find("Game Manager").GetComponent<Powerups>();
         _animator = GetComponent<Animator>();
-        _currentHealth = maxHealth;
+        currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
 
@@ -93,11 +91,11 @@ public class PlayerController : MonoBehaviour
             TakeHealth();
         }
 
-        if (_currentHealth <= 50)
+        if (currentHealth <= 50)
         {
             fill.color = new Color(0.6f, 0, 0, 0.6f);
 
-            if (_currentHealth == 0)
+            if (currentHealth == 0)
             {
                 _gameManager.gameOver = true;
                 _gameManager.stopGame = true;
@@ -124,7 +122,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("PowerUpHealth"))
         {
-            _powerUps.AddHealth();
+            _powerUps.AddHealth(30);
             Destroy(other.gameObject);
         }
 
@@ -136,7 +134,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("PowerUpTime"))
         {
-            _powerUps.AddTime();
+            _powerUps.AddTime(25);
             Destroy(other.gameObject);
         }
     }
@@ -158,14 +156,14 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        _currentHealth -= damage;
-        healthBar.SetHealth(_currentHealth);
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
     }
 
     public void TakeHealth()
     {
         // потом это можно использовать как усиление на ХП
-        _currentHealth += 20;
-        healthBar.SetHealth(_currentHealth);
+        currentHealth += 20;
+        healthBar.SetHealth(currentHealth);
     }
 }

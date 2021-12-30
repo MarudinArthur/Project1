@@ -6,10 +6,10 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public float score = 0f;
     [HideInInspector] public bool gameOver = false;
     [HideInInspector] public bool stopGame = false;
+    [HideInInspector] public float time = 30f;
     public static GameManager Instance;
     public TextMeshProUGUI timerCounter;
     public TextMeshProUGUI scoreCounter;
-    private float _time = 30f;
 
     /*
     void Awake()
@@ -35,13 +35,13 @@ public class GameManager : MonoBehaviour
     {
         if(stopGame != true)
         {
-            if (_time > (int)0)
+            if (time > (int)0)
             {
-                _time -= Time.deltaTime;
-                float totalTime = ((int)(_time * 100)) / 100f;
+                time -= Time.deltaTime;
+                float totalTime = ((int)(time * 100)) / 100f;
                 timerCounter.text = "" + totalTime;
 
-                if (_time < 5)
+                if (time < 5)
                 {
                     timerCounter.color = Color.red;
                 }
