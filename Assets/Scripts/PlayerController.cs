@@ -10,10 +10,14 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 100;
     public HealthBar healthBar;
     public Image fill;
+    public AudioClip soundShoot;
+    public AudioClip soundChangeSkin;
+    public AudioClip soundGetPowerUps;
 
     private GameManager _gameManager;
     private Powerups _powerUps;
     public Animator _animator;
+    private AudioSource playerAudio;
     private float _horizontalInput;
     private float _verticalInput;
     private float _horizontalBounds = 9f;
@@ -26,6 +30,8 @@ public class PlayerController : MonoBehaviour
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         _powerUps = GameObject.Find("Game Manager").GetComponent<Powerups>();
         _animator = GetComponent<Animator>();
+        playerAudio = GetComponent<AudioSource>();
+
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
@@ -44,6 +50,7 @@ public class PlayerController : MonoBehaviour
             {
                 Instantiate(projectilePrefab, transform.position, transform.rotation);
                 _state = 4;
+                playerAudio.PlayOneShot(soundShoot, 1.0f);
             }
             else
             {
@@ -110,6 +117,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             TakeDamage(20);
+            playerAudio.PlayOneShot(soundChangeSkin, 1.0f);
         }
     }
 
@@ -118,24 +126,29 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("TriggerArea"))
         {
             SkinChanger();
+            playerAudio.PlayOneShot(soundChangeSkin, 1.0f);
         }
 
         if (other.gameObject.CompareTag("PowerUpHealth"))
         {
             _powerUps.AddHealth(30);
             Destroy(other.gameObject);
+            playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
+
         }
 
         if (other.gameObject.CompareTag("PowerUpExplosion"))
         {
             _powerUps.Explosion();
             Destroy(other.gameObject);
+            playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
         }
 
         if (other.gameObject.CompareTag("PowerUpTime"))
         {
             _powerUps.AddTime(25);
             Destroy(other.gameObject);
+            playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
         }
     }
 

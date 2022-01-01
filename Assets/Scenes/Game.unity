@@ -1123,6 +1123,7 @@ GameObject:
   - component: {fileID: 417996806}
   - component: {fileID: 417996808}
   - component: {fileID: 417996809}
+  - component: {fileID: 417996810}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1194,6 +1195,9 @@ MonoBehaviour:
   maxHealth: 100
   healthBar: {fileID: 1531776389}
   fill: {fileID: 62398383}
+  soundShoot: {fileID: 8300000, guid: 9c87f285d32fa4569b77ddf3a7e6df5e, type: 3}
+  soundChangeSkin: {fileID: 8300000, guid: 9ee6fa16d1507404dbad73bc796dd25c, type: 3}
+  soundGetPowerUps: {fileID: 8300000, guid: 69575d593f4524383ac9225744c1bc56, type: 3}
   _animator: {fileID: 417996809}
 --- !u!95 &417996809
 Animator:
@@ -1214,6 +1218,102 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!82 &417996810
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417996804}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &604906113 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1138091743405088217, guid: 59841ba2055a94345bf9a9a7ca425894,
@@ -1631,7 +1731,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: aac0a360368e94c72808af3c16befc8e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.7
+  m_Volume: 0.155
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2195,8 +2295,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 993634927}
-  - component: {fileID: 993634926}
   - component: {fileID: 993634925}
+  - component: {fileID: 993634926}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3582,6 +3682,9 @@ MonoBehaviour:
   - {fileID: 7292101835800443756, guid: f7398cef7b73c48b2b1544f6b52787cc, type: 3}
   - {fileID: 6033492400120316565, guid: a6dc04f879e784d919cc26d4fe8a3091, type: 3}
   waveCounter: {fileID: 305765432}
+  spawnedPowerUp1: 0
+  spawnedPowerUp2: 0
+  spawnedPowerUp3: 0
 --- !u!1 &1369326499
 GameObject:
   m_ObjectHideFlags: 0
@@ -5348,7 +5451,7 @@ RectTransform:
   m_GameObject: {fileID: 2135853997}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.03, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.04, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 235073000}
   m_RootOrder: 1
