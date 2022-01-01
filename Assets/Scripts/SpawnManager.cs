@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using TMPro;
-using System.Collections;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -11,6 +10,10 @@ public class SpawnManager : MonoBehaviour
     private int _enemyToSpawn = 3;
     private float powerupStartDelay = 5;
     private float powerupRepeatRate = 7;
+
+    public int spawnedPowerUp1;
+    public int spawnedPowerUp2;
+    public int spawnedPowerUp3;
 
     private int waveNumber = 0;
     private int maxWave = 9;
@@ -35,19 +38,19 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnPowerUps()
     {
-        int randoPowerUpsIndex = Random.Range(0, 2);
-        Instantiate(powerUpsPrefab[randoPowerUpsIndex], GeneratePowerUpSpawnPos(), powerUpsPrefab[randoPowerUpsIndex].transform.rotation);
+        if (spawnedPowerUp1 == 0 && spawnedPowerUp2 == 0 && spawnedPowerUp3 == 0)
+        {
+            int randoPowerUpsIndex = Random.Range(0, 2);
+            Instantiate(powerUpsPrefab[randoPowerUpsIndex], GeneratePowerUpSpawnPos(), powerUpsPrefab[randoPowerUpsIndex].transform.rotation);
+        }
     }
 
     private void Update()
     {
         int enemyCount = FindObjectsOfType<Enemy>().Length;
-        int spawnedPowerUp1 = GameObject.FindGameObjectsWithTag("PowerUpHealth").Length;
-        int spawnedPowerUp2 = GameObject.FindGameObjectsWithTag("PowerUpExplosion").Length;
-        int spawnedPowerUp3 = GameObject.FindGameObjectsWithTag("PowerUpTime").Length;
-
-        int spawnedPowerUpTotal = spawnedPowerUp1 + spawnedPowerUp2 + spawnedPowerUp3;
-
+        spawnedPowerUp1 = GameObject.FindGameObjectsWithTag("PowerUpHealth").Length;
+        spawnedPowerUp2 = GameObject.FindGameObjectsWithTag("PowerUpExplosion").Length;
+        spawnedPowerUp3 = GameObject.FindGameObjectsWithTag("PowerUpTime").Length;
 
         if (enemyCount == 0 && !_gameManager.stopGame && !_gameManager.gameOver)
         {
@@ -59,14 +62,6 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    /*
-    IEnumerator DestroyPowerUp()
-    {
-        yield return new WaitForSeconds(10);
-        
-    }
-    */
-
     private Vector3 GenerateSpawnRandomPosition()
     {
         int rndSpawnPosX = Random.Range(-11, 11);
@@ -77,7 +72,7 @@ public class SpawnManager : MonoBehaviour
 
     private Vector3 GeneratePowerUpSpawnPos()
     {
-        int rndSpawnPosX = Random.Range(-14, 14);
+        int rndSpawnPosX = Random.Range(-8, 8);
         int rndSpawnPosZ = Random.Range(-2, -9);
         Vector3 SpawnPos = new Vector3(rndSpawnPosX, transform.position.y, rndSpawnPosZ);
         return SpawnPos;
