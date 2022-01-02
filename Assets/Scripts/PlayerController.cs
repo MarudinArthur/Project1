@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip soundShoot;
     public AudioClip soundChangeSkin;
     public AudioClip soundGetPowerUps;
+    private ParticleHolder particle;
+    public ParticleSystem shootParticle;
 
     private GameManager _gameManager;
     private Powerups _powerUps;
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         _powerUps = GameObject.Find("Game Manager").GetComponent<Powerups>();
+        particle = GameObject.Find("ParticleHolder").GetComponent<ParticleHolder>();
         _animator = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
 
@@ -51,6 +54,7 @@ public class PlayerController : MonoBehaviour
                 Instantiate(projectilePrefab, transform.position, transform.rotation);
                 _state = 4;
                 playerAudio.PlayOneShot(soundShoot, 1.0f);
+                shootParticle.Play();
             }
             else
             {
@@ -134,7 +138,6 @@ public class PlayerController : MonoBehaviour
             _powerUps.AddHealth(30);
             Destroy(other.gameObject);
             playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
-
         }
 
         if (other.gameObject.CompareTag("PowerUpExplosion"))
@@ -142,6 +145,7 @@ public class PlayerController : MonoBehaviour
             _powerUps.Explosion();
             Destroy(other.gameObject);
             playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
+            particle.PlayParticle(1, gameObject.transform.position);
         }
 
         if (other.gameObject.CompareTag("PowerUpTime"))

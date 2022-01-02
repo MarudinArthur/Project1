@@ -11,9 +11,9 @@ public class SpawnManager : MonoBehaviour
     private float powerupStartDelay = 5;
     private float powerupRepeatRate = 7;
 
-    public int spawnedPowerUp1;
-    public int spawnedPowerUp2;
-    public int spawnedPowerUp3;
+    private int spawnedPowerUp1;
+    private int spawnedPowerUp2;
+    private int spawnedPowerUp3;
 
     private int waveNumber = 0;
     private int maxWave = 9;
