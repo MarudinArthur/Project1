@@ -8,8 +8,7 @@ public class Enemy : MonoBehaviour
     private GameObject _player;
     private GameManager _gameManager;
     public Animator animator;
-    public AudioClip soundEnemyDeath;
-    private AudioSource enemyAudio;
+
     public int enemyMaxHealth = 60;
     public int enemyCurrentHealth;
     public HealthBar enemyHealthBar;
@@ -20,9 +19,9 @@ public class Enemy : MonoBehaviour
     {
         _player = GameObject.Find("Player");
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        particle = GameObject.Find("ParticleHolder").GetComponent<ParticleHolder>();
-        enemyAudio = GetComponent<AudioSource>();
+        particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
         animator = GetComponent<Animator>();
+
         enemyCurrentHealth = enemyMaxHealth;
         enemyHealthBar.SetMaxHealth(enemyMaxHealth);
     }
@@ -45,7 +44,6 @@ public class Enemy : MonoBehaviour
         {
             if (gameObject != null)
             {
-                enemyAudio.PlayOneShot(soundEnemyDeath, 1.0f);
                 particle.PlayParticle(0, gameObject.transform.position);
                 Destroy(gameObject);
                 _gameManager.score++;

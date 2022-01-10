@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         _powerUps = GameObject.Find("Game Manager").GetComponent<Powerups>();
-        particle = GameObject.Find("ParticleHolder").GetComponent<ParticleHolder>();
+        particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
         _animator = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
 
@@ -121,7 +121,6 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             TakeDamage(20);
-            playerAudio.PlayOneShot(soundChangeSkin, 1.0f);
         }
     }
 

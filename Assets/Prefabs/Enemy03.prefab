@@ -2107,12 +2107,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 4
   animator: {fileID: 0}
-  soundEnemyDeath: {fileID: 8300000, guid: 7c2de8e149d8346748fb31ed14cc7986, type: 3}
   enemyMaxHealth: 60
   enemyCurrentHealth: 0
   enemyHealthBar: {fileID: 1709990562707101846}
   fill: {fileID: 3661425270337302575}
-  getDamageParticle: {fileID: 749621794620466118}
+  death: {fileID: 8300000, guid: 69575d593f4524383ac9225744c1bc56, type: 3}
 --- !u!54 &7699573374215215124
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2160,7 +2159,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 54
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -2851,12 +2850,6 @@ PrefabInstance:
 --- !u!4 &749621794634679858 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 403952, guid: 6586ff0f14125534cae2f5d8f04b7871,
-    type: 3}
-  m_PrefabInstance: {fileID: 749621794634297282}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &749621794620466118 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 19860484, guid: 6586ff0f14125534cae2f5d8f04b7871,
     type: 3}
   m_PrefabInstance: {fileID: 749621794634297282}
   m_PrefabAsset: {fileID: 0}

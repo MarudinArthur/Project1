@@ -5,6 +5,7 @@ using System.Collections;
 public class TextOnTheGround : MonoBehaviour
 {
     public TMP_Text textOnTheGround;
+
     private float speed = 1.5f;
     private GameManager _gameManager;
 
@@ -16,6 +17,7 @@ public class TextOnTheGround : MonoBehaviour
     private void Update()
     {
         StartCoroutine("ShowTextOnTheGround");
+
         if (textOnTheGround.transform.position.z > 15)
         {
             Destroy(gameObject);
