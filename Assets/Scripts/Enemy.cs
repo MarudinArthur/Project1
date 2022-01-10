@@ -11,15 +11,18 @@ public class Enemy : MonoBehaviour
 
     public int enemyMaxHealth = 60;
     public int enemyCurrentHealth;
+    private int _state;
     public HealthBar enemyHealthBar;
     public Image fill;
     private ParticleHolder particle;
+    private AudioSource audioSource;
 
     private void Start()
     {
         _player = GameObject.Find("Player");
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
 
         enemyCurrentHealth = enemyMaxHealth;
@@ -44,10 +47,14 @@ public class Enemy : MonoBehaviour
         {
             if (gameObject != null)
             {
+                audioSource.Play();
                 particle.PlayParticle(0, gameObject.transform.position);
-                Destroy(gameObject);
+                Destroy(gameObject, 3.5f);
+                _state = 2;
                 _gameManager.score++;
             }
+            animator.SetInteger("state", _state);
+
         }
     }
 

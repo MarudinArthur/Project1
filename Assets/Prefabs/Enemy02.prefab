@@ -2241,7 +2241,6 @@ MonoBehaviour:
   enemyCurrentHealth: 0
   enemyHealthBar: {fileID: 1890008992607144003}
   fill: {fileID: 8163378878997775698}
-  death: {fileID: 8300000, guid: 69575d593f4524383ac9225744c1bc56, type: 3}
 --- !u!82 &5485891339574351525
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2252,7 +2251,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 69575d593f4524383ac9225744c1bc56, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

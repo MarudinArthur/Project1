@@ -604,7 +604,7 @@ Animator:
   m_GameObject: {fileID: 2308290680031971754}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c165f1c7d828f4dac9e128ac7624c7de, type: 3}
-  m_Controller: {fileID: 9100000, guid: 87cd1c608c0624e1caedba1828c2bb55, type: 2}
+  m_Controller: {fileID: 9100000, guid: 66594c4e759454934bf94bf516042554, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -631,7 +631,6 @@ MonoBehaviour:
   enemyCurrentHealth: 0
   enemyHealthBar: {fileID: 8438762922358019634}
   fill: {fileID: 8025030582436077868}
-  death: {fileID: 8300000, guid: 69575d593f4524383ac9225744c1bc56, type: 3}
 --- !u!54 &1253477467465497388
 Rigidbody:
   m_ObjectHideFlags: 0
