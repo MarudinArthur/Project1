@@ -9,7 +9,7 @@ public class ShotGun : Weapons
 		WeaponFireRate = 10;
 		WeaponRange = 10;
 		WeaponDamage = 20;
-		WeaponAmmo = 3;
+		WeaponMaxAmmo = 3;
 		WeaponSpread = 2;
 		WeaponReloadTime = 4;
 	}

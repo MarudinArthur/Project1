@@ -11,7 +11,8 @@ public abstract class Weapons : MonoBehaviour
     protected float WeaponDamage { get; set; } //урон
     protected float WeaponReloadTime { get; set; } //перезарядка
     protected float WeaponSpread { get; set; } //разброс стрельбы
-    protected float WeaponAmmo { get; set; } //обойма
+    protected float WeaponMaxAmmo { get; set; } //обойма
+    protected float WeaponCurrentAmmo { get; set; }
 
 	public virtual void Fire() { }
 }

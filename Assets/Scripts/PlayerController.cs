@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem shootParticle;
 
     private GameManager _gameManager;
+    private Pistol _pistol;
     private Powerups _powerUps;
     public Animator _animator;
     private AudioSource playerAudio;
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        _pistol = GameObject.Find("Weapon").GetComponent<Pistol>();
         _powerUps = GameObject.Find("Game Manager").GetComponent<Powerups>();
         particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
         _animator = GetComponent<Animator>();
@@ -51,10 +53,13 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Instantiate(projectilePrefab, transform.position, transform.rotation);
-                _state = 4;
-                playerAudio.PlayOneShot(soundShoot, 1.0f);
-                shootParticle.Play();
+                if (!_pistol.isReloading)
+                {
+                    _pistol.Fire();
+                    _state = 4;
+                    playerAudio.PlayOneShot(soundShoot, 1.0f);
+                    shootParticle.Play();
+                }
             }
             else
             {
