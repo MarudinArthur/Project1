@@ -2,19 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapons : MonoBehaviour
+public abstract class Weapons : MonoBehaviour
 {
-    private float fireRate; //скорость стрельбы
-    private float range; // дальность
-    private float damage; //урон
-    private float reload; //перезарядка
-    private float spread; //разброс стрельбы
-    private float clip; //обойма
+    //public enum type { pistol, shotgun, machinegun, taser };
 
+    protected float WeaponFireRate { get; set; } //скорость стрельбы
+    protected float WeaponRange { get; set; } // дальность
+    protected float WeaponDamage { get; set; } //урон
+    protected float WeaponReloadTime { get; set; } //перезарядка
+    protected float WeaponSpread { get; set; } //разброс стрельбы
+    protected float WeaponAmmo { get; set; } //обойма
 
-}
-
-public class ShootGun : Weapons
-{
-   
+	public virtual void Fire() { }
 }
