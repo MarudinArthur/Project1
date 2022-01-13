@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _speed = 10f;
     [HideInInspector] public int currentHealth;
 
-    public GameObject projectilePrefab;
+    //public GameObject projectilePrefab;
+    public int selectedWeapon = 0;
     public int maxHealth = 100;
     public HealthBar healthBar;
     public Image fill;
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        _pistol = GameObject.Find("Weapon").GetComponent<Pistol>();
+        _pistol = GameObject.Find("Canvas").transform.GetChild(8).GetComponent<Pistol>();
         _powerUps = GameObject.Find("Game Manager").GetComponent<Powerups>();
         particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
         _animator = GetComponent<Animator>();
