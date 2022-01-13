@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
+using TMPro;
 
 public class SwitchWeapon : MonoBehaviour
 {
-    public int selectedWeapon = 0;
+    private int selectedWeapon = 0;
+    public TextMeshProUGUI weaponName;
 
     void Update()
     {
@@ -11,6 +13,7 @@ public class SwitchWeapon : MonoBehaviour
             if (index == selectedWeapon)
             {
                 gameObject.transform.GetChild(index).gameObject.SetActive(true);
+                weaponName.text = "Your weapon: " + transform.GetChild(index).name;
             }
             else
             {
