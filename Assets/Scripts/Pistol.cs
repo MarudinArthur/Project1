@@ -8,6 +8,7 @@ public class Pistol : Weapons
 
     Pistol()
     {
+        // значения свойств временные
         WeaponDamage = 10; 
         WeaponFireRate = 10;
         WeaponRange = 2;

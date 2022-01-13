@@ -6,8 +6,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _speed = 10f;
     [HideInInspector] public int currentHealth;
 
-    //public GameObject projectilePrefab;
-    public int selectedWeapon = 0;
     public int maxHealth = 100;
     public HealthBar healthBar;
     public Image fill;
@@ -19,6 +17,10 @@ public class PlayerController : MonoBehaviour
 
     private GameManager _gameManager;
     private Pistol _pistol;
+    private ShotGun _shotGun;
+    private Machinegun _machinegun;
+    private Taser _taser;
+    private SwitchWeapon switchWeapon;
     private Powerups _powerUps;
     public Animator _animator;
     private AudioSource playerAudio;
@@ -32,7 +34,17 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        _pistol = GameObject.Find("Canvas").transform.GetChild(8).GetComponent<Pistol>();
+        _pistol = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+            GetChild(0).GetComponent<Pistol>();
+        _shotGun = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+            GetChild(1).GetComponent<ShotGun>();
+        _machinegun = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+            GetChild(2).GetComponent<Machinegun>();
+        _taser = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+            GetChild(3).GetComponent<Taser>();
+
+        switchWeapon = GameObject.Find("Player").transform.GetChild(3).GetComponent<SwitchWeapon>();
+
         _powerUps = GameObject.Find("Game Manager").GetComponent<Powerups>();
         particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
         _animator = GetComponent<Animator>();
@@ -56,7 +68,22 @@ public class PlayerController : MonoBehaviour
             {
                 if (!_pistol.isReloading)
                 {
-                    _pistol.Fire();
+                    switch (switchWeapon.selectedWeapon)
+                    {
+                        case 0:
+                            _pistol.Fire();
+                            break;
+                        case 1:
+                            _shotGun.Fire();
+                            break;
+                        case 2:
+                            _machinegun.Fire();
+                            break;
+                        case 3:
+                            _taser.Fire();
+                            break;
+                    }
+
                     _state = 4;
                     playerAudio.PlayOneShot(soundShoot, 1.0f);
                     shootParticle.Play();

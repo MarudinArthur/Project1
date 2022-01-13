@@ -3,7 +3,7 @@ using TMPro;
 
 public class SwitchWeapon : MonoBehaviour
 {
-    private int selectedWeapon = 0;
+    [HideInInspector] public int selectedWeapon = 0; 
     public TextMeshProUGUI weaponName;
 
     void Update()

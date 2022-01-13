@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShotGun : Weapons
+public class Taser : Weapons
 {
 	public GameObject porjectilePrefab;
 
-	ShotGun()
+	Taser()
 	{
 		// значения свойств временные
 		WeaponFireRate = 10;
@@ -19,6 +19,6 @@ public class ShotGun : Weapons
 
 	public override void Fire()
 	{
-		Debug.Log("ShotGun Fire! ");
+		Debug.Log("Taser Fire! ");
 	}
 }
