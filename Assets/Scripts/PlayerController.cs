@@ -12,18 +12,20 @@ public class PlayerController : MonoBehaviour
     public AudioClip soundShoot;
     public AudioClip soundChangeSkin;
     public AudioClip soundGetPowerUps;
-    private ParticleHolder particle;
+    public Animator _animator;
     public ParticleSystem shootParticle;
+    private ParticleHolder particle;
 
     private GameManager _gameManager;
+    private SwitchWeapon switchWeapon;
+    private Powerups _powerUps;
+    private AudioSource playerAudio;
+
     private Pistol _pistol;
     private ShotGun _shotGun;
     private Machinegun _machinegun;
     private Taser _taser;
-    private SwitchWeapon switchWeapon;
-    private Powerups _powerUps;
-    public Animator _animator;
-    private AudioSource playerAudio;
+
     private float _horizontalInput;
     private float _verticalInput;
     private float _horizontalBounds = 9f;

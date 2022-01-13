@@ -1377,8 +1377,8 @@ MonoBehaviour:
   soundShoot: {fileID: 8300000, guid: 9c87f285d32fa4569b77ddf3a7e6df5e, type: 3}
   soundChangeSkin: {fileID: 8300000, guid: 9ee6fa16d1507404dbad73bc796dd25c, type: 3}
   soundGetPowerUps: {fileID: 8300000, guid: 69575d593f4524383ac9225744c1bc56, type: 3}
-  shootParticle: {fileID: 2101090133}
   _animator: {fileID: 417996809}
+  shootParticle: {fileID: 2101090133}
 --- !u!95 &417996809
 Animator:
   serializedVersion: 3
@@ -4736,7 +4736,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   porjectilePrefab: {fileID: 7019778604139025116, guid: 07f1578297d6640b1976af3eee9de342,
     type: 3}
-  isReloading: 0
 --- !u!1 &1698062957
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,8 +11,34 @@ public abstract class Weapons : MonoBehaviour
     protected float WeaponDamage { get; set; } //урон
     protected float WeaponReloadTime { get; set; } //перезарядка
     protected float WeaponSpread { get; set; } //разброс стрельбы
-    protected float WeaponMaxAmmo { get; set; } //обойма
-    protected float WeaponCurrentAmmo { get; set; }
+    protected float WeaponMaxAmmo { get; set; } // максимальная обойма
+    protected float WeaponCurrentAmmo { get; set; } // текущая обойма
+    public bool isReloading { get; set; }
 
-	public virtual void Fire() { }
+    public virtual void Fire() { }
+
+    protected void WeaponReloading()
+    {
+        if (isReloading)
+        {
+            return;
+        }
+
+        if (WeaponCurrentAmmo <= 0)
+        {
+            StartCoroutine(Reload());
+            return;
+        }
+    }
+
+    protected IEnumerator Reload()
+    {
+        isReloading = true;
+        GameObject.Find("Canvas").transform.GetChild(13).gameObject.SetActive(true);
+        yield return new WaitForSeconds(WeaponReloadTime);
+
+        GameObject.Find("Canvas").transform.GetChild(13).gameObject.SetActive(false);
+        WeaponCurrentAmmo = WeaponMaxAmmo;
+        isReloading = false;
+    }
 }

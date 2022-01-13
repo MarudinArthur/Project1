@@ -4,7 +4,6 @@ using UnityEngine;
 public class Pistol : Weapons
 {
     public GameObject porjectilePrefab;
-    [HideInInspector] public bool isReloading;
 
     Pistol()
     {
@@ -20,20 +19,12 @@ public class Pistol : Weapons
     private void Start()
     {
         WeaponCurrentAmmo = WeaponMaxAmmo;
+        
     }
 
     private void Update()
     {
-        if (isReloading)
-        {
-            return;
-        }
-
-        if (WeaponCurrentAmmo <= 0)
-        {
-            StartCoroutine(Reload());
-            return;
-        }
+        WeaponReloading();
     }
 
     public override void Fire()
@@ -45,14 +36,11 @@ public class Pistol : Weapons
         }
     }
 
-    IEnumerator Reload()
+    public void TakeDamageEnemy()
     {
-        isReloading = true;
-        GameObject.Find("Canvas").transform.GetChild(13).gameObject.SetActive(true);
-        yield return new WaitForSeconds(WeaponReloadTime);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        GameObject.Find("Canvas").transform.GetChild(13).gameObject.SetActive(false);
-        WeaponCurrentAmmo = WeaponMaxAmmo;
-        isReloading = false;
+        enemies.enemyCurrentHealth -= WeaponDamage;
+        enemies.enemyHealthBar.SetHealth(enemies.enemyCurrentHealth);
     }
 }
