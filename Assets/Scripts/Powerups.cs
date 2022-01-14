@@ -12,9 +12,9 @@ public class Powerups : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
-    public void AddHealth(int damage)
+    public void AddHealth(int health)
     {
-        playerController.currentHealth += damage;
+        playerController.currentHealth += health;
         playerController.healthBar.SetHealth(playerController.currentHealth);
     }
 

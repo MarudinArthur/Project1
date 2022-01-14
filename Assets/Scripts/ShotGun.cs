@@ -9,7 +9,7 @@ public class ShotGun : Weapons
 	ShotGun()
 	{
 		// значения свойств временные
-		WeaponFireRate = 10;
+		WeaponFireRate = 20;
 		WeaponRange = 10;
 		WeaponDamage = 20;
 		WeaponMaxAmmo = 3;

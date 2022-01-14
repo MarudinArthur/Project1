@@ -131,12 +131,6 @@ public class PlayerController : MonoBehaviour
             GameObject.Find("Canvas").transform.GetChild(9).gameObject.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            // потом это можно использовать как усиление на ХП
-            TakeHealth();
-        }
-
         if (currentHealth <= 50)
         {
             fill.color = new Color(0.6f, 0, 0, 0.6f);
@@ -152,7 +146,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("Ground") && !collision.gameObject.CompareTag("Projectile") && !collision.gameObject.CompareTag("TriggerArea"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
             TakeDamage(20);

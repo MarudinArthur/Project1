@@ -9,6 +9,11 @@ public class Enemy : MonoBehaviour
     private GameManager _gameManager;
     public Animator animator;
 
+    private Pistol _pistol;
+    private ShotGun _shotGun;
+    private Machinegun _machinegun;
+    private Taser _taser;
+
     public int enemyMaxHealth = 60;
     public int enemyCurrentHealth;
     private int _state;
@@ -21,6 +26,16 @@ public class Enemy : MonoBehaviour
     {
         _player = GameObject.Find("Player");
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
+        _pistol = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+            GetChild(0).GetComponent<Pistol>();
+        _shotGun = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+           GetChild(1).GetComponent<ShotGun>();
+        _machinegun = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+            GetChild(2).GetComponent<Machinegun>();
+        _taser = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+            GetChild(3).GetComponent<Taser>();
+
         particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
@@ -49,15 +64,17 @@ public class Enemy : MonoBehaviour
             {
                 audioSource.Play();
                 particle.PlayParticle(0, gameObject.transform.position);
-                Destroy(gameObject, 3.5f);
+                Destroy(gameObject, 1.5f);
+
+                // отключаю хелсбар
+                transform.GetChild(2).gameObject.SetActive(false);
+
                 _state = 2;
                 _gameManager.score++;
             }
             animator.SetInteger("state", _state);
-
         }
     }
-
     public void TakeDamageEnemy(int damage)
     {
         enemyCurrentHealth -= damage;
@@ -66,9 +83,14 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Projectile"))
-        {
-            TakeDamageEnemy(20);
-        }
+        // дамаг соответствует выбранной пушки (пули):
+        if (collision.gameObject.CompareTag("PistolProjectile"))
+            TakeDamageEnemy(_pistol.WeaponDamage);
+        if (collision.gameObject.CompareTag("ShotgunProjectile"))
+            TakeDamageEnemy(_shotGun.WeaponDamage);
+        if (collision.gameObject.CompareTag("MachinegunProjectile"))
+            TakeDamageEnemy(_machinegun.WeaponDamage);
+        if (collision.gameObject.CompareTag("TaserProjectile"))
+            TakeDamageEnemy(_taser.WeaponDamage);
     }
 }

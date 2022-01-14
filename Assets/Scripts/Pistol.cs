@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Pistol : Weapons
 {
     public GameObject porjectilePrefab;
+    private Enemy enemy;
 
     Pistol()
     {
         // значения свойств временные
-        WeaponDamage = 10; 
-        WeaponFireRate = 10;
-        WeaponRange = 2;
+        WeaponDamage = 30; // done
+        WeaponFireRate = 10; // done
+        WeaponRange = -3.5f; // done
         WeaponReloadTime = 3f; // done
         WeaponSpread = 3f;
         WeaponMaxAmmo = 6f; // done
@@ -19,15 +19,18 @@ public class Pistol : Weapons
     private void Start()
     {
         WeaponCurrentAmmo = WeaponMaxAmmo;
-        
+
+        // говно-способ получить ссылку на этот скрипт, но пока лучше не придумал:
+        enemy = GameObject.Find("Enemy Holder").transform.GetChild(0).GetComponent<Enemy>();
     }
 
     private void Update()
     {
         WeaponReloading();
+        porjectilePrefab.transform.Translate(Vector3.forward * WeaponFireRate * Time.deltaTime);
     }
 
-    public override void Fire()
+    public override void Fire() 
     {
         if (!isReloading)
         {
@@ -36,11 +39,10 @@ public class Pistol : Weapons
         }
     }
 
-    public void TakeDamageEnemy()
+    public void TakeDamageEnemy(int currentHealth)
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        enemies.enemyCurrentHealth -= WeaponDamage;
-        enemies.enemyHealthBar.SetHealth(enemies.enemyCurrentHealth);
+        currentHealth -= WeaponDamage;
+        Debug.Log(currentHealth);
+        enemy.enemyHealthBar.SetHealth(currentHealth);
     }
 }

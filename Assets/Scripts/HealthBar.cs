@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public Slider slider;
+    float lockPos = 0;
 
     public void SetMaxHealth(int health)
     {
@@ -14,5 +15,10 @@ public class HealthBar : MonoBehaviour
     public void SetHealth(int health)
     {
         slider.value = health;
+    }
+
+	public void Update()
+	{
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, lockPos, lockPos);
     }
 }

@@ -5,12 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Projectile
   - Enemy
   - TriggerArea
   - PowerUpHealth
   - PowerUpExplosion
   - PowerUpTime
+  - PistolProjectile
+  - ShotgunProjectile
+  - MachinegunProjectile
+  - TaserProjectile
   layers:
   - Default
   - TransparentFX
