@@ -27,7 +27,6 @@ public class Pistol : Weapons
     private void Update()
     {
         WeaponReloading();
-        porjectilePrefab.transform.Translate(Vector3.forward * WeaponFireRate * Time.deltaTime);
     }
 
     public override void Fire() 

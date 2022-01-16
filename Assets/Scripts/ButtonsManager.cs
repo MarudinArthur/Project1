@@ -6,11 +6,6 @@ public class ButtonsManager : MonoBehaviour
 {
     private GameManager _gameManager;
 
-    private void Start()
-    {
-        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-    }
-
     public void BackToMenu()
     {
         SceneManager.LoadScene(0);
@@ -23,6 +18,8 @@ public class ButtonsManager : MonoBehaviour
 
     public void Settings()
     {
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
         GameObject.Find("Canvas").transform.GetChild(10).gameObject.SetActive(true);
         _gameManager.stopGame = true;
     }
@@ -38,12 +35,16 @@ public class ButtonsManager : MonoBehaviour
 
     public void HomeButton()
     {
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
         GameObject.Find("Canvas").transform.GetChild(8).gameObject.SetActive(true);
         _gameManager.stopGame = true;
     }
 
     public void CloseHomePopUp()
     {
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
         GameObject.Find("Canvas").transform.GetChild(8).gameObject.SetActive(false);
         _gameManager.stopGame = false;
         GameObject.Find("Player").GetComponent<Animator>().enabled = true;
@@ -51,6 +52,8 @@ public class ButtonsManager : MonoBehaviour
 
     public void CloseSettingsPopUp()
     {
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+
         GameObject.Find("Canvas").transform.GetChild(10).gameObject.SetActive(false);
         _gameManager.stopGame = false;
         GameObject.Find("Player").GetComponent<Animator>().enabled = true;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -153,9 +153,9 @@ RectTransform:
   m_Father: {fileID: 735659613}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 123.70001, y: 141.7}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 115, y: -134}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &52245385
@@ -204,8 +204,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2012,6 +2012,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1488614703}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &891364085 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7444799388547716839, guid: fbbdf9c94f132445883797fb94e276ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 8463375708734696899}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38ca8852b90c341218c82ba114943a6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &900262143
 GameObject:
   m_ObjectHideFlags: 0
@@ -2318,7 +2330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4814242c773b34211a1f2bca24fdda55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  porjectilePrefab: {fileID: 7019778604139025116, guid: 07f1578297d6640b1976af3eee9de342,
+  projectilePrefab: {fileID: 7019778604139025116, guid: 53ce4516d3d034aae99f805d136d1a49,
     type: 3}
 --- !u!1 &972322894
 GameObject:
@@ -4226,7 +4238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f44472bb37acd244b758d7ec84af550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  porjectilePrefab: {fileID: 7019778604139025116, guid: 9b8602c64ddb5c44a9405502815d4755,
+  projectilePrefab: {fileID: 7019778604139025116, guid: 9b8602c64ddb5c44a9405502815d4755,
     type: 3}
 --- !u!4 &1486140240 stripped
 Transform:
@@ -5842,6 +5854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedWeapon: 0
   weaponName: {fileID: 1721003123}
+  weapons: {fileID: 891364085}
 --- !u!4 &1982900120
 Transform:
   m_ObjectHideFlags: 0
@@ -5850,8 +5863,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1982900118}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.29, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.1, y: 1.5, z: 1.06}
+  m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children:
   - {fileID: 1614486601}
   - {fileID: 1461917360}

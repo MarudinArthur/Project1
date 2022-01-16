@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9204061294989182754}
   - component: {fileID: 5905004135190536828}
   - component: {fileID: 4001044044748810265}
-  - component: {fileID: 9118474090347242288}
+  - component: {fileID: -7724847535814244398}
   m_Layer: 0
   m_Name: Projectile - ShotGun
   m_TagString: ShotgunProjectile
@@ -94,7 +94,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9118474090347242288
+--- !u!114 &-7724847535814244398
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
