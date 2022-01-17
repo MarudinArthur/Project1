@@ -20,8 +20,8 @@ public class Pistol : Weapons
         // значения свойств временные
         WeaponDamage = 30; // done
         WeaponFireRate = 10; // done
-        WeaponRange = -3.5f; // done
         WeaponReloadTime = 3f; // done
+        WeaponRange = 7f;
         WeaponSpread = 3f;
         WeaponMaxAmmo = 6f; // done
     }
@@ -49,12 +49,17 @@ public class Pistol : Weapons
     {
         if (!isReloading)
         {
-            Instantiate(porjectilePrefab, transform.position, transform.rotation);
+            GameObject projectile = Instantiate(porjectilePrefab, transform.position, transform.rotation);
+            projectile.GetComponent<Rigidbody>().AddForce(Vector3.forward * WeaponFireRate, ForceMode.Impulse);
+
             WeaponCurrentAmmo--;
 
             _animationState = 4;
             playerAudio.PlayOneShot(soundShoot, 1.0f);
             particle.PlayParticle(2, gameObject.transform.position);
+
+            if (projectile.transform.position.z > WeaponRange)
+                Destroy(gameObject);
         }
 		else
 		{

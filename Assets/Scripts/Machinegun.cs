@@ -56,7 +56,9 @@ public class Machinegun : Weapons
 			{
 				projectilePos -= 3f;
 				Vector3 offset = new Vector3(transform.position.x, transform.position.y, projectilePos);
-				GameObject.Instantiate(projectilePrefab, offset, transform.rotation);
+				GameObject projectile =  Instantiate(projectilePrefab, offset, transform.rotation);
+				projectile.GetComponent<Rigidbody>().AddForce(Vector3.forward * WeaponFireRate, ForceMode.Impulse);
+
 				WeaponCurrentAmmo--;
 			}
 			_animationState = 4;

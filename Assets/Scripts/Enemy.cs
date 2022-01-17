@@ -85,12 +85,25 @@ public class Enemy : MonoBehaviour
     {
         // дамаг соответствует выбранной пушки (пули):
         if (collision.gameObject.CompareTag("PistolProjectile"))
+        {
             TakeDamageEnemy(_pistol.WeaponDamage);
+            Destroy(collision.gameObject);
+        }
         if (collision.gameObject.CompareTag("ShotgunProjectile"))
+        {
             TakeDamageEnemy(_shotGun.WeaponDamage);
+            Destroy(collision.gameObject);
+        }
         if (collision.gameObject.CompareTag("MachinegunProjectile"))
+        {
             TakeDamageEnemy(_machinegun.WeaponDamage);
+            Destroy(collision.gameObject);
+        }
+            
         if (collision.gameObject.CompareTag("TaserProjectile"))
+        {
             TakeDamageEnemy(_taser.WeaponDamage);
+            Destroy(collision.gameObject);
+        }
     }
 }

@@ -17,7 +17,7 @@ public class ShotGun : Weapons
 	ShotGun()
 	{
 		// значения свойств временные
-		WeaponFireRate = 20;
+		WeaponFireRate = 10;
 		WeaponRange = 5f;
 		WeaponDamage = 20;
 		WeaponMaxAmmo = 12f;
@@ -47,15 +47,18 @@ public class ShotGun : Weapons
 
 	public override void Fire()
 	{
-		int projectilePos = -10;
+		int projectilePos = -5;
 
 		if (!isReloading)
         {
-			for (int i = 0; i < 3; i++)
+			for (int i = 0; i < 4; i++)
 			{
-				projectilePos += 5;
+				projectilePos += 1;
 				Vector3 offset = new Vector3(0, projectilePos, 0);
-				GameObject.Instantiate(projectilePrefab, transform.position, Quaternion.Euler(offset));
+				GameObject projectile = GameObject.Instantiate(projectilePrefab, transform.position, Quaternion.Euler(offset));
+				//projectile.GetComponent<Rigidbody>().AddForce(Vector3.forward * WeaponFireRate, ForceMode.Impulse);
+				//projectile.transform.Translate(Vector3.forward * WeaponFireRate * Time.deltaTime);
+
 				WeaponCurrentAmmo--;
 			}
 			_animationState = 4;
