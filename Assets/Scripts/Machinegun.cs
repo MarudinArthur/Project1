@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using TMPro;
 
 public class Machinegun : Weapons
 {
@@ -12,6 +11,8 @@ public class Machinegun : Weapons
 	public AudioClip soundShoot;
 	public Animator _animator;
 	private int _animationState;
+
+	public TextMeshProUGUI ammoCounter;
 
 	Machinegun()
 	{
@@ -39,6 +40,8 @@ public class Machinegun : Weapons
 	private void Update()
 	{
 		WeaponReloading();
+
+		ammoCounter.text = "Ammo: " + WeaponCurrentAmmo;
 	}
 
 	public override void Fire()

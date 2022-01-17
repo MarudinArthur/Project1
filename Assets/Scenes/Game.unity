@@ -2337,6 +2337,7 @@ MonoBehaviour:
     type: 3}
   soundShoot: {fileID: 0}
   _animator: {fileID: 0}
+  ammoCounter: {fileID: 1302895007}
 --- !u!1 &972322894
 GameObject:
   m_ObjectHideFlags: 0
@@ -5084,9 +5085,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   porjectilePrefab: {fileID: 7019778604139025116, guid: 07f1578297d6640b1976af3eee9de342,
     type: 3}
-  ammoCounter: {fileID: 1302895007}
   soundShoot: {fileID: 0}
   _animator: {fileID: 0}
+  ammoCounter: {fileID: 1302895007}
 --- !u!1 &1647511637
 GameObject:
   m_ObjectHideFlags: 0

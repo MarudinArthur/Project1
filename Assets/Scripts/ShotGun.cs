@@ -11,6 +11,7 @@ public class ShotGun : Weapons
 	public AudioClip soundShoot;
 	public Animator _animator;
 	private int _animationState;
+
 	public TextMeshProUGUI ammoCounter;
 
 	ShotGun()

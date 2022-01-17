@@ -5,13 +5,14 @@ public class Pistol : Weapons
 {
     public GameObject porjectilePrefab;
     private Enemy enemy;
-    public TextMeshProUGUI ammoCounter;
-
+    
     private ParticleHolder particle;
     private AudioSource playerAudio;
     public AudioClip soundShoot;
     public Animator _animator;
     private int _animationState;
+
+    public TextMeshProUGUI ammoCounter;
 
 
     Pistol()
