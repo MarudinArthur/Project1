@@ -1,9 +1,18 @@
 ﻿using UnityEngine;
+using TMPro;
 
 public class Pistol : Weapons
 {
     public GameObject porjectilePrefab;
     private Enemy enemy;
+    public TextMeshProUGUI ammoCounter;
+
+    private ParticleHolder particle;
+    private AudioSource playerAudio;
+    public AudioClip soundShoot;
+    public Animator _animator;
+    private int _animationState;
+
 
     Pistol()
     {
@@ -20,6 +29,10 @@ public class Pistol : Weapons
     {
         WeaponCurrentAmmo = WeaponMaxAmmo;
 
+        playerAudio = GameObject.Find("Player").GetComponent<AudioSource>();
+        _animator = GameObject.Find("Player").GetComponent<Animator>();
+        particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
+
         // говно-способ получить ссылку на этот скрипт, но пока лучше не придумал:
         enemy = GameObject.Find("Enemy Holder").transform.GetChild(0).GetComponent<Enemy>();
     }
@@ -27,6 +40,8 @@ public class Pistol : Weapons
     private void Update()
     {
         WeaponReloading();
+
+        ammoCounter.text = "Ammo: " + WeaponCurrentAmmo;
     }
 
     public override void Fire() 
@@ -35,7 +50,16 @@ public class Pistol : Weapons
         {
             Instantiate(porjectilePrefab, transform.position, transform.rotation);
             WeaponCurrentAmmo--;
+
+            _animationState = 4;
+            playerAudio.PlayOneShot(soundShoot, 1.0f);
+            particle.PlayParticle(2, gameObject.transform.position);
         }
+		else
+		{
+            _animationState = 0;
+        }
+        _animator.SetInteger("state", _animationState);
     }
 
     public void TakeDamageEnemy(int currentHealth)

@@ -5,6 +5,7 @@ public class SwitchWeapon : MonoBehaviour
 {
     [HideInInspector] public int selectedWeapon = 0; 
     public TextMeshProUGUI weaponName;
+    public TextMeshProUGUI ammoCounter;
     public Weapons weapons;
 
     void Update()

@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     private float _horizontalBounds = 9f;
     private float _topBound = 5f;
     private float _lowerBound = -11.7f;
-    private int _state;
+    private int _animationState;
 
     private void Start()
     {
@@ -68,32 +68,65 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (!_pistol.isReloading)
+                switch (switchWeapon.selectedWeapon)
                 {
-                    switch (switchWeapon.selectedWeapon)
-                    {
-                        case 0:
+                    case 0:
+                        if (!_pistol.isReloading)
                             _pistol.Fire();
-                            break;
-                        case 1:
-                            _shotGun.Fire();
-                            break;
-                        case 2:
-                            _machinegun.Fire();
-                            break;
-                        case 3:
-                            _taser.Fire();
-                            break;
-                    }
+                        break;
 
-                    _state = 4;
-                    playerAudio.PlayOneShot(soundShoot, 1.0f);
-                    shootParticle.Play();
+                    case 1:
+                        if (!_shotGun.isReloading)
+						{
+                            _shotGun.Fire();
+
+                            _animationState = 4;
+                            playerAudio.PlayOneShot(soundShoot, 1.0f);
+                            shootParticle.Play();
+                        }
+						else
+						{
+                            _animationState = 0;
+                        }
+                        break;
+
+                    case 3:
+                        if (!_taser.isReloading)
+						{
+                            _taser.Fire();
+
+                            _animationState = 4;
+                            playerAudio.PlayOneShot(soundShoot, 1.0f);
+                            shootParticle.Play();
+                        }
+						else
+						{
+                            _animationState = 0;
+                        }
+                        break;
                 }
             }
-            else
-            {
-                _state = 0;
+
+
+            if (Input.GetKey(KeyCode.Space))
+			{
+                switch (switchWeapon.selectedWeapon)
+                {
+                    case 2:
+						if (!_machinegun.isReloading)
+						{
+                            _machinegun.Fire();
+
+                            _animationState = 4;
+                            playerAudio.PlayOneShot(soundShoot, 1.0f);
+                            shootParticle.Play();
+                        }
+						else
+						{
+                            _animationState = 0;
+                        }
+                        break;
+                }
             }
 
             if (transform.position.x > _horizontalBounds)
@@ -116,7 +149,7 @@ public class PlayerController : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, transform.position.y, _lowerBound);
             }
 
-            _animator.SetInteger("state", _state);
+            _animator.SetInteger("state", _animationState);
         }
         else
         {
