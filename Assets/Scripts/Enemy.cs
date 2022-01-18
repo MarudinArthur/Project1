@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     private int _state;
     public HealthBar enemyHealthBar;
     public Image fill;
-    private ParticleHolder particle;
+    //private ParticleHolder particle;
     private AudioSource audioSource;
 
     private int counter = 3;
@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
         _taser = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
             GetChild(3).GetComponent<Taser>();
 
-        particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
+        //particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         
@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
             if (gameObject != null)
             {
                 audioSource.Play();
-                particle.PlayParticle(0, gameObject.transform.position);
+                //particle.PlayParticle(0, gameObject.transform.position);
                 Destroy(gameObject, 1.5f);
 
                 // отключаю хелсбар

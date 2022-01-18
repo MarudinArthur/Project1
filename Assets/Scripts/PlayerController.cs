@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip soundGetPowerUps;
     public Animator _animator;
     public ParticleSystem shootParticle;
-    private ParticleHolder particle;
+    //private ParticleHolder particle;
 
     private GameManager _gameManager;
     private SwitchWeapon switchWeapon;
@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
         switchWeapon = GameObject.Find("Player").transform.GetChild(3).GetComponent<SwitchWeapon>();
 
         _powerUps = GameObject.Find("Game Manager").GetComponent<Powerups>();
-        particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
+        //particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
         _animator = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
 
@@ -68,6 +68,9 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                //particle.PlayParticle(2, gameObject.transform.position);
+                _animationState = 4;
+
                 switch (switchWeapon.selectedWeapon)
                 {
                     case 0:
@@ -82,6 +85,10 @@ public class PlayerController : MonoBehaviour
                         _taser.Fire();
                         break;
                 }
+            }
+            else
+            {
+                _animationState = 0;
             }
 
 
@@ -141,6 +148,25 @@ public class PlayerController : MonoBehaviour
         }
         else if (currentHealth > 50)
             fill.color = new Color(1f, 1f, 1f, 0.6509804f); // base color
+
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            _animationState = 1;
+        }
+        else
+        {
+            _animationState = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            _animationState = 1;
+        }
+        else
+        {
+            _animationState = 0;
+        }
+        _animator.SetInteger("state", _animationState);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -172,7 +198,7 @@ public class PlayerController : MonoBehaviour
             _powerUps.Explosion();
             Destroy(other.gameObject);
             playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
-            particle.PlayParticle(1, gameObject.transform.position);
+            //particle.PlayParticle(1, gameObject.transform.position);
         }
 
         if (other.gameObject.CompareTag("PowerUpTime"))

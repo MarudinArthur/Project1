@@ -13,7 +13,6 @@ public class Pistol : Weapons
 
     public TextMeshProUGUI ammoCounter;
 
-
     Pistol()
     {
         WeaponDamage = 20;
@@ -46,13 +45,6 @@ public class Pistol : Weapons
         {
             Instantiate(porjectilePrefab, transform.position, transform.rotation);
             WeaponCurrentAmmo--;
-
-            _animationState = 4;
-            playerAudio.PlayOneShot(soundShoot, 1.0f);
-            particle.PlayParticle(2, gameObject.transform.position);
         }
-
-        _animationState = 0;
-        _animator.SetInteger("state", _animationState);
     }
 }

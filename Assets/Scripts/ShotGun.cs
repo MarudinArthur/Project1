@@ -52,14 +52,6 @@ public class ShotGun : Weapons
 
 				WeaponCurrentAmmo--;
 			}
-			_animationState = 4;
-			playerAudio.PlayOneShot(soundShoot, 1.0f);
-			particle.PlayParticle(2, gameObject.transform.position);
 		}
-		else
-		{
-			_animationState = 0;
-		}
-		_animator.SetInteger("state", _animationState);
 	}
 }
