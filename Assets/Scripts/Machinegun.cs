@@ -11,17 +11,17 @@ public class Machinegun : Weapons
 	public Animator _animator;
 	private int _animationState;
 
+	private GameObject player;
+
 	public TextMeshProUGUI ammoCounter;
 
 	Machinegun()
 	{
-		// значения свойств временные
-		WeaponFireRate = 20;
+		WeaponFireRate = 20f;
 		WeaponRange = 10;
 		WeaponDamage = 1;
 		WeaponMaxAmmo = 500;
-		WeaponSpread = -15;
-		WeaponReloadTime = 4;
+		WeaponReloadTime = 4f;
 	}
 
 	private void Start()
@@ -31,6 +31,8 @@ public class Machinegun : Weapons
 		playerAudio = GameObject.Find("Player").GetComponent<AudioSource>();
 		_animator = GameObject.Find("Player").GetComponent<Animator>();
 		particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
+
+		player = GameObject.Find("Player");
 	}
 
 	private void Update()
@@ -42,16 +44,14 @@ public class Machinegun : Weapons
 
 	public override void Fire()
 	{
-		Debug.Log("Machinegun Fire! ");
-
 		if (!isReloading)
 		{
 			float projectilePos = 0;
 
 			for (int i = 0; i < 3; i++)
 			{
-				projectilePos -= 3f;
-				Vector3 offset = new Vector3(transform.position.x, transform.position.y, projectilePos);
+				projectilePos -= 2.5f;
+				Vector3 offset = new Vector3(player.transform.position.x, player.transform.position.y, projectilePos);
 				Instantiate(projectilePrefab, offset, transform.rotation);
 
 				WeaponCurrentAmmo--;

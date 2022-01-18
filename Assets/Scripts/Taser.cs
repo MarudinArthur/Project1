@@ -15,13 +15,11 @@ public class Taser : Weapons
 
     Taser()
 	{
-		// значения свойств временные
-		WeaponFireRate = 10;
-		WeaponRange = 10;
+		WeaponFireRate = 10f;
+		WeaponRange = 10f;
 		WeaponDamage = 10;
-		WeaponMaxAmmo = 3;
-		WeaponSpread = 2;
-		WeaponReloadTime = 4;
+		WeaponMaxAmmo = 3f;
+		WeaponReloadTime = 4f;
 	}
 
 	public void Start()
@@ -50,9 +48,6 @@ public class Taser : Weapons
             _animationState = 4;
             playerAudio.PlayOneShot(soundShoot, 1.0f);
             particle.PlayParticle(2, gameObject.transform.position);
-
-            if (transform.position.z > WeaponRange)
-                Destroy(gameObject);
         }
         else
         {

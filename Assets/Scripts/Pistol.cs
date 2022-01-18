@@ -16,13 +16,12 @@ public class Pistol : Weapons
 
     Pistol()
     {
-        // значения свойств временные
-        WeaponDamage = 40; // done
-        WeaponFireRate = 10; // done
-        WeaponReloadTime = 3f; // done
-        WeaponRange = 7f;
-        WeaponSpread = 3f;
-        WeaponMaxAmmo = 6f; // done
+        WeaponDamage = 20;
+        WeaponFireRate = 10f;
+        WeaponReloadTime = 3f;
+        WeaponRange = 6f;
+        WeaponSpread = 4f;
+        WeaponMaxAmmo = 6f;
     }
 
     private void Start()
@@ -51,14 +50,9 @@ public class Pistol : Weapons
             _animationState = 4;
             playerAudio.PlayOneShot(soundShoot, 1.0f);
             particle.PlayParticle(2, gameObject.transform.position);
+        }
 
-            if (transform.position.z > WeaponRange)
-                Destroy(gameObject);
-        }
-		else
-		{
-            _animationState = 0;
-        }
+        _animationState = 0;
         _animator.SetInteger("state", _animationState);
     }
 }

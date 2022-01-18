@@ -15,14 +15,11 @@ public class ShotGun : Weapons
 
 	ShotGun()
 	{
-		// значения свойств временные
-		WeaponFireRate = 30;
-		WeaponRange = 5f;
-		WeaponDamage = 20;
+		WeaponFireRate = 30f;
+		WeaponRange = 8f;
+		WeaponDamage = 15;
 		WeaponMaxAmmo = 12f;
-		WeaponSpread = 2;
-		WeaponReloadTime = 4;
-		
+		WeaponReloadTime = 3f;
 	}
 
 	private void Start()
@@ -43,14 +40,14 @@ public class ShotGun : Weapons
 
 	public override void Fire()
 	{
-		int projectilePos = -20;
+		WeaponSpread = -20f;
 
 		if (!isReloading)
         {
 			for (int i = 0; i < 3; i++)
 			{
-				projectilePos += 10;
-				Vector3 offset = new Vector3(0, projectilePos, 0);
+				WeaponSpread += 10;
+				Vector3 offset = new Vector3(0, WeaponSpread, 0);
 				Instantiate(projectilePrefab, transform.position, Quaternion.Euler(offset));
 
 				WeaponCurrentAmmo--;

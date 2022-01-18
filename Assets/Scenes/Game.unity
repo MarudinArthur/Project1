@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.65882355}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6509804}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -728,7 +728,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 108, y: -85.4}
+  m_AnchoredPosition: {x: 121, y: -85.4}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &160910854
@@ -759,8 +759,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 3456106496
-  m_fontColor: {r: 0, g: 0, b: 0, a: 0.80784315}
+    rgba: 3466894682
+  m_fontColor: {r: 0.3529412, g: 0.6156863, b: 0.6431373, a: 0.80784315}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -777,8 +777,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13
-  m_fontSizeBase: 13
+  m_fontSize: 17.76
+  m_fontSizeBase: 17.76
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -813,7 +813,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 76.31966, w: 21.343002}
+  m_margin: {x: 0, y: 0, z: 20.863113, w: 21.343002}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -7146,11 +7146,47 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon Holder
       objectReference: {fileID: 0}
+    - target: {fileID: 879518759621571390, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: m_TagString
+      value: MachinegunProjectile
+      objectReference: {fileID: 0}
     - target: {fileID: 2543631098321562698, guid: fbbdf9c94f132445883797fb94e276ed,
         type: 3}
       propertyPath: weaponName
       value: 
       objectReference: {fileID: 1721003123}
+    - target: {fileID: 2682863377495799133, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 417996809}
+    - target: {fileID: 2682863377495799133, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: soundShoot
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c87f285d32fa4569b77ddf3a7e6df5e, type: 3}
+    - target: {fileID: 2682863377495799133, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: ammoCounter
+      value: 
+      objectReference: {fileID: 1302895007}
+    - target: {fileID: 2682863377495799133, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 7019778604139025116, guid: 53ce4516d3d034aae99f805d136d1a49,
+        type: 3}
+    - target: {fileID: 3213627125174318119, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: m_TagString
+      value: ShotgunProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 3324191293508553376, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: m_TagString
+      value: TaserProjectile
+      objectReference: {fileID: 0}
     - target: {fileID: 4644071920510826004, guid: fbbdf9c94f132445883797fb94e276ed,
         type: 3}
       propertyPath: m_RootOrder
@@ -7211,5 +7247,67 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skin2
       objectReference: {fileID: 0}
+    - target: {fileID: 7444799388547716839, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 417996809}
+    - target: {fileID: 7444799388547716839, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: soundShoot
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c87f285d32fa4569b77ddf3a7e6df5e, type: 3}
+    - target: {fileID: 7444799388547716839, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: ammoCounter
+      value: 
+      objectReference: {fileID: 1302895007}
+    - target: {fileID: 8183205910287270387, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 417996809}
+    - target: {fileID: 8183205910287270387, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: soundShoot
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c87f285d32fa4569b77ddf3a7e6df5e, type: 3}
+    - target: {fileID: 8183205910287270387, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: ammoCounter
+      value: 
+      objectReference: {fileID: 1302895007}
+    - target: {fileID: 8183205910287270387, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: porjectilePrefab
+      value: 
+      objectReference: {fileID: 7019778604139025116, guid: 003cbe599464b7042b08c4a7d8d9d7c0,
+        type: 3}
+    - target: {fileID: 8496731215778358649, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: m_TagString
+      value: PistolProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670716078075917172, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 417996809}
+    - target: {fileID: 8670716078075917172, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: soundShoot
+      value: 
+      objectReference: {fileID: 8300000, guid: 9c87f285d32fa4569b77ddf3a7e6df5e, type: 3}
+    - target: {fileID: 8670716078075917172, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: ammoCounter
+      value: 
+      objectReference: {fileID: 1302895007}
+    - target: {fileID: 8670716078075917172, guid: fbbdf9c94f132445883797fb94e276ed,
+        type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 7019778604139025116, guid: 9b8602c64ddb5c44a9405502815d4755,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbbdf9c94f132445883797fb94e276ed, type: 3}

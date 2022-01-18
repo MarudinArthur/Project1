@@ -71,38 +71,15 @@ public class PlayerController : MonoBehaviour
                 switch (switchWeapon.selectedWeapon)
                 {
                     case 0:
-                        if (!_pistol.isReloading)
-                            _pistol.Fire();
+                        _pistol.Fire();
                         break;
 
                     case 1:
-                        if (!_shotGun.isReloading)
-						{
-                            _shotGun.Fire();
-
-                            _animationState = 4;
-                            playerAudio.PlayOneShot(soundShoot, 1.0f);
-                            shootParticle.Play();
-                        }
-						else
-						{
-                            _animationState = 0;
-                        }
+                        _shotGun.Fire();
                         break;
 
                     case 3:
-                        if (!_taser.isReloading)
-						{
-                            _taser.Fire();
-
-                            _animationState = 4;
-                            playerAudio.PlayOneShot(soundShoot, 1.0f);
-                            shootParticle.Play();
-                        }
-						else
-						{
-                            _animationState = 0;
-                        }
+                        _taser.Fire();
                         break;
                 }
             }
@@ -113,18 +90,7 @@ public class PlayerController : MonoBehaviour
                 switch (switchWeapon.selectedWeapon)
                 {
                     case 2:
-						if (!_machinegun.isReloading)
-						{
-                            _machinegun.Fire();
-
-                            _animationState = 4;
-                            playerAudio.PlayOneShot(soundShoot, 1.0f);
-                            shootParticle.Play();
-                        }
-						else
-						{
-                            _animationState = 0;
-                        }
+                        _machinegun.Fire();
                         break;
                 }
             }
@@ -148,8 +114,6 @@ public class PlayerController : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y, _lowerBound);
             }
-
-            _animator.SetInteger("state", _animationState);
         }
         else
         {
@@ -175,6 +139,8 @@ public class PlayerController : MonoBehaviour
                 _gameManager.GameOverPopUp();
             }
         }
+        else if (currentHealth > 50)
+            fill.color = new Color(1f, 1f, 1f, 0.6509804f); // base color
     }
 
     private void OnCollisionEnter(Collision collision)
