@@ -4,7 +4,6 @@ using TMPro;
 public class ShotGun : Weapons
 {
 	public GameObject projectilePrefab;
-	private Enemy enemy;
 
 	private ParticleHolder particle;
 	private AudioSource playerAudio;
@@ -17,7 +16,7 @@ public class ShotGun : Weapons
 	ShotGun()
 	{
 		// значения свойств временные
-		WeaponFireRate = 10;
+		WeaponFireRate = 30;
 		WeaponRange = 5f;
 		WeaponDamage = 20;
 		WeaponMaxAmmo = 12f;
@@ -33,9 +32,6 @@ public class ShotGun : Weapons
 		playerAudio = GameObject.Find("Player").GetComponent<AudioSource>();
 		_animator = GameObject.Find("Player").GetComponent<Animator>();
 		particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
-
-		// говно-способ получить ссылку на этот скрипт, но пока лучше не придумал:
-		enemy = GameObject.Find("Enemy Holder").transform.GetChild(0).GetComponent<Enemy>();
 	}
 
 	private void Update()
@@ -47,17 +43,15 @@ public class ShotGun : Weapons
 
 	public override void Fire()
 	{
-		int projectilePos = -5;
+		int projectilePos = -20;
 
 		if (!isReloading)
         {
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 3; i++)
 			{
-				projectilePos += 1;
+				projectilePos += 10;
 				Vector3 offset = new Vector3(0, projectilePos, 0);
-				GameObject projectile = GameObject.Instantiate(projectilePrefab, transform.position, Quaternion.Euler(offset));
-				//projectile.GetComponent<Rigidbody>().AddForce(Vector3.forward * WeaponFireRate, ForceMode.Impulse);
-				//projectile.transform.Translate(Vector3.forward * WeaponFireRate * Time.deltaTime);
+				Instantiate(projectilePrefab, transform.position, Quaternion.Euler(offset));
 
 				WeaponCurrentAmmo--;
 			}
@@ -70,12 +64,5 @@ public class ShotGun : Weapons
 			_animationState = 0;
 		}
 		_animator.SetInteger("state", _animationState);
-	}
-
-	public void TakeDamageEnemy(int currentHealth)
-	{
-		currentHealth -= WeaponDamage;
-		Debug.Log(currentHealth);
-		enemy.enemyHealthBar.SetHealth(currentHealth);
 	}
 }

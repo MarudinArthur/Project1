@@ -8,7 +8,6 @@ public class MoveForward : MonoBehaviour
     private ShotGun _shotGun;
     private Machinegun _machinegun;
     private Taser _taser;
-    //private Rigidbody projectileRb;
 
 	public void Start()
 	{
@@ -22,27 +21,26 @@ public class MoveForward : MonoBehaviour
             GetChild(3).GetComponent<Taser>();
 
         switchWeapon = GameObject.Find("Player").transform.GetChild(3).GetComponent<SwitchWeapon>();
-        //projectileRb = GetComponent<Rigidbody>();
     }
 
 	void Update()
     {
         switch (switchWeapon.selectedWeapon)
 		{
-            //case 0:
-                //transform.Translate(Vector3.forward * _pistol.WeaponFireRate * Time.deltaTime);
-                //if (transform.position.z > _pistol.WeaponRange)
-                //    Destroy(gameObject);
-                //break;
+            case 0:
+                transform.Translate(Vector3.forward * _pistol.WeaponFireRate * Time.deltaTime);
+                if (transform.position.z > _pistol.WeaponRange)
+                    Destroy(gameObject);
+                break;
 
             case 1:
-                //transform.Translate(Vector3.forward * _shotGun.WeaponFireRate * Time.deltaTime);
+                transform.Translate(Vector3.forward * _shotGun.WeaponFireRate * Time.deltaTime);
                 if (transform.position.z > _shotGun.WeaponRange)
                     Destroy(gameObject);
                 break;
 
             case 2:
-                transform.Translate(Vector3.forward * 10f * Time.deltaTime); //временно
+                transform.Translate(Vector3.forward * _machinegun.WeaponFireRate * Time.deltaTime);
                 if (transform.position.z > _machinegun.WeaponRange)
                     Destroy(gameObject);
                 break;

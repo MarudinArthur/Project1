@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
     private ParticleHolder particle;
     private AudioSource audioSource;
 
+    private int counter = 3;
+
     private void Start()
     {
         _player = GameObject.Find("Player");
@@ -39,7 +41,7 @@ public class Enemy : MonoBehaviour
         particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
-
+        
         enemyCurrentHealth = enemyMaxHealth;
         enemyHealthBar.SetMaxHealth(enemyMaxHealth);
     }
@@ -81,6 +83,16 @@ public class Enemy : MonoBehaviour
         enemyHealthBar.SetHealth(enemyCurrentHealth);
     }
 
+    public void TakeTaserDamageEnemy()
+    { 
+
+        enemyCurrentHealth -= _taser.WeaponDamage;
+        Debug.Log(enemyCurrentHealth);
+        enemyHealthBar.SetHealth(enemyCurrentHealth);
+
+        if (--counter == 0) CancelInvoke("TakeTaserDamageEnemy");
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         // дамаг соответствует выбранной пушки (пули):
@@ -99,10 +111,11 @@ public class Enemy : MonoBehaviour
             TakeDamageEnemy(_machinegun.WeaponDamage);
             Destroy(collision.gameObject);
         }
-            
+
         if (collision.gameObject.CompareTag("TaserProjectile"))
         {
-            TakeDamageEnemy(_taser.WeaponDamage);
+            InvokeRepeating("TakeTaserDamageEnemy", 0, 1);
+
             Destroy(collision.gameObject);
         }
     }

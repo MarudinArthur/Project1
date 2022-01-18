@@ -1,11 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Weapons : MonoBehaviour
 {
-    //public enum type { pistol, shotgun, machinegun, taser };
-
     public float WeaponFireRate { get; set; } //скорость стрельбы
     public float WeaponRange { get; set; } // дальность
     public int WeaponDamage { get; set; } //урон
