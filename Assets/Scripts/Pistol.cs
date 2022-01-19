@@ -5,10 +5,10 @@ public class Pistol : Weapons
 {
     public GameObject porjectilePrefab;
     
-    private ParticleHolder particle;
-    private AudioSource playerAudio;
+    //private ParticleHolder particle;
+    //private AudioSource playerAudio;
     public AudioClip soundShoot;
-    public Animator _animator;
+    private Animator _animator;
     private int _animationState;
 
     public TextMeshProUGUI ammoCounter;
@@ -20,16 +20,16 @@ public class Pistol : Weapons
         WeaponReloadTime = 3f;
         WeaponRange = 6f;
         WeaponSpread = 4f;
-        WeaponMaxAmmo = 6f;
+        WeaponMaxAmmo = 12f;
     }
 
     private void Start()
     {
         WeaponCurrentAmmo = WeaponMaxAmmo;
 
-        playerAudio = GameObject.Find("Player").GetComponent<AudioSource>();
+        //playerAudio = GameObject.Find("Player").GetComponent<AudioSource>();
         _animator = GameObject.Find("Player").GetComponent<Animator>();
-        particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
+        //particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
     }
 
     private void Update()

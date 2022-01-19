@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 
     private GameObject _player;
     private GameManager _gameManager;
-    public Animator animator;
+    private Animator animator;
 
     private Pistol _pistol;
     private ShotGun _shotGun;
@@ -16,11 +16,11 @@ public class Enemy : MonoBehaviour
 
     public int enemyMaxHealth = 60;
     public int enemyCurrentHealth;
-    private int _state;
+    private int _animationState;
     public HealthBar enemyHealthBar;
     public Image fill;
-    //private ParticleHolder particle;
-    private AudioSource audioSource;
+    private ParticleHolder particle;
+    //private AudioSource audioSource;
 
     private int counter = 3;
 
@@ -29,17 +29,17 @@ public class Enemy : MonoBehaviour
         _player = GameObject.Find("Player");
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
-        _pistol = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+        _pistol = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(0).GetComponent<Pistol>();
-        _shotGun = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+        _shotGun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
            GetChild(1).GetComponent<ShotGun>();
-        _machinegun = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+        _machinegun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(2).GetComponent<Machinegun>();
-        _taser = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+        _taser = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(3).GetComponent<Taser>();
 
-        //particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
-        audioSource = GetComponent<AudioSource>();
+        particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
+        //audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         
         enemyCurrentHealth = enemyMaxHealth;
@@ -64,17 +64,17 @@ public class Enemy : MonoBehaviour
         {
             if (gameObject != null)
             {
-                audioSource.Play();
-                //particle.PlayParticle(0, gameObject.transform.position);
+                //audioSource.Play();
+                particle.PlayParticle(0, gameObject.transform.position);
                 Destroy(gameObject, 1.5f);
 
                 // отключаю хелсбар
                 transform.GetChild(2).gameObject.SetActive(false);
 
-                _state = 2;
+                _animationState = 2;
                 _gameManager.score++;
             }
-            animator.SetInteger("state", _state);
+            animator.SetInteger("state", _animationState);
         }
     }
     public void TakeDamageEnemy(int damage)

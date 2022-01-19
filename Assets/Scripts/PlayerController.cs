@@ -12,9 +12,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip soundShoot;
     public AudioClip soundChangeSkin;
     public AudioClip soundGetPowerUps;
-    public Animator _animator;
+    private Animator _animator;
     public ParticleSystem shootParticle;
-    //private ParticleHolder particle;
+    private ParticleHolder particleHolder;
 
     private GameManager _gameManager;
     private SwitchWeapon switchWeapon;
@@ -36,21 +36,22 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        _pistol = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+        _pistol = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(0).GetComponent<Pistol>();
-        _shotGun = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+        _shotGun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(1).GetComponent<ShotGun>();
-        _machinegun = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+        _machinegun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(2).GetComponent<Machinegun>();
-        _taser = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+        _taser = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(3).GetComponent<Taser>();
 
-        switchWeapon = GameObject.Find("Player").transform.GetChild(3).GetComponent<SwitchWeapon>();
+        switchWeapon = GameObject.Find("Player").transform.GetChild(2).GetComponent<SwitchWeapon>();
 
         _powerUps = GameObject.Find("Game Manager").GetComponent<Powerups>();
-        //particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
+        particleHolder = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
         _animator = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
+        
 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
@@ -66,40 +67,35 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector3.forward * _speed * Time.deltaTime * _verticalInput);
             transform.Translate(Vector3.right * _speed * Time.deltaTime * _horizontalInput);
 
-            if (Input.GetKeyDown(KeyCode.Space))
+
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Space) && switchWeapon.selectedWeapon == 2)
             {
-                //particle.PlayParticle(2, gameObject.transform.position);
-                _animationState = 4;
-
-                switch (switchWeapon.selectedWeapon)
+                if (!_pistol.isReloading && !_shotGun.isReloading && !_machinegun.isReloading && !_taser.isReloading)
                 {
-                    case 0:
-                        _pistol.Fire();
-                        break;
+                    shootParticle.Play();
+                    _animationState = 4;
 
-                    case 1:
-                        _shotGun.Fire();
-                        break;
+                    switch (switchWeapon.selectedWeapon)
+                    {
+                        case 0:
+                            _pistol.Fire();
+                            break;
+                        case 2:
+                            _machinegun.Fire();
+                            break;
+                        case 1:
+                            _shotGun.Fire();
+                            break;
 
-                    case 3:
-                        _taser.Fire();
-                        break;
+                        case 3:
+                            _taser.Fire();
+                            break;
+                    }
                 }
             }
             else
             {
                 _animationState = 0;
-            }
-
-
-            if (Input.GetKey(KeyCode.Space))
-			{
-                switch (switchWeapon.selectedWeapon)
-                {
-                    case 2:
-                        _machinegun.Fire();
-                        break;
-                }
             }
 
             if (transform.position.x > _horizontalBounds)
@@ -149,7 +145,7 @@ public class PlayerController : MonoBehaviour
         else if (currentHealth > 50)
             fill.color = new Color(1f, 1f, 1f, 0.6509804f); // base color
 
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             _animationState = 1;
         }
@@ -158,7 +154,7 @@ public class PlayerController : MonoBehaviour
             _animationState = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             _animationState = 1;
         }
@@ -198,7 +194,7 @@ public class PlayerController : MonoBehaviour
             _powerUps.Explosion();
             Destroy(other.gameObject);
             playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
-            //particle.PlayParticle(1, gameObject.transform.position);
+            particleHolder.PlayParticle(1, gameObject.transform.position);
         }
 
         if (other.gameObject.CompareTag("PowerUpTime"))

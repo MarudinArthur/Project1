@@ -13,16 +13,16 @@ public class MoveForward : MonoBehaviour
 
 	public void Start()
 	{
-        _pistol = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+        _pistol = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(0).GetComponent<Pistol>();
-        _shotGun = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+        _shotGun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(1).GetComponent<ShotGun>();
-        _machinegun = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+        _machinegun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(2).GetComponent<Machinegun>();
-        _taser = GameObject.Find("Player").transform.GetChild(3).gameObject.transform.
+        _taser = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(3).GetComponent<Taser>();
 
-        switchWeapon = GameObject.Find("Player").transform.GetChild(3).GetComponent<SwitchWeapon>();
+        switchWeapon = GameObject.Find("Player").transform.GetChild(2).GetComponent<SwitchWeapon>();
 
         player = GameObject.Find("Player");
     }

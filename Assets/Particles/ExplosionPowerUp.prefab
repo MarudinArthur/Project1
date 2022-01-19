@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9211688975835343585}
   - component: {fileID: 9211688975853807191}
   - component: {fileID: 9211688975855185843}
+  - component: {fileID: -8322525170809357250}
   m_Layer: 0
   m_Name: ExplosionPowerUp
   m_TagString: Untagged
@@ -4739,3 +4740,15 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &-8322525170809357250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9211688975835071521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc5e177da245649759d8a0eacf6549f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
