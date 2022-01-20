@@ -9,11 +9,14 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 100;
     public HealthBar healthBar;
     public Image fill;
-    public AudioClip soundShoot;
+    public AudioClip soundPistol;
+    public AudioClip soundShotGun;
+    public AudioClip soundMachinegun;
+    public AudioClip soundTaser;
     public AudioClip soundChangeSkin;
     public AudioClip soundGetPowerUps;
     private Animator _animator;
-    public ParticleSystem shootParticle;
+    public ParticleSystem particleShoot;
     private ParticleHolder particleHolder;
 
     private GameManager _gameManager;
@@ -67,28 +70,31 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector3.forward * _speed * Time.deltaTime * _verticalInput);
             transform.Translate(Vector3.right * _speed * Time.deltaTime * _horizontalInput);
 
-
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Space) && switchWeapon.selectedWeapon == 2)
             {
                 if (!_pistol.isReloading && !_shotGun.isReloading && !_machinegun.isReloading && !_taser.isReloading)
                 {
-                    shootParticle.Play();
-                    _animationState = 4;
+                    particleShoot.Play();
+
+                    _animationState = 4; // не работает
 
                     switch (switchWeapon.selectedWeapon)
                     {
                         case 0:
                             _pistol.Fire();
-                            break;
-                        case 2:
-                            _machinegun.Fire();
+                            playerAudio.PlayOneShot(soundPistol, 1);
                             break;
                         case 1:
                             _shotGun.Fire();
+                            playerAudio.PlayOneShot(soundShotGun, 1);
                             break;
-
+                        case 2:
+                            _machinegun.Fire();
+                            playerAudio.PlayOneShot(soundMachinegun, 1);
+                            break;
                         case 3:
                             _taser.Fire();
+                            playerAudio.PlayOneShot(soundTaser, 1);
                             break;
                     }
                 }
