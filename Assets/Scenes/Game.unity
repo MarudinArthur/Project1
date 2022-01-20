@@ -1437,7 +1437,6 @@ MonoBehaviour:
   soundShoot: {fileID: 8300000, guid: 9c87f285d32fa4569b77ddf3a7e6df5e, type: 3}
   soundChangeSkin: {fileID: 8300000, guid: 9ee6fa16d1507404dbad73bc796dd25c, type: 3}
   soundGetPowerUps: {fileID: 8300000, guid: 69575d593f4524383ac9225744c1bc56, type: 3}
-  _animator: {fileID: 417996809}
   shootParticle: {fileID: 2098845892}
 --- !u!95 &417996809
 Animator:
@@ -1449,7 +1448,7 @@ Animator:
   m_GameObject: {fileID: 417996804}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 9c507999c5eaf43589c72285c4dd47f6, type: 3}
-  m_Controller: {fileID: 9100000, guid: 2dfd6ff7365054be794232044b8fb82f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5de92f75bd7a64d2d8b1040020d68a4d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4905,7 +4904,6 @@ MonoBehaviour:
   porjectilePrefab: {fileID: 7019778604139025116, guid: 07f1578297d6640b1976af3eee9de342,
     type: 3}
   soundShoot: {fileID: 8300000, guid: 9c87f285d32fa4569b77ddf3a7e6df5e, type: 3}
-  _animator: {fileID: 417996809}
   ammoCounter: {fileID: 1302895007}
 --- !u!1 &1698062957
 GameObject:
@@ -5496,7 +5494,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1.425003}
+  m_AnchoredPosition: {x: 0, y: 1.4249878}
   m_SizeDelta: {x: -271.91962, y: -83.45227}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1898407011

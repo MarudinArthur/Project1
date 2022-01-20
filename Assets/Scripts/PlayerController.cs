@@ -149,19 +149,22 @@ public class PlayerController : MonoBehaviour
         {
             _animationState = 1;
         }
-        else
-        {
-            _animationState = 0;
-        }
 
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             _animationState = 1;
         }
-        else
+
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            _animationState = 0;
+            _animationState = 2;
         }
+
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            _animationState = 3;
+        }
+
         _animator.SetInteger("state", _animationState);
     }
 
