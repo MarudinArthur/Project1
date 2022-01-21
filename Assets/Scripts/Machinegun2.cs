@@ -8,10 +8,10 @@ public class Machinegun2 : Weapons
 
 	public Machinegun2()
 	{
-		WeaponFireRate = 40f;
+		WeaponFireRate = 50f;
 		WeaponRange = 10;
 		WeaponDamage = 1;
-		WeaponMaxAmmo = 500;
+		WeaponMaxAmmo = 100;
 		WeaponReloadTime = 4f;
 
 		WeaponCurrentAmmo = WeaponMaxAmmo;

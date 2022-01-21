@@ -27,15 +27,10 @@ public class Machinegun : Weapons
 	public override void Fire()
 	{
 		if (!isReloading)
-		{
-			float projectilePos = 0;
-
-			for (int i = 0; i < 3; i++)
+        {
+			if (!isReloading)
 			{
-				projectilePos -= 2.5f;
-				Vector3 offset = new Vector3(transform.position.x, transform.position.y, projectilePos);
-				Instantiate(projectilePrefab, offset, transform.rotation);
-
+				Instantiate(projectilePrefab, transform.position, transform.rotation);
 				WeaponCurrentAmmo--;
 			}
 		}
