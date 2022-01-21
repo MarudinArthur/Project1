@@ -3,33 +3,33 @@ using TMPro;
 
 public class Machinegun2 : Weapons
 {
-    public GameObject porjectilePrefab;
-    public TextMeshProUGUI ammoCounter;
+	public GameObject projectilePrefab;
+	public TextMeshProUGUI ammoCounter;
 
-    Machinegun2()
-    {
-        WeaponDamage = 20;
-        WeaponFireRate = 10f;
-        WeaponReloadTime = 3f;
-        WeaponRange = 6f;
-        WeaponSpread = 4f;
-        WeaponMaxAmmo = 32f;
+	public Machinegun2()
+	{
+		WeaponFireRate = 40f;
+		WeaponRange = 10;
+		WeaponDamage = 1;
+		WeaponMaxAmmo = 500;
+		WeaponReloadTime = 4f;
 
-        WeaponCurrentAmmo = WeaponMaxAmmo;
-    }
+		WeaponCurrentAmmo = WeaponMaxAmmo;
+	}
 
-    private void Update()
-    {
-        WeaponReloading();
-        ammoCounter.text = "Ammo: " + WeaponCurrentAmmo;
-    }
+	private void Update()
+	{
+		WeaponReloading();
 
-    public override void Fire()
-    {
-        if (!isReloading)
-        {
-            Instantiate(porjectilePrefab, transform.position, transform.rotation);
-            WeaponCurrentAmmo--;
-        }
-    }
+		ammoCounter.text = "Ammo: " + WeaponCurrentAmmo;
+	}
+
+	public override void Fire()
+	{
+		if (!isReloading)
+		{
+			Instantiate(projectilePrefab, transform.position, transform.rotation);
+			WeaponCurrentAmmo--;
+		}
+	}
 }

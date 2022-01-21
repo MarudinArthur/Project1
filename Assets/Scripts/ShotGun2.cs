@@ -6,7 +6,7 @@ public class ShotGun2 : Weapons
     public GameObject porjectilePrefab;
     public TextMeshProUGUI ammoCounter;
 
-    ShotGun2()
+    public ShotGun2()
     {
         WeaponDamage = 20;
         WeaponFireRate = 10f;

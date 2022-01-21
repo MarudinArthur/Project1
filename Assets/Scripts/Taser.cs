@@ -4,33 +4,19 @@ using TMPro;
 public class Taser : Weapons
 {
     public GameObject porjectilePrefab;
-
-    private ParticleHolder particle;
-    private AudioSource playerAudio;
-    public AudioClip soundShoot;
-    public Animator _animator;
-    private int _animationState;
-
     public TextMeshProUGUI ammoCounter;
 
-    Taser()
+    public Taser()
 	{
 		WeaponFireRate = 10f;
 		WeaponRange = 10f;
 		WeaponDamage = 10;
 		WeaponMaxAmmo = 3f;
 		WeaponReloadTime = 4f;
-	}
 
-	public void Start()
-	{
         WeaponCurrentAmmo = WeaponMaxAmmo;
-
-        playerAudio = GameObject.Find("Player").GetComponent<AudioSource>();
-        _animator = GameObject.Find("Player").GetComponent<Animator>();
-        particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
-
     }
+
     private void Update()
     {
         WeaponReloading();

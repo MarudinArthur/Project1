@@ -3,13 +3,13 @@ using UnityEngine;
 
 public abstract class Weapons : MonoBehaviour
 {
-    public float WeaponFireRate { get; set; } //скорость стрельбы
-    public float WeaponRange { get; set; } // дальность
-    public int WeaponDamage { get; set; } //урон
-    protected float WeaponReloadTime { get; set; } //перезарядка
-    protected float WeaponSpread { get; set; } //разброс стрельбы
-    protected float WeaponMaxAmmo { get; set; } // максимальная обойма
-    protected float WeaponCurrentAmmo { get; set; } // текущая обойма
+    public float WeaponFireRate { get; set; }
+    public float WeaponRange { get; set; }
+    public int WeaponDamage { get; set; }
+    protected float WeaponReloadTime { get; set; }
+    protected float WeaponSpread { get; set; } 
+    protected float WeaponMaxAmmo { get; set; }
+    protected float WeaponCurrentAmmo { get; set; }
     public bool isReloading { get; set; }
 
     public virtual void Fire() { }

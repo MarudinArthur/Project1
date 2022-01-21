@@ -6,13 +6,12 @@ public class SwitchWeapon : MonoBehaviour
     [HideInInspector] public int selectedWeapon = 0; 
     public TextMeshProUGUI weaponName;
     public TextMeshProUGUI ammoCounter;
-    public Weapons weapons;
 
     private Pistol _pistol;
     private ShotGun _shotGun;
     private ShotGun2 _shotGun2;
-    private Machinegun2 _machinegun2;
     private Machinegun _machinegun;
+    private Machinegun2 _machinegun2;
     private Taser _taser;
 
     private void Start()

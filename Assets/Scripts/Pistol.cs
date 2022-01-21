@@ -3,10 +3,10 @@ using TMPro;
 
 public class Pistol : Weapons
 {
-    public GameObject porjectilePrefab;
+    public GameObject projectilePrefab;
     public TextMeshProUGUI ammoCounter;
 
-    Pistol()
+    public Pistol()
     {
         WeaponDamage = 20;
         WeaponFireRate = 10f;
@@ -28,7 +28,7 @@ public class Pistol : Weapons
     {
         if (!isReloading)
         {
-            Instantiate(porjectilePrefab, transform.position, transform.rotation);
+            Instantiate(projectilePrefab, transform.position, transform.rotation);
             WeaponCurrentAmmo--;
         }
     }

@@ -4,31 +4,17 @@ using TMPro;
 public class ShotGun : Weapons
 {
 	public GameObject projectilePrefab;
-
-	private ParticleHolder particle;
-	private AudioSource playerAudio;
-	public AudioClip soundShoot;
-	public Animator _animator;
-	private int _animationState;
-
 	public TextMeshProUGUI ammoCounter;
 
-	ShotGun()
+	public ShotGun()
 	{
 		WeaponFireRate = 30f;
 		WeaponRange = 8f;
 		WeaponDamage = 15;
 		WeaponMaxAmmo = 12f;
 		WeaponReloadTime = 3f;
-	}
 
-	private void Start()
-	{
 		WeaponCurrentAmmo = WeaponMaxAmmo;
-
-		playerAudio = GameObject.Find("Player").GetComponent<AudioSource>();
-		_animator = GameObject.Find("Player").GetComponent<Animator>();
-		particle = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
 	}
 
 	private void Update()

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311947, g: 0.38074005, b: 0.35872722, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1186,13 +1186,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 695211177}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4814242c773b34211a1f2bca24fdda55, type: 3}
+  m_Script: {fileID: 11500000, guid: b37cf8f986e784744a34ef85328de1c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 8198517380561254719, guid: 55091ebea98b83f4da606f0fdc0a955a,
     type: 3}
-  soundShoot: {fileID: 8300000, guid: 9c87f285d32fa4569b77ddf3a7e6df5e, type: 3}
-  _animator: {fileID: 0}
   ammoCounter: {fileID: 1302895007}
 --- !u!1 &712798932
 GameObject:
@@ -2001,8 +1999,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 7019778604139025116, guid: 53ce4516d3d034aae99f805d136d1a49,
     type: 3}
-  soundShoot: {fileID: 8300000, guid: 9c87f285d32fa4569b77ddf3a7e6df5e, type: 3}
-  _animator: {fileID: 0}
   ammoCounter: {fileID: 1302895007}
 --- !u!1 &979888171
 GameObject:
@@ -3762,8 +3758,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 7019778604139025116, guid: 9b8602c64ddb5c44a9405502815d4755,
     type: 3}
-  soundShoot: {fileID: 8300000, guid: 9c87f285d32fa4569b77ddf3a7e6df5e, type: 3}
-  _animator: {fileID: 0}
   ammoCounter: {fileID: 1302895007}
 --- !u!1 &1490589672
 GameObject:
@@ -4302,7 +4296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ca8852b90c341218c82ba114943a6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  porjectilePrefab: {fileID: 7019778604139025116, guid: 07f1578297d6640b1976af3eee9de342,
+  projectilePrefab: {fileID: 7019778604139025116, guid: 07f1578297d6640b1976af3eee9de342,
     type: 3}
   ammoCounter: {fileID: 1302895007}
 --- !u!1 &1721003121
@@ -4881,7 +4875,6 @@ MonoBehaviour:
   selectedWeapon: 0
   weaponName: {fileID: 1721003123}
   ammoCounter: {fileID: 1302895007}
-  weapons: {fileID: 0}
 --- !u!4 &1982900120
 Transform:
   m_ObjectHideFlags: 0
@@ -5125,7 +5118,7 @@ GameObject:
   - component: {fileID: 2110238088}
   m_Layer: 0
   m_Name: Taser
-  m_TagString: Untagged
+  m_TagString: TaserProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5158,8 +5151,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   porjectilePrefab: {fileID: 7019778604139025116, guid: 003cbe599464b7042b08c4a7d8d9d7c0,
     type: 3}
-  soundShoot: {fileID: 8300000, guid: 9c87f285d32fa4569b77ddf3a7e6df5e, type: 3}
-  _animator: {fileID: 0}
   ammoCounter: {fileID: 1302895007}
 --- !u!1 &2128975095
 GameObject:

@@ -11,7 +11,10 @@ public class Enemy : MonoBehaviour
 
     private Pistol _pistol;
     private ShotGun _shotGun;
+    private ShotGun2 _shotGun2;
     private Machinegun _machinegun;
+    private Machinegun2 _machinegun2;
+
     private Taser _taser;
     public AudioClip soundEnemyDeath;
     public AudioClip soundEnemyHit;
@@ -34,11 +37,15 @@ public class Enemy : MonoBehaviour
         _pistol = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(0).GetComponent<Pistol>();
         _shotGun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-           GetChild(1).GetComponent<ShotGun>();
+            GetChild(1).GetComponent<ShotGun>();
+        _shotGun2 = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
+            GetChild(2).GetComponent<ShotGun2>();
         _machinegun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(2).GetComponent<Machinegun>();
+            GetChild(3).GetComponent<Machinegun>();
+        _machinegun2 = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
+            GetChild(4).GetComponent<Machinegun2>();
         _taser = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(3).GetComponent<Taser>();
+            GetChild(5).GetComponent<Taser>();
 
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();

@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
         _taser = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(5).GetComponent<Taser>();
 
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         switchWeapon = GameObject.Find("Player").transform.GetChild(2).GetComponent<SwitchWeapon>();
 
         _powerUps = GameObject.Find("Game Manager").GetComponent<Powerups>();
