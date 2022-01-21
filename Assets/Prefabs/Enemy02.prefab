@@ -2146,9 +2146,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8924657723369111064}
   - component: {fileID: 3259177033973982306}
+  - component: {fileID: 7315126070378971241}
   - component: {fileID: 7802164865261272565}
   - component: {fileID: 1498986073837656233}
-  - component: {fileID: 7315126070378971241}
   - component: {fileID: 5485891339574351525}
   m_Layer: 0
   m_Name: Enemy02
@@ -2194,6 +2194,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7315126070378971241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8111282298951623842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf39b2a6c0ba4c4f9cd39b46a942dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 2
+  soundEnemyDeath: {fileID: 8300000, guid: 63cf76284fcc3490da472b96e723eb53, type: 3}
+  soundEnemyHit: {fileID: 8300000, guid: 72879285ded844717bde060c8c6c6128, type: 3}
+  enemyMaxHealth: 60
+  enemyCurrentHealth: 0
+  enemyHealthBar: {fileID: 1890008992607144003}
+  fill: {fileID: 8163378878997775698}
+  particleHit: {fileID: 5144503345049026126}
 --- !u!65 &7802164865261272565
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2223,26 +2243,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &7315126070378971241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8111282298951623842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daf39b2a6c0ba4c4f9cd39b46a942dcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 2
-  soundEnemyDeath: {fileID: 8300000, guid: 63cf76284fcc3490da472b96e723eb53, type: 3}
-  soundEnemyHit: {fileID: 8300000, guid: 72879285ded844717bde060c8c6c6128, type: 3}
-  enemyMaxHealth: 60
-  enemyCurrentHealth: 0
-  enemyHealthBar: {fileID: 1890008992607144003}
-  fill: {fileID: 8163378878997775698}
-  particleHit: {fileID: 5144503345049026126}
 --- !u!82 &5485891339574351525
 AudioSource:
   m_ObjectHideFlags: 0

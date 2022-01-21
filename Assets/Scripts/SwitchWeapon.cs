@@ -10,19 +10,25 @@ public class SwitchWeapon : MonoBehaviour
 
     private Pistol _pistol;
     private ShotGun _shotGun;
+    private ShotGun2 _shotGun2;
+    private Machinegun2 _machinegun2;
     private Machinegun _machinegun;
     private Taser _taser;
 
     private void Start()
     {
         _pistol = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-    GetChild(0).GetComponent<Pistol>();
+            GetChild(0).GetComponent<Pistol>();
         _shotGun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(1).GetComponent<ShotGun>();
+        _shotGun2 = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
+            GetChild(2).GetComponent<ShotGun2>();
         _machinegun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(2).GetComponent<Machinegun>();
+            GetChild(3).GetComponent<Machinegun>();
+        _machinegun2 = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
+            GetChild(4).GetComponent<Machinegun2>();
         _taser = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(3).GetComponent<Taser>();
+            GetChild(5).GetComponent<Taser>();
     }
 
     void Update()
@@ -39,7 +45,7 @@ public class SwitchWeapon : MonoBehaviour
                 gameObject.transform.GetChild(index).gameObject.SetActive(false);
             }
         }
-        if (!_pistol.isReloading && !_shotGun.isReloading && !_machinegun.isReloading && !_taser.isReloading)
+        if (!_pistol.isReloading && !_shotGun.isReloading && !_machinegun.isReloading && !_taser.isReloading && !_shotGun2.isReloading && !_machinegun2.isReloading)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -57,6 +63,14 @@ public class SwitchWeapon : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
                 selectedWeapon = 3;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                selectedWeapon = 4;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha6))
+            {
+                selectedWeapon = 5;
             }
         }
     }

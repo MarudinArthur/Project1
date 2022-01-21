@@ -76,10 +76,11 @@ public class Enemy : MonoBehaviour
         if (enemyCurrentHealth == 0)
 		{
             _gameManager.score++;
-            audioSource.PlayOneShot(soundEnemyDeath, 1);
 
             // отключаю хелсбар
             transform.GetChild(2).gameObject.SetActive(false);
+            if (!_gameManager.soundDisable)
+                audioSource.PlayOneShot(soundEnemyDeath, 1);
         }
     }
 
@@ -100,30 +101,35 @@ public class Enemy : MonoBehaviour
         {
             TakeDamageEnemy(_pistol.WeaponDamage);
             Destroy(collision.gameObject);
-            audioSource.PlayOneShot(soundEnemyHit, 1);
             particleHit.Play();
+            if (!_gameManager.soundDisable)
+                audioSource.PlayOneShot(soundEnemyHit, 1);
         }
         if (collision.gameObject.CompareTag("ShotgunProjectile"))
         {
             TakeDamageEnemy(_shotGun.WeaponDamage);
             Destroy(collision.gameObject);
-            audioSource.PlayOneShot(soundEnemyHit, 1);
             particleHit.Play();
+            if (!_gameManager.soundDisable)
+                audioSource.PlayOneShot(soundEnemyHit, 1);
+
         }
         if (collision.gameObject.CompareTag("MachinegunProjectile"))
         {
             TakeDamageEnemy(_machinegun.WeaponDamage);
             Destroy(collision.gameObject);
-            audioSource.PlayOneShot(soundEnemyHit, 1);
             particleHit.Play();
+            if (!_gameManager.soundDisable)
+                audioSource.PlayOneShot(soundEnemyHit, 1);
         }
 
         if (collision.gameObject.CompareTag("TaserProjectile"))
         {
             InvokeRepeating("TakeTaserDamageEnemy", 0, 1);
             Destroy(collision.gameObject);
-            audioSource.PlayOneShot(soundEnemyHit, 1);
             particleHit.Play();
+            if (!_gameManager.soundDisable)
+                audioSource.PlayOneShot(soundEnemyHit, 1);
         }
     }
 }

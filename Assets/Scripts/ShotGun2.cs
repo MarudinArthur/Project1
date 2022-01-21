@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using TMPro;
 
-public class Pistol : Weapons
+public class ShotGun2 : Weapons
 {
     public GameObject porjectilePrefab;
     public TextMeshProUGUI ammoCounter;
 
-    Pistol()
+    ShotGun2()
     {
         WeaponDamage = 20;
         WeaponFireRate = 10f;
@@ -24,7 +24,7 @@ public class Pistol : Weapons
         ammoCounter.text = "Ammo: " + WeaponCurrentAmmo;
     }
 
-    public override void Fire() 
+    public override void Fire()
     {
         if (!isReloading)
         {

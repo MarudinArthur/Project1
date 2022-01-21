@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip soundTaser;
     public AudioClip soundChangeSkin;
     public AudioClip soundGetPowerUps;
-    private Animator _animator;
+    private Animator _animatorSkin1;
+    private Animator _animatorSkin2;
     public ParticleSystem particleShoot;
     private ParticleHolder particleHolder;
 
@@ -26,6 +27,8 @@ public class PlayerController : MonoBehaviour
 
     private Pistol _pistol;
     private ShotGun _shotGun;
+    private ShotGun2 _shotGun2;
+    private Machinegun2 _machinegun2;
     private Machinegun _machinegun;
     private Taser _taser;
 
@@ -38,21 +41,25 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         _pistol = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(0).GetComponent<Pistol>();
         _shotGun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(1).GetComponent<ShotGun>();
+        _shotGun2 = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
+            GetChild(2).GetComponent<ShotGun2>();
         _machinegun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(2).GetComponent<Machinegun>();
+            GetChild(3).GetComponent<Machinegun>();
+        _machinegun2 = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
+            GetChild(4).GetComponent<Machinegun2>();
         _taser = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(3).GetComponent<Taser>();
+            GetChild(5).GetComponent<Taser>();
 
         switchWeapon = GameObject.Find("Player").transform.GetChild(2).GetComponent<SwitchWeapon>();
 
         _powerUps = GameObject.Find("Game Manager").GetComponent<Powerups>();
         particleHolder = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
-        _animator = GetComponent<Animator>();
+        _animatorSkin1 = GameObject.Find("Player").transform.GetChild(0).GetComponent<Animator>();
+        _animatorSkin2 = GameObject.Find("Player").transform.GetChild(1).GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
         
 
@@ -70,31 +77,45 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector3.forward * _speed * Time.deltaTime * _verticalInput);
             transform.Translate(Vector3.right * _speed * Time.deltaTime * _horizontalInput);
 
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Space) && switchWeapon.selectedWeapon == 2)
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Space) && switchWeapon.selectedWeapon == 3)
             {
-                if (!_pistol.isReloading && !_shotGun.isReloading && !_machinegun.isReloading && !_taser.isReloading)
+                if (!_pistol.isReloading && !_shotGun.isReloading && !_machinegun.isReloading && !_taser.isReloading && !_shotGun2.isReloading && !_machinegun2.isReloading)
                 {
                     particleShoot.Play();
 
-                    _animationState = 4; // не работает
+                    _animationState = 4;
 
                     switch (switchWeapon.selectedWeapon)
                     {
                         case 0:
                             _pistol.Fire();
-                            playerAudio.PlayOneShot(soundPistol, 1);
+                            if (!_gameManager.soundDisable)
+                                playerAudio.PlayOneShot(soundPistol, 1);
                             break;
                         case 1:
                             _shotGun.Fire();
-                            playerAudio.PlayOneShot(soundShotGun, 1);
+                            if (!_gameManager.soundDisable)
+                                playerAudio.PlayOneShot(soundShotGun, 1);
                             break;
                         case 2:
-                            _machinegun.Fire();
-                            playerAudio.PlayOneShot(soundMachinegun, 1);
+                            _shotGun2.Fire();
+                            if (!_gameManager.soundDisable)
+                                playerAudio.PlayOneShot(soundShotGun, 1);
                             break;
                         case 3:
+                            _machinegun.Fire();
+                            if (!_gameManager.soundDisable)
+                                playerAudio.PlayOneShot(soundMachinegun, 1);
+                            break;
+                        case 4:
+                            _machinegun2.Fire();
+                            if (!_gameManager.soundDisable)
+                                playerAudio.PlayOneShot(soundMachinegun, 1);
+                            break;
+                        case 5:
                             _taser.Fire();
-                            playerAudio.PlayOneShot(soundTaser, 1);
+                            if (!_gameManager.soundDisable)
+                                playerAudio.PlayOneShot(soundTaser, 1);
                             break;
                     }
                 }
@@ -105,28 +126,23 @@ public class PlayerController : MonoBehaviour
             }
 
             if (transform.position.x > _horizontalBounds)
-            {
                 transform.position = new Vector3(_horizontalBounds, transform.position.y, transform.position.z);
-            }
 
             if (transform.position.x < -_horizontalBounds)
-            {
                 transform.position = new Vector3(-_horizontalBounds, transform.position.y, transform.position.z);
-            }
 
             if (transform.position.z > _topBound)
-            {
                 transform.position = new Vector3(transform.position.x, transform.position.y, _topBound);
-            }
 
             if (transform.position.z < _lowerBound)
-            {
                 transform.position = new Vector3(transform.position.x, transform.position.y, _lowerBound);
-            }
         }
         else
         {
-            _animator.gameObject.GetComponent<Animator>().enabled = false;
+            if (_animatorSkin1)
+                _animatorSkin1.GetComponent<Animator>().enabled = false;
+            if (_animatorSkin2)
+                _animatorSkin2.GetComponent<Animator>().enabled = false;
         }
 
         if (Input.GetKeyDown(KeyCode.T))
@@ -152,26 +168,19 @@ public class PlayerController : MonoBehaviour
             fill.color = new Color(1f, 1f, 1f, 0.6509804f); // base color
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
             _animationState = 1;
-        }
 
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
             _animationState = 1;
-        }
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
             _animationState = 2;
-        }
-
+        
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
             _animationState = 3;
-        }
 
-        _animator.SetInteger("state", _animationState);
+        _animatorSkin1.SetInteger("state", _animationState);
+        _animatorSkin2.SetInteger("state", _animationState);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -188,29 +197,34 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("TriggerArea"))
         {
             SkinChanger();
-            playerAudio.PlayOneShot(soundChangeSkin, 1.0f);
+            if (!_gameManager.soundDisable)
+                playerAudio.PlayOneShot(soundChangeSkin, 1.0f);
         }
 
         if (other.gameObject.CompareTag("PowerUpHealth"))
         {
             _powerUps.AddHealth(30);
             Destroy(other.gameObject);
-            playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
+            if (!_gameManager.soundDisable)
+                playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
         }
 
         if (other.gameObject.CompareTag("PowerUpExplosion"))
         {
             _powerUps.Explosion();
             Destroy(other.gameObject);
-            playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
             particleHolder.PlayParticle(1, gameObject.transform.position);
+            if (!_gameManager.soundDisable)
+                playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
+
         }
 
         if (other.gameObject.CompareTag("PowerUpTime"))
         {
             _powerUps.AddTime(25);
             Destroy(other.gameObject);
-            playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
+            if (!_gameManager.soundDisable)
+                playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
         }
     }
 
@@ -232,13 +246,6 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
-    }
-
-    public void TakeHealth()
-    {
-        // потом это можно использовать как усиление на ХП
-        currentHealth += 20;
         healthBar.SetHealth(currentHealth);
     }
 }

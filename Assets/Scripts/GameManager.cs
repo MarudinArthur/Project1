@@ -6,7 +6,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public float score = 0f;
     [HideInInspector] public bool gameOver = false;
     [HideInInspector] public bool stopGame = false;
-    [HideInInspector] public float time = 30f;
+    [HideInInspector] public bool soundDisable = false;
+    public float time = 60f;
     public static GameManager Instance;
     public TextMeshProUGUI timerCounter;
     public TextMeshProUGUI scoreCounter;

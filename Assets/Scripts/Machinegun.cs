@@ -17,7 +17,7 @@ public class Machinegun : Weapons
 
 	Machinegun()
 	{
-		WeaponFireRate = 20f;
+		WeaponFireRate = 40f;
 		WeaponRange = 10;
 		WeaponDamage = 1;
 		WeaponMaxAmmo = 500;
