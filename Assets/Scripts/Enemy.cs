@@ -68,10 +68,13 @@ public class Enemy : MonoBehaviour
             animator.gameObject.GetComponent<Animator>().enabled = false;
         }
 
-        if (enemyCurrentHealth == 0 && gameObject != null)
+        if (enemyCurrentHealth <= 0 && gameObject != null)
         {
             Destroy(gameObject, 1.5f);
             _animationState = 2;
+
+            // отключаю хелсбар
+            transform.GetChild(2).gameObject.SetActive(false);
         }
         animator.SetInteger("state", _animationState);
     }
@@ -83,9 +86,7 @@ public class Enemy : MonoBehaviour
         if (enemyCurrentHealth == 0)
 		{
             _gameManager.score++;
-
-            // отключаю хелсбар
-            transform.GetChild(2).gameObject.SetActive(false);
+            
             if (!_gameManager.soundDisable)
                 audioSource.PlayOneShot(soundEnemyDeath, 1);
         }
