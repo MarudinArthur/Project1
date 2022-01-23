@@ -3,7 +3,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    [HideInInspector] public float score = 0f;
+    public float score = 0f;
     [HideInInspector] public bool gameOver = false;
     [HideInInspector] public bool stopGame = false;
     [HideInInspector] public bool soundDisable = false;
@@ -11,8 +11,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public TextMeshProUGUI timerCounter;
     public TextMeshProUGUI scoreCounter;
+    public TextMeshProUGUI playerName;
 
-    /*
+    public string nameInput;
+
     void Awake()
     {
         if (Instance != null)
@@ -21,10 +23,11 @@ public class GameManager : MonoBehaviour
             return;
         }
       
-        //GameObject.Find("Canvas").transform.GetChild(4).gameObject.SetActive(false);
         Instance = this;
         DontDestroyOnLoad(transform.gameObject);
-    }*/
+
+        nameInput = MainManager.Instance.playerName.text;
+    }
 
     private void Update()
     {
@@ -59,6 +62,8 @@ public class GameManager : MonoBehaviour
     {
         // show current score
         scoreCounter.text = "score: " + score;
+
+        playerName.text = "Player : " + nameInput;
     }
 
     public void GameOverPopUp()

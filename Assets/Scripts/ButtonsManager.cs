@@ -87,4 +87,9 @@ public class ButtonsManager : MonoBehaviour
 		else
             gameManager.soundDisable = false;
     }
+
+    public void EnterPlayerName()
+    {
+        GameObject.Find("Canvas").transform.GetChild(2).gameObject.SetActive(true);
+    }
 }
