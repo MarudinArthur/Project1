@@ -6,7 +6,7 @@ public class TextOnTheGround : MonoBehaviour
 {
     public TMP_Text textOnTheGround;
 
-    private float speed = 1.5f;
+    private const float Speed = 1.5f;
     private GameManager _gameManager;
 
     private void Start()
@@ -16,7 +16,7 @@ public class TextOnTheGround : MonoBehaviour
 
     private void Update()
     {
-        StartCoroutine("ShowTextOnTheGround");
+        StartCoroutine(nameof(ShowTextOnTheGround));
 
         if (textOnTheGround.transform.position.z > 15)
         {
@@ -24,14 +24,14 @@ public class TextOnTheGround : MonoBehaviour
         }
     }
 
-    IEnumerator ShowTextOnTheGround()
+    private IEnumerator ShowTextOnTheGround()
     {
         yield return new WaitForSeconds(3);
 
         if (!_gameManager.stopGame)
         {
             textOnTheGround.GetComponent<MeshRenderer>().enabled = true;
-            textOnTheGround.transform.Translate(Vector3.up * speed * Time.deltaTime);
+            textOnTheGround.transform.Translate(Vector3.up * Speed * Time.deltaTime);
         }
     }
 }

@@ -2,39 +2,34 @@
 
 public class Powerups : MonoBehaviour
 {
-    private PlayerController playerController;
-    private GameManager gameManager;
-    private GameObject[] enemies;
+    private PlayerController _playerController;
+    private GameManager _gameManager;
+    private GameObject[] _enemies;
 
     private void Start()
     {
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        _playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     public void AddHealth(int health)
     {
-        playerController.currentHealth += health;
-        playerController.healthBar.SetHealth(playerController.currentHealth);
+        _playerController.currentHealth += health;
+        _playerController.healthBar.SetHealth(_playerController.currentHealth);
     }
 
     public void Explosion()
     {
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        for (int i = 0; i < enemies.Length; i++)
+        _enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (var x in _enemies)
         {
-            Destroy(enemies[i]);
-            gameManager.score++;
+            Destroy(x);
+            _gameManager.score++;
         }
     }
 
     public void AddTime(int seconds)
     {
-        gameManager.time += seconds;
-    }
-
-    public void Shield()
-    {
-        Debug.Log("SHIELD");
+        _gameManager.time += seconds;
     }
 }

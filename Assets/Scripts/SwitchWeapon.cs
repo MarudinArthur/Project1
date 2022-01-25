@@ -3,7 +3,7 @@ using TMPro;
 
 public class SwitchWeapon : MonoBehaviour
 {
-    [HideInInspector] public int selectedWeapon = 0; 
+    [HideInInspector] public int selectedWeapon; 
     public TextMeshProUGUI weaponName;
     public TextMeshProUGUI ammoCounter;
 
@@ -30,9 +30,9 @@ public class SwitchWeapon : MonoBehaviour
             GetChild(5).GetComponent<Taser>();
     }
 
-    void Update()
+    private void Update()
     {
-        for (int index = 0; index < transform.childCount; index++)
+        for (var index = 0; index < transform.childCount; index++)
         {
             if (index == selectedWeapon)
             {
@@ -44,7 +44,7 @@ public class SwitchWeapon : MonoBehaviour
                 gameObject.transform.GetChild(index).gameObject.SetActive(false);
             }
         }
-        if (!_pistol.isReloading && !_shotGun.isReloading && !_machinegun.isReloading && !_taser.isReloading && !_shotGun2.isReloading && !_machinegun2.isReloading)
+        if (!_pistol.IsReloading && !_shotGun.IsReloading && !_machinegun.IsReloading && !_taser.IsReloading && !_shotGun2.IsReloading && !_machinegun2.IsReloading)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {

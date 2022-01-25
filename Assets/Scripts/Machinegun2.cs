@@ -20,13 +20,12 @@ public class Machinegun2 : Weapons
 	private void Update()
 	{
 		WeaponReloading();
-
 		ammoCounter.text = "Ammo: " + WeaponCurrentAmmo;
 	}
 
 	public override void Fire()
 	{
-		if (!isReloading)
+		if (!IsReloading)
 		{
 			Instantiate(projectilePrefab, transform.position, transform.rotation);
 			WeaponCurrentAmmo--;

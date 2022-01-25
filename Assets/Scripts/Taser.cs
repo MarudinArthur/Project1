@@ -20,13 +20,12 @@ public class Taser : Weapons
     private void Update()
     {
         WeaponReloading();
-
         ammoCounter.text = "Ammo: " + WeaponCurrentAmmo;
     }
 
     public override void Fire()
 	{
-        if (!isReloading)
+        if (!IsReloading)
         {
             Instantiate(porjectilePrefab, transform.position, transform.rotation);
             WeaponCurrentAmmo--;

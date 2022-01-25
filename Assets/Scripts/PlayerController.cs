@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float _speed = 10f;
     [HideInInspector] public int currentHealth;
 
+    private const float Speed = 10f;
     public int maxHealth = 100;
     public HealthBar healthBar;
     public Image fill;
@@ -18,12 +18,12 @@ public class PlayerController : MonoBehaviour
     private Animator _animatorSkin1;
     private Animator _animatorSkin2;
     public ParticleSystem particleShoot;
-    private ParticleHolder particleHolder;
+    private ParticleHolder _particleHolder;
 
     private GameManager _gameManager;
-    private SwitchWeapon switchWeapon;
+    private SwitchWeapon _switchWeapon;
     private Powerups _powerUps;
-    private AudioSource playerAudio;
+    private AudioSource _playerAudio;
 
     private Pistol _pistol;
     private ShotGun _shotGun;
@@ -34,10 +34,11 @@ public class PlayerController : MonoBehaviour
 
     private float _horizontalInput;
     private float _verticalInput;
-    private float _horizontalBounds = 9f;
-    private float _topBound = 5f;
-    private float _lowerBound = -11.7f;
+    private const float HorizontalBounds = 9f;
+    private const float TopBound = 5f;
+    private const float LowerBound = -11.7f;
     private int _animationState;
+    private Transform _startGamePopUp;
 
     private void Start()
     {
@@ -55,68 +56,68 @@ public class PlayerController : MonoBehaviour
             GetChild(5).GetComponent<Taser>();
 
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        switchWeapon = GameObject.Find("Player").transform.GetChild(2).GetComponent<SwitchWeapon>();
-
+        _switchWeapon = GameObject.Find("Player").transform.GetChild(2).GetComponent<SwitchWeapon>();
         _powerUps = GameObject.Find("Game Manager").GetComponent<Powerups>();
-        particleHolder = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
+        _particleHolder = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
         _animatorSkin1 = GameObject.Find("Player").transform.GetChild(0).GetComponent<Animator>();
         _animatorSkin2 = GameObject.Find("Player").transform.GetChild(1).GetComponent<Animator>();
-        playerAudio = GetComponent<AudioSource>();
-        
+        _playerAudio = GetComponent<AudioSource>();
 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        
+        GameObject.Find("Canvas").transform.GetChild(17).gameObject.SetActive(true);
+        GameObject.Find("Game Manager").GetComponent<GameManager>().stopGame = true;
+
     }
 
-    void Update()
-    {
-        _horizontalInput = Input.GetAxis("Horizontal");
-        _verticalInput = Input.GetAxis("Vertical");
-
-        if (!_gameManager.gameOver && !_gameManager.stopGame)
-        {
-            transform.Translate(Vector3.forward * _speed * Time.deltaTime * _verticalInput);
-            transform.Translate(Vector3.right * _speed * Time.deltaTime * _horizontalInput);
-
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Space) && switchWeapon.selectedWeapon == 3)
-            {
-                if (!_pistol.isReloading && !_shotGun.isReloading && !_machinegun.isReloading && !_taser.isReloading && !_shotGun2.isReloading && !_machinegun2.isReloading)
-                {
+    private void Update()
+    { 
+        _horizontalInput = Input.GetAxis("Horizontal"); 
+        _verticalInput = Input.GetAxis("Vertical"); 
+        if (!_gameManager.gameOver && !_gameManager.stopGame) 
+        { 
+            transform.Translate(Vector3.forward * (Speed * Time.deltaTime * _verticalInput)); 
+            transform.Translate(Vector3.right * (Speed * Time.deltaTime * _horizontalInput));
+                
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Space) && _switchWeapon.selectedWeapon == 3) 
+            { 
+                if (!_pistol.IsReloading && !_shotGun.IsReloading && !_machinegun.IsReloading && !_taser.IsReloading && !_shotGun2.IsReloading && !_machinegun2.IsReloading) 
+                { 
                     particleShoot.Play();
-
                     _animationState = 4;
 
-                    switch (switchWeapon.selectedWeapon)
+                    switch (_switchWeapon.selectedWeapon)
                     {
                         case 0:
                             _pistol.Fire();
                             if (!_gameManager.soundDisable)
-                                playerAudio.PlayOneShot(soundPistol, 1);
+                                _playerAudio.PlayOneShot(soundPistol, 1);
                             break;
                         case 1:
                             _shotGun.Fire();
                             if (!_gameManager.soundDisable)
-                                playerAudio.PlayOneShot(soundShotGun, 1);
+                                _playerAudio.PlayOneShot(soundShotGun, 1);
                             break;
                         case 2:
                             _shotGun2.Fire();
                             if (!_gameManager.soundDisable)
-                                playerAudio.PlayOneShot(soundShotGun, 1);
+                                _playerAudio.PlayOneShot(soundShotGun, 1);
                             break;
                         case 3:
                             _machinegun.Fire();
                             if (!_gameManager.soundDisable)
-                                playerAudio.PlayOneShot(soundMachinegun, 1);
+                                _playerAudio.PlayOneShot(soundMachinegun, 1);
                             break;
                         case 4:
                             _machinegun2.Fire();
                             if (!_gameManager.soundDisable)
-                                playerAudio.PlayOneShot(soundMachinegun, 1);
+                                _playerAudio.PlayOneShot(soundMachinegun, 1);
                             break;
                         case 5:
                             _taser.Fire();
                             if (!_gameManager.soundDisable)
-                                playerAudio.PlayOneShot(soundTaser, 1);
+                                _playerAudio.PlayOneShot(soundTaser, 1);
                             break;
                     }
                 }
@@ -126,17 +127,17 @@ public class PlayerController : MonoBehaviour
                 _animationState = 0;
             }
 
-            if (transform.position.x > _horizontalBounds)
-                transform.position = new Vector3(_horizontalBounds, transform.position.y, transform.position.z);
+            if (transform.position.x > HorizontalBounds)
+                transform.position = new Vector3(HorizontalBounds, transform.position.y, transform.position.z);
 
-            if (transform.position.x < -_horizontalBounds)
-                transform.position = new Vector3(-_horizontalBounds, transform.position.y, transform.position.z);
+            if (transform.position.x < -HorizontalBounds)
+                transform.position = new Vector3(-HorizontalBounds, transform.position.y, transform.position.z);
 
-            if (transform.position.z > _topBound)
-                transform.position = new Vector3(transform.position.x, transform.position.y, _topBound);
+            if (transform.position.z > TopBound)
+                transform.position = new Vector3(transform.position.x, transform.position.y, TopBound);
 
-            if (transform.position.z < _lowerBound)
-                transform.position = new Vector3(transform.position.x, transform.position.y, _lowerBound);
+            if (transform.position.z < LowerBound)
+                transform.position = new Vector3(transform.position.x, transform.position.y, LowerBound);
         }
         else
         {
@@ -162,7 +163,7 @@ public class PlayerController : MonoBehaviour
             {
                 _gameManager.gameOver = true;
                 _gameManager.stopGame = true;
-                _gameManager.GameOverPopUp();
+                GameManager.GameOverPopUp();
             }
         }
         else if (currentHealth > 50)
@@ -199,7 +200,7 @@ public class PlayerController : MonoBehaviour
         {
             SkinChanger();
             if (!_gameManager.soundDisable)
-                playerAudio.PlayOneShot(soundChangeSkin, 1.0f);
+                _playerAudio.PlayOneShot(soundChangeSkin, 1.0f);
         }
 
         if (other.gameObject.CompareTag("PowerUpHealth"))
@@ -207,17 +208,16 @@ public class PlayerController : MonoBehaviour
             _powerUps.AddHealth(30);
             Destroy(other.gameObject);
             if (!_gameManager.soundDisable)
-                playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
+                _playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
         }
 
         if (other.gameObject.CompareTag("PowerUpExplosion"))
         {
             _powerUps.Explosion();
             Destroy(other.gameObject);
-            particleHolder.PlayParticle(1, gameObject.transform.position);
+            _particleHolder.PlayParticle(1, gameObject.transform.position);
             if (!_gameManager.soundDisable)
-                playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
-
+                _playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
         }
 
         if (other.gameObject.CompareTag("PowerUpTime"))
@@ -225,7 +225,7 @@ public class PlayerController : MonoBehaviour
             _powerUps.AddTime(25);
             Destroy(other.gameObject);
             if (!_gameManager.soundDisable)
-                playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
+                _playerAudio.PlayOneShot(soundGetPowerUps, 1.0f);
         }
     }
 
@@ -244,7 +244,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    private void TakeDamage(int damage)
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);

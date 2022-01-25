@@ -26,7 +26,7 @@ public class Pistol : Weapons
 
     public override void Fire() 
     {
-        if (!isReloading)
+        if (!IsReloading)
         {
             Instantiate(projectilePrefab, transform.position, transform.rotation);
             WeaponCurrentAmmo--;

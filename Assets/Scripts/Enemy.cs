@@ -3,69 +3,59 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float _speed = 5f;
-
-    private GameObject _player;
-    private GameManager _gameManager;
-    private Animator animator;
-
-    private Pistol _pistol;
-    private ShotGun _shotGun;
-    private ShotGun2 _shotGun2;
-    private Machinegun _machinegun;
-    private Machinegun2 _machinegun2;
-
-    private Taser _taser;
-    public AudioClip soundEnemyDeath;
-    public AudioClip soundEnemyHit;
-
     public int enemyMaxHealth = 60;
     public int enemyCurrentHealth;
-    private int _animationState;
-    public HealthBar enemyHealthBar;
+    public AudioClip soundEnemyDeath;
+    public AudioClip soundEnemyHit;
     public Image fill;
     public ParticleSystem particleHit;
-    private AudioSource audioSource;
-
-    private int counter = 3;
+    public HealthBar enemyHealthBar;
+    
+    private const float Speed = 5f;
+    private int _counter = 3;
+    private int _animationState;
+    private GameObject _player;
+    private GameManager _gameManager;
+    private Animator _animator;
+    private Pistol _pistol;
+    private ShotGun _shotGun;
+    private Machinegun _machinegun;
+    private Taser _taser;
+    private AudioSource _audioSource;
+    private static readonly int State = Animator.StringToHash("state");
 
     private void Start()
     {
         _player = GameObject.Find("Player");
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        _audioSource = GetComponent<AudioSource>();
+        _animator = GetComponent<Animator>();
 
         _pistol = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(0).GetComponent<Pistol>();
         _shotGun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(1).GetComponent<ShotGun>();
-        _shotGun2 = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(2).GetComponent<ShotGun2>();
         _machinegun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(3).GetComponent<Machinegun>();
-        _machinegun2 = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(4).GetComponent<Machinegun2>();
         _taser = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(5).GetComponent<Taser>();
 
-        audioSource = GetComponent<AudioSource>();
-        animator = GetComponent<Animator>();
-        
         enemyCurrentHealth = enemyMaxHealth;
         enemyHealthBar.SetMaxHealth(enemyMaxHealth);
     }
 
-    void Update()
+    private void Update()
     {
-        Vector3 lookDirection = (transform.position - _player.transform.position).normalized;
+        var lookDirection = (transform.position - _player.transform.position).normalized;
 
         if (!_gameManager.stopGame && !_gameManager.gameOver)
         {
-            transform.Translate(lookDirection * _speed * Time.deltaTime);
-            animator.gameObject.GetComponent<Animator>().enabled = true;
+            transform.Translate(lookDirection * (Speed * Time.deltaTime));
+            _animator.gameObject.GetComponent<Animator>().enabled = true;
         }
         else
         {
-            animator.gameObject.GetComponent<Animator>().enabled = false;
+            _animator.gameObject.GetComponent<Animator>().enabled = false;
         }
 
         if (enemyCurrentHealth <= 0 && gameObject != null)
@@ -76,10 +66,10 @@ public class Enemy : MonoBehaviour
             // отключаю хелсбар
             transform.GetChild(2).gameObject.SetActive(false);
         }
-        animator.SetInteger("state", _animationState);
+        _animator.SetInteger(State, _animationState);
     }
 
-    public void TakeDamageEnemy(int damage)
+    private void TakeDamageEnemy(int damage)
     {
         enemyCurrentHealth -= damage;
         enemyHealthBar.SetHealth(enemyCurrentHealth);
@@ -88,7 +78,7 @@ public class Enemy : MonoBehaviour
             _gameManager.score++;
             
             if (!_gameManager.soundDisable)
-                audioSource.PlayOneShot(soundEnemyDeath, 1);
+                _audioSource.PlayOneShot(soundEnemyDeath, 1);
         }
     }
 
@@ -98,8 +88,8 @@ public class Enemy : MonoBehaviour
         Debug.Log(enemyCurrentHealth);
         enemyHealthBar.SetHealth(enemyCurrentHealth);
 
-        if (--counter == 0) 
-            CancelInvoke("TakeTaserDamageEnemy");
+        if (--_counter == 0) 
+            CancelInvoke(nameof(TakeTaserDamageEnemy));
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -111,7 +101,7 @@ public class Enemy : MonoBehaviour
             Destroy(collision.gameObject);
             particleHit.Play();
             if (!_gameManager.soundDisable)
-                audioSource.PlayOneShot(soundEnemyHit, 1);
+                _audioSource.PlayOneShot(soundEnemyHit, 1);
         }
         if (collision.gameObject.CompareTag("ShotgunProjectile"))
         {
@@ -119,7 +109,7 @@ public class Enemy : MonoBehaviour
             Destroy(collision.gameObject);
             particleHit.Play();
             if (!_gameManager.soundDisable)
-                audioSource.PlayOneShot(soundEnemyHit, 1);
+                _audioSource.PlayOneShot(soundEnemyHit, 1);
 
         }
         if (collision.gameObject.CompareTag("MachinegunProjectile"))
@@ -128,16 +118,17 @@ public class Enemy : MonoBehaviour
             Destroy(collision.gameObject);
             particleHit.Play();
             if (!_gameManager.soundDisable)
-                audioSource.PlayOneShot(soundEnemyHit, 1);
+                _audioSource.PlayOneShot(soundEnemyHit, 1);
         }
 
         if (collision.gameObject.CompareTag("TaserProjectile"))
         {
-            InvokeRepeating("TakeTaserDamageEnemy", 0, 1);
+            InvokeRepeating(nameof(TakeTaserDamageEnemy), 0, 1);
             Destroy(collision.gameObject);
             particleHit.Play();
+            
             if (!_gameManager.soundDisable)
-                audioSource.PlayOneShot(soundEnemyHit, 1);
+                _audioSource.PlayOneShot(soundEnemyHit, 1);
         }
     }
 }

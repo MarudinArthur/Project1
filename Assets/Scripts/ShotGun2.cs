@@ -26,7 +26,7 @@ public class ShotGun2 : Weapons
 
     public override void Fire()
     {
-        if (!isReloading)
+        if (!IsReloading)
         {
             Instantiate(porjectilePrefab, transform.position, transform.rotation);
             WeaponCurrentAmmo--;

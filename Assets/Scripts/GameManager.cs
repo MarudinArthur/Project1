@@ -3,21 +3,21 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public float score = 0f;
     [HideInInspector] public bool gameOver = false;
     [HideInInspector] public bool stopGame = false;
     [HideInInspector] public bool soundDisable = false;
+
+    public float score = 0f;
     public float time = 60f;
     public static GameManager Instance;
     public TextMeshProUGUI timerCounter;
     public TextMeshProUGUI scoreCounter;
     public TextMeshProUGUI playerName;
+    public TMP_InputField nameInput;
 
-    public string nameInput;
-
-    void Awake()
+    private void Awake()
     {
-        if (Instance != null)
+        /*if (Instance != null)
         {
             Destroy(gameObject);
             return;
@@ -25,24 +25,26 @@ public class GameManager : MonoBehaviour
       
         Instance = this;
         DontDestroyOnLoad(transform.gameObject);
-
-        nameInput = MainManager.Instance.playerName.text;
+        */
+        //nameInput = MainManager.Instance.playerName.text;
     }
 
     private void Update()
     {
         Timer();
         Score();
+
+        playerName.text = "Player : " + nameInput.text;
     }
 
-    public void Timer()
+    private void Timer()
     {
-        if(stopGame != true)
+        if (stopGame != true)
         {
             if (time > (int)0)
             {
                 time -= Time.deltaTime;
-                float totalTime = ((int)(time * 100)) / 100f;
+                var totalTime = ((int)(time * 100)) / 100f;
                 timerCounter.text = "" + totalTime;
 
                 if (time < 5)
@@ -58,7 +60,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Score()
+    private void Score()
     {
         // show current score
         scoreCounter.text = "score: " + score;
@@ -66,7 +68,7 @@ public class GameManager : MonoBehaviour
         playerName.text = "Player : " + nameInput;
     }
 
-    public void GameOverPopUp()
+    public static void GameOverPopUp()
     {
         // show pop-up
         GameObject.Find("Canvas").transform.GetChild(4).gameObject.SetActive(true);

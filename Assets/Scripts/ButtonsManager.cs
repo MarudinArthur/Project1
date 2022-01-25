@@ -1,10 +1,11 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ButtonsManager : MonoBehaviour
 {
-	public void BackToMenu()
+    public void BackToMenu()
     {
         SceneManager.LoadScene(0);
     }
@@ -12,6 +13,9 @@ public class ButtonsManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene(1);
+        /*var gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        gameManager.stopGame = false;
+        gameManager.gameOver = false;*/
     }
 
     public void SettingsInGame()
@@ -79,7 +83,7 @@ public class ButtonsManager : MonoBehaviour
     }
 
     public void ToggleChangedSound()
-	{
+    {
         GameManager gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         if (gameManager.soundDisable == false)
@@ -90,6 +94,7 @@ public class ButtonsManager : MonoBehaviour
 
     public void EnterPlayerName()
     {
-        GameObject.Find("Canvas").transform.GetChild(2).gameObject.SetActive(true);
+        GameObject.Find("Canvas").transform.GetChild(17).gameObject.SetActive(false);
+        GameObject.Find("Game Manager").GetComponent<GameManager>().stopGame = false;
     }
 }

@@ -2,18 +2,18 @@
 
 public class ParticleDestroyer : MonoBehaviour
 {
-    private ParticleSystem particle;
+    private ParticleSystem _particle;
 
-    void Start()
+    private void Start()
     {
-        particle = GetComponent<ParticleSystem>();
+        _particle = GetComponent<ParticleSystem>();
     }
 
-    void Update()
+    private void Update()
     {
-        if (particle)
+        if (_particle)
         {
-            if (!particle.IsAlive())
+            if (!_particle.IsAlive())
             {
                 Destroy(gameObject);
             }

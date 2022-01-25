@@ -17,10 +17,9 @@ public class ShotGun : Weapons
 		WeaponCurrentAmmo = WeaponMaxAmmo;
 	}
 
-	private void Update()
+    private void Update()
 	{
 		WeaponReloading();
-
 		ammoCounter.text = "Ammo: " + WeaponCurrentAmmo;
 	}
 
@@ -28,14 +27,13 @@ public class ShotGun : Weapons
 	{
 		WeaponSpread = -20f;
 
-		if (!isReloading)
+		if (!IsReloading)
         {
-			for (int i = 0; i < 3; i++)
+			for (var i = 0; i < 3; i++)
 			{
 				WeaponSpread += 10;
-				Vector3 offset = new Vector3(0, WeaponSpread, 0);
+				var offset = new Vector3(0, WeaponSpread, 0);
 				Instantiate(projectilePrefab, transform.position, Quaternion.Euler(offset));
-
 				WeaponCurrentAmmo--;
 			}
 		}

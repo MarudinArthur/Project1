@@ -2,16 +2,14 @@
 
 public class MoveForward : MonoBehaviour
 {
-    private SwitchWeapon switchWeapon;
-
+    private GameObject _player;
+    private SwitchWeapon _switchWeapon;
     private Pistol _pistol;
     private ShotGun _shotGun;
     private ShotGun2 _shotGun2;
     private Machinegun2 _machinegun2;
     private Machinegun _machinegun;
     private Taser _taser;
-
-    private GameObject player;
 
 	public void Start()
 	{
@@ -28,46 +26,45 @@ public class MoveForward : MonoBehaviour
         _taser = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
             GetChild(5).GetComponent<Taser>();
 
-        switchWeapon = GameObject.Find("Player").transform.GetChild(2).GetComponent<SwitchWeapon>();
-
-        player = GameObject.Find("Player");
+        _switchWeapon = GameObject.Find("Player").transform.GetChild(2).GetComponent<SwitchWeapon>();
+        _player = GameObject.Find("Player");
     }
 
 	void Update()
     {
-        switch (switchWeapon.selectedWeapon)
+        switch (_switchWeapon.selectedWeapon)
 		{
             case 0:
-                transform.Translate(Vector3.forward * _pistol.WeaponFireRate * Time.deltaTime);
-                if (transform.position.z > player.transform.position.z + _pistol.WeaponRange)
+                transform.Translate(Vector3.forward * (_pistol.WeaponFireRate * Time.deltaTime));
+                if (transform.position.z > _player.transform.position.z + _pistol.WeaponRange)
                     Destroy(gameObject);
                 break;
 
             case 1:
-                transform.Translate(Vector3.forward * _shotGun.WeaponFireRate * Time.deltaTime);
-                if (transform.position.z > player.transform.position.z + _shotGun.WeaponRange)
+                transform.Translate(Vector3.forward * (_shotGun.WeaponFireRate * Time.deltaTime));
+                if (transform.position.z > _player.transform.position.z + _shotGun.WeaponRange)
                     Destroy(gameObject);
                 break;
 
             case 2:
-                transform.Translate(Vector3.forward * _shotGun2.WeaponFireRate * Time.deltaTime);
-                if (transform.position.z > player.transform.position.z + _shotGun2.WeaponRange)
+                transform.Translate(Vector3.forward * (_shotGun2.WeaponFireRate * Time.deltaTime));
+                if (transform.position.z > _player.transform.position.z + _shotGun2.WeaponRange)
                     Destroy(gameObject);
                 break;
 
             case 3:
-                transform.Translate(Vector3.forward * _machinegun.WeaponFireRate * Time.deltaTime);
-                if (transform.position.z > player.transform.position.z + _machinegun.WeaponRange)
+                transform.Translate(Vector3.forward * (_machinegun.WeaponFireRate * Time.deltaTime));
+                if (transform.position.z > _player.transform.position.z + _machinegun.WeaponRange)
                     Destroy(gameObject);
                 break;
             case 4:
-                transform.Translate(Vector3.forward * _machinegun2.WeaponFireRate * Time.deltaTime);
-                if (transform.position.z > player.transform.position.z + _machinegun2.WeaponRange)
+                transform.Translate(Vector3.forward * (_machinegun2.WeaponFireRate * Time.deltaTime));
+                if (transform.position.z > _player.transform.position.z + _machinegun2.WeaponRange)
                     Destroy(gameObject);
                 break;
             case 5:
-                transform.Translate(Vector3.forward * _taser.WeaponFireRate * Time.deltaTime);
-                if (transform.position.z > player.transform.position.z + _taser.WeaponRange)
+                transform.Translate(Vector3.forward * (_taser.WeaponFireRate * Time.deltaTime));
+                if (transform.position.z > _player.transform.position.z + _taser.WeaponRange)
                     Destroy(gameObject);
                 break;
         }
