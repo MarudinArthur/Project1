@@ -1,17 +1,18 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    public int enemyMaxHealth = 60;
-    public int enemyCurrentHealth;
+    [SerializeField] private float speed = 5f;
+    [HideInInspector] public int enemyMaxHealth = 60;
+    [HideInInspector] public int enemyCurrentHealth;
     public AudioClip soundEnemyDeath;
     public AudioClip soundEnemyHit;
     public Image fill;
     public ParticleSystem particleHit;
     public HealthBar enemyHealthBar;
     
-    private const float Speed = 5f;
     private int _counter = 3;
     private int _animationState;
     private GameObject _player;
@@ -50,7 +51,7 @@ public class Enemy : MonoBehaviour
 
         if (!_gameManager.stopGame && !_gameManager.gameOver)
         {
-            transform.Translate(lookDirection * (Speed * Time.deltaTime));
+            transform.Translate(lookDirection * (speed * Time.deltaTime));
             _animator.gameObject.GetComponent<Animator>().enabled = true;
         }
         else

@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private const float LowerBound = -11.7f;
     private int _animationState;
     private Transform _startGamePopUp;
+    private static readonly int State = Animator.StringToHash("state");
 
     private void Start()
     {
@@ -67,7 +68,7 @@ public class PlayerController : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
         
         GameObject.Find("Canvas").transform.GetChild(17).gameObject.SetActive(true);
-        GameObject.Find("Game Manager").GetComponent<GameManager>().stopGame = true;
+        //GameObject.Find("Game Manager").GetComponent<GameManager>().stopGame = true;
 
     }
 

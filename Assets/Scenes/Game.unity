@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a918490882c97246938bed22a4722d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  porjectilePrefab: {fileID: 7019778604139025116, guid: 9b8602c64ddb5c44a9405502815d4755,
+  porjectilePrefab: {fileID: 7870846324855640928, guid: f5cea8e49b5dc4002a792b57dbd02162,
     type: 3}
   ammoCounter: {fileID: 1302895007}
 --- !u!1 &157562290

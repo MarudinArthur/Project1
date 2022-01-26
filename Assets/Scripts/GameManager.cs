@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool soundDisable = false;
 
     public float score = 0f;
-    public float time = 60f;
+    public float time = 120f;
     public static GameManager Instance;
     public TextMeshProUGUI timerCounter;
     public TextMeshProUGUI scoreCounter;

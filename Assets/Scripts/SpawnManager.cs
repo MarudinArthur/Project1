@@ -7,7 +7,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] powerUpsPrefab;
     public TextMeshProUGUI waveCounter;
     
-    private const float PowerupStartDelay = 5;
+    private const float PowerupStartDelay = 8;
     private const float PowerupRepeatRate = 7;
     private int _enemyToSpawn = 3;
     private int _spawnedPowerUp1;
@@ -40,7 +40,7 @@ public class SpawnManager : MonoBehaviour
     {
         if (_spawnedPowerUp1 == 0 && _spawnedPowerUp2 == 0 && _spawnedPowerUp3 == 0)
         {
-            int randoPowerUpsIndex = Random.Range(0, 2);
+            var randoPowerUpsIndex = Random.Range(0, 2);
             Instantiate(powerUpsPrefab[randoPowerUpsIndex], GeneratePowerUpSpawnPos(), 
                 powerUpsPrefab[randoPowerUpsIndex].transform.rotation);
         }

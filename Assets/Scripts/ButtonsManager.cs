@@ -95,6 +95,6 @@ public class ButtonsManager : MonoBehaviour
     public void EnterPlayerName()
     {
         GameObject.Find("Canvas").transform.GetChild(17).gameObject.SetActive(false);
-        GameObject.Find("Game Manager").GetComponent<GameManager>().stopGame = false;
+        //GameObject.Find("Game Manager").GetComponent<GameManager>().stopGame = false;
     }
 }
