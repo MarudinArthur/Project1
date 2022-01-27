@@ -39,37 +39,46 @@ public class PlayerController : MonoBehaviour
     private const float LowerBound = -11.7f;
     private int _animationState;
     private Transform _startGamePopUp;
+    private GameObject _canvas;
     private static readonly int State = Animator.StringToHash("state");
 
     private void Start()
     {
-        _pistol = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(0).GetComponent<Pistol>();
-        _shotGun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(1).GetComponent<ShotGun>();
-        _shotGun2 = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(2).GetComponent<ShotGun2>();
-        _machinegun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(3).GetComponent<Machinegun>();
-        _machinegun2 = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(4).GetComponent<Machinegun2>();
-        _taser = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(5).GetComponent<Taser>();
-
+        var weaponHolder = GameObject.Find("Player").transform.GetChild(2);
+        _canvas = GameObject.Find("Canvas");
+        var scripts = gameObject.GetComponents<MonoBehaviour>();
+        
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        _switchWeapon = GameObject.Find("Player").transform.GetChild(2).GetComponent<SwitchWeapon>();
-        _powerUps = GameObject.Find("Game Manager").GetComponent<Powerups>();
         _particleHolder = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
-        _animatorSkin1 = GameObject.Find("Player").transform.GetChild(0).GetComponent<Animator>();
-        _animatorSkin2 = GameObject.Find("Player").transform.GetChild(1).GetComponent<Animator>();
+
+        /* for (var i  = 0; i  < weaponHolder.childCount; i ++)
+        {
+            for (var k = 0; k < scripts.Length; k++)
+            {
+                var data = scripts[k];
+                weaponHolder.GetChild(k).GetComponent<MonoBehaviour>();
+            }
+        } */
+        
+        _pistol = weaponHolder.GetChild(0).GetComponent<Pistol>();
+        _shotGun = weaponHolder.GetChild(1).GetComponent<ShotGun>();
+        _shotGun2 = weaponHolder.GetChild(2).GetComponent<ShotGun2>();
+        _machinegun = weaponHolder.GetChild(3).GetComponent<Machinegun>();
+        _machinegun2 = weaponHolder.GetChild(4).GetComponent<Machinegun2>();
+        _taser = weaponHolder.GetChild(5).GetComponent<Taser>();
+
+        _switchWeapon = weaponHolder.GetComponent<SwitchWeapon>();
+        _powerUps = GameObject.Find("Game Manager").GetComponent<Powerups>();
+        
+        _animatorSkin1 = transform.GetChild(0).GetComponent<Animator>();
+        _animatorSkin2 = transform.GetChild(1).GetComponent<Animator>();
         _playerAudio = GetComponent<AudioSource>();
 
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
         
-        GameObject.Find("Canvas").transform.GetChild(17).gameObject.SetActive(true);
+        _canvas.transform.GetChild(17).gameObject.SetActive(true);
         //GameObject.Find("Game Manager").GetComponent<GameManager>().stopGame = true;
-
     }
 
     private void Update()
@@ -153,7 +162,7 @@ public class PlayerController : MonoBehaviour
             gameObject.transform.GetChild(0).gameObject.SetActive(true);
             gameObject.transform.GetChild(1).gameObject.SetActive(false);
 
-            GameObject.Find("Canvas").transform.GetChild(9).gameObject.SetActive(false);
+            _canvas.transform.GetChild(9).gameObject.SetActive(false);
         }
 
         if (currentHealth <= 50)
@@ -182,8 +191,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             _animationState = 3;
 
-        _animatorSkin1.SetInteger("state", _animationState);
-        _animatorSkin2.SetInteger("state", _animationState);
+        _animatorSkin1.SetInteger(State, _animationState);
+        _animatorSkin2.SetInteger(State, _animationState);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -237,11 +246,11 @@ public class PlayerController : MonoBehaviour
             gameObject.transform.GetChild(0).gameObject.SetActive(false);
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
 
-            GameObject.Find("Canvas").transform.GetChild(9).gameObject.SetActive(true);
+            _canvas.transform.GetChild(9).gameObject.SetActive(true);
         }
         else
         {
-            GameObject.Find("Canvas").transform.GetChild(9).gameObject.SetActive(false);
+            _canvas.transform.GetChild(9).gameObject.SetActive(false);
         }
     }
 
