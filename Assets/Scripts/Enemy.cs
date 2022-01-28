@@ -28,18 +28,16 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         _player = GameObject.Find("Player");
+        var weaponHolder = _player.transform.GetChild(2);
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        
         _audioSource = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
 
-        _pistol = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(0).GetComponent<Pistol>();
-        _shotGun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(1).GetComponent<ShotGun>();
-        _machinegun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(3).GetComponent<Machinegun>();
-        _taser = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(5).GetComponent<Taser>();
+        _pistol = weaponHolder.transform.GetChild(0).GetComponent<Pistol>();
+        _shotGun = weaponHolder.transform.GetChild(1).GetComponent<ShotGun>();
+        _machinegun = weaponHolder.transform.GetChild(3).GetComponent<Machinegun>();
+        _taser = weaponHolder.transform.GetChild(5).GetComponent<Taser>();
 
         enemyCurrentHealth = enemyMaxHealth;
         enemyHealthBar.SetMaxHealth(enemyMaxHealth);

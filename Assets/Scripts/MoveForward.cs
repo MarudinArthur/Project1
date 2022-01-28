@@ -13,24 +13,19 @@ public class MoveForward : MonoBehaviour
 
 	public void Start()
 	{
-        _pistol = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(0).GetComponent<Pistol>();
-        _shotGun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(1).GetComponent<ShotGun>();
-        _shotGun2 = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(2).GetComponent<ShotGun2>();
-        _machinegun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(3).GetComponent<Machinegun>();
-        _machinegun2 = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(4).GetComponent<Machinegun2>();
-        _taser = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(5).GetComponent<Taser>();
-
-        _switchWeapon = GameObject.Find("Player").transform.GetChild(2).GetComponent<SwitchWeapon>();
         _player = GameObject.Find("Player");
+        var weaponHolder = _player.transform.GetChild(2);
+        _switchWeapon = weaponHolder.GetComponent<SwitchWeapon>();
+        
+        _pistol = weaponHolder.GetChild(0).GetComponent<Pistol>();
+        _shotGun = weaponHolder.GetChild(1).GetComponent<ShotGun>();
+        _shotGun2 = weaponHolder.GetChild(2).GetComponent<ShotGun2>();
+        _machinegun = weaponHolder.GetChild(3).GetComponent<Machinegun>();
+        _machinegun2 = weaponHolder.GetChild(4).GetComponent<Machinegun2>();
+        _taser = weaponHolder.GetChild(5).GetComponent<Taser>();
     }
 
-	void Update()
+    private void Update()
     {
         switch (_switchWeapon.selectedWeapon)
 		{

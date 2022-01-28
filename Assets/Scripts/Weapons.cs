@@ -12,7 +12,7 @@ public abstract class Weapons : MonoBehaviour
     protected float WeaponMaxAmmo { get; set; }
     protected float WeaponCurrentAmmo { get; set; }
 
-    public virtual void Fire() { }
+    public abstract void Fire();
 
     protected void WeaponReloading()
     {
@@ -31,10 +31,12 @@ public abstract class Weapons : MonoBehaviour
     private IEnumerator Reload()
     {
         IsReloading = true;
-        GameObject.Find("Canvas").transform.GetChild(13).gameObject.SetActive(true);
+
+        var reloadText = GameObject.Find("Canvas").transform.GetChild(13);
+        reloadText.gameObject.SetActive(true);
         yield return new WaitForSeconds(WeaponReloadTime);
 
-        GameObject.Find("Canvas").transform.GetChild(13).gameObject.SetActive(false);
+        reloadText.gameObject.SetActive(false);
         WeaponCurrentAmmo = WeaponMaxAmmo;
         IsReloading = false;
     }

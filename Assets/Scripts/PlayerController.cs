@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
     private Machinegun _machinegun;
     private Taser _taser;
 
+    private Transform _skin1;
+    private Transform _skin2;
+
     private float _horizontalInput;
     private float _verticalInput;
     private const float HorizontalBounds = 9f;
@@ -46,20 +49,20 @@ public class PlayerController : MonoBehaviour
     {
         var weaponHolder = GameObject.Find("Player").transform.GetChild(2);
         _canvas = GameObject.Find("Canvas");
-        var scripts = gameObject.GetComponents<MonoBehaviour>();
-        
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         _particleHolder = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
+/*
+        var scripts = gameObject.GetComponents<MonoBehaviour>();
 
-        /* for (var i  = 0; i  < weaponHolder.childCount; i ++)
+        for (var i  = 0; i  < weaponHolder.childCount; i ++)
         {
             for (var k = 0; k < scripts.Length; k++)
             {
                 var data = scripts[k];
                 weaponHolder.GetChild(k).GetComponent<MonoBehaviour>();
             }
-        } */
-        
+        }
+*/
         _pistol = weaponHolder.GetChild(0).GetComponent<Pistol>();
         _shotGun = weaponHolder.GetChild(1).GetComponent<ShotGun>();
         _shotGun2 = weaponHolder.GetChild(2).GetComponent<ShotGun2>();
@@ -68,7 +71,10 @@ public class PlayerController : MonoBehaviour
         _taser = weaponHolder.GetChild(5).GetComponent<Taser>();
 
         _switchWeapon = weaponHolder.GetComponent<SwitchWeapon>();
-        _powerUps = GameObject.Find("Game Manager").GetComponent<Powerups>();
+        _powerUps = _gameManager.GetComponent<Powerups>();
+
+        _skin1 = gameObject.transform.GetChild(0);
+        _skin2 = gameObject.transform.GetChild(1);
         
         _animatorSkin1 = transform.GetChild(0).GetComponent<Animator>();
         _animatorSkin2 = transform.GetChild(1).GetComponent<Animator>();
@@ -78,7 +84,6 @@ public class PlayerController : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
         
         _canvas.transform.GetChild(17).gameObject.SetActive(true);
-        //GameObject.Find("Game Manager").GetComponent<GameManager>().stopGame = true;
     }
 
     private void Update()
@@ -159,9 +164,11 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))
         {
-            gameObject.transform.GetChild(0).gameObject.SetActive(true);
-            gameObject.transform.GetChild(1).gameObject.SetActive(false);
+            // skin change
+            _skin1.gameObject.SetActive(true);
+            _skin2.gameObject.SetActive(false);
 
+            // disable clue
             _canvas.transform.GetChild(9).gameObject.SetActive(false);
         }
 
@@ -173,7 +180,7 @@ public class PlayerController : MonoBehaviour
             {
                 _gameManager.gameOver = true;
                 _gameManager.stopGame = true;
-                GameManager.GameOverPopUp();
+                _gameManager.GameOverPopUp();
             }
         }
         else if (currentHealth > 50)
@@ -241,11 +248,11 @@ public class PlayerController : MonoBehaviour
 
     private void SkinChanger()
     {
-        if (gameObject.transform.GetChild(0))
+        if (_skin1)
         {
-            gameObject.transform.GetChild(0).gameObject.SetActive(false);
-            gameObject.transform.GetChild(1).gameObject.SetActive(true);
-
+            _skin1.gameObject.SetActive(false);
+            _skin2.gameObject.SetActive(true);
+            // show clue
             _canvas.transform.GetChild(9).gameObject.SetActive(true);
         }
         else

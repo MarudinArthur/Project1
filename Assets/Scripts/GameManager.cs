@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -15,9 +16,16 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI playerName;
     public TMP_InputField nameInput;
 
+    private GameObject _canvas;
+
+    private void Start()
+    {
+        _canvas = GameObject.Find("Canvas");
+    }
+
     private void Awake()
     {
-        /*if (Instance != null)
+        /* if (Instance != null)
         {
             Destroy(gameObject);
             return;
@@ -39,24 +47,23 @@ public class GameManager : MonoBehaviour
 
     private void Timer()
     {
-        if (stopGame != true)
+        if (stopGame == true) return;
+        
+        if (time > (int)0)
         {
-            if (time > (int)0)
-            {
-                time -= Time.deltaTime;
-                var totalTime = ((int)(time * 100)) / 100f;
-                timerCounter.text = "" + totalTime;
+            time -= Time.deltaTime;
+            var totalTime = ((int)(time * 100)) / 100f;
+            timerCounter.text = "" + totalTime;
 
-                if (time < 5)
-                {
-                    timerCounter.color = Color.red;
-                }
-            }
-            else
+            if (time < 5)
             {
-                gameOver = true;
-                GameOverPopUp();
+                timerCounter.color = Color.red;
             }
+        }
+        else
+        {
+            gameOver = true;
+            GameOverPopUp();
         }
     }
 
@@ -68,11 +75,11 @@ public class GameManager : MonoBehaviour
         playerName.text = "Player : " + nameInput;
     }
 
-    public static void GameOverPopUp()
+    public void GameOverPopUp()
     {
         // show pop-up
-        GameObject.Find("Canvas").transform.GetChild(4).gameObject.SetActive(true);
+        _canvas.transform.GetChild(4).gameObject.SetActive(true);
         // disable skin change clues (if enable)
-        GameObject.Find("Canvas").transform.GetChild(9).gameObject.SetActive(false);
+        _canvas.transform.GetChild(9).gameObject.SetActive(false);
     }
 }

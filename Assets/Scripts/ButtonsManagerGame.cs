@@ -4,10 +4,28 @@ using UnityEngine.SceneManagement;
 public class ButtonsManagerGame : MonoBehaviour
 {
     private GameManager _gameManager;
-    
+    private Transform _homePopUp;
+    private Transform _settingsPopUp;
+    private Transform _skin1;
+    private Transform _skin2;
+    private Animator _animator1;
+    private Animator _animator2;
+    private GameObject _player;
+    private GameObject _canvas;
+
     private void Start()
     { 
+        _player = GameObject.Find("Player");
+        _canvas = GameObject.Find("Canvas");
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        
+        _homePopUp = _canvas.transform.GetChild(8);
+        _settingsPopUp = _canvas.transform.GetChild(10);
+        
+        _skin1 = _player.transform.GetChild(0);
+        _skin2 = _player.transform.GetChild(1);
+        _animator1 = _skin1.GetComponent<Animator>();
+        _animator2 = _skin2.GetComponent<Animator>();
     }
 
     public void BackToMenu()
@@ -20,44 +38,38 @@ public class ButtonsManagerGame : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void SettingsInGame()
+    public void SettingsButtonInGame()
     {
-        GameObject.Find("Canvas").transform.GetChild(10).gameObject.SetActive(true);
+        _settingsPopUp.gameObject.SetActive(true);
         _gameManager.stopGame = true;
     }
 
     public void HomeButton()
     {
-        GameObject.Find("Canvas").transform.GetChild(8).gameObject.SetActive(true);
+        _homePopUp.gameObject.SetActive(true);
         _gameManager.stopGame = true;
     }
 
     public void CloseHomePopUp()
     {
-        GameObject.Find("Canvas").transform.GetChild(8).gameObject.SetActive(false);
+        _homePopUp.gameObject.SetActive(false);
         _gameManager.stopGame = false;
 
-        Transform skin1 = GameObject.Find("Player").transform.GetChild(0);
-        Transform skin2 = GameObject.Find("Player").transform.GetChild(1);
-
-        if (skin1)
-            skin1.GetComponent<Animator>().enabled = true;
-        if (skin2)
-            skin2.GetComponent<Animator>().enabled = true;
+        if (_skin1)
+            _animator1.enabled = true;
+        if (_skin2)
+            _animator2.enabled = true;
     }
 
     public void CloseSettingsPopUp()
     {
-        GameObject.Find("Canvas").transform.GetChild(10).gameObject.SetActive(false);
+        _settingsPopUp.gameObject.SetActive(false);
         _gameManager.stopGame = false;
 
-        Transform skin1 = GameObject.Find("Player").transform.GetChild(0);
-        Transform skin2 = GameObject.Find("Player").transform.GetChild(1);
-
-        if (skin1)
-            skin1.GetComponent<Animator>().enabled = true;
-        if (skin2)
-            skin2.GetComponent<Animator>().enabled = true;
+        if (_skin1)
+            _animator1.enabled = true;
+        if (_skin2)
+            _animator2.enabled = true;
     }
 
     public void ToggleChangedMusic()
@@ -76,7 +88,6 @@ public class ButtonsManagerGame : MonoBehaviour
 
     public void EnterPlayerName()
     {
-        GameObject.Find("Canvas").transform.GetChild(17).gameObject.SetActive(false);
-        //GameObject.Find("Game Manager").GetComponent<GameManager>().stopGame = false;
+        _canvas.transform.GetChild(17).gameObject.SetActive(false);
     }
 }

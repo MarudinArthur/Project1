@@ -48,9 +48,10 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
+        // этот кусок явно очень проблемный, буду думать как сделать лучше
         int enemyCount = FindObjectsOfType<Enemy>().Length;
-        _spawnedPowerUp1 = GameObject.FindGameObjectsWithTag("PowerUpHealth").Length;
-        _spawnedPowerUp2 = GameObject.FindGameObjectsWithTag("PowerUpExplosion").Length;
+        _spawnedPowerUp1 = GameObject.FindGameObjectsWithTag("PowerUpHealth").Length; 
+        _spawnedPowerUp2 = GameObject.FindGameObjectsWithTag("PowerUpExplosion").Length; 
         _spawnedPowerUp3 = GameObject.FindGameObjectsWithTag("PowerUpTime").Length;
 
         if (enemyCount == 0 && !_gameManager.stopGame && !_gameManager.gameOver)

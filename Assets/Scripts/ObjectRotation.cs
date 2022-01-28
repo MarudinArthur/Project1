@@ -10,7 +10,7 @@ public class ObjectRotation : MonoBehaviour
 		_gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 	}
 
-	void Update()
+	private void Update()
     {
 		if (!_gameManager.gameOver && !_gameManager.stopGame)
 		{
