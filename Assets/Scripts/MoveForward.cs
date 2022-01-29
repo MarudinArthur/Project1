@@ -30,8 +30,8 @@ public class MoveForward : MonoBehaviour
         switch (_switchWeapon.selectedWeapon)
 		{
             case 0:
-                transform.Translate(Vector3.forward * (_pistol.WeaponFireRate * Time.deltaTime));
-                if (transform.position.z > _player.transform.position.z + _pistol.WeaponRange)
+                transform.Translate(Vector3.forward * (_pistol._damage * Time.deltaTime));
+                if (transform.position.z > _player.transform.position.z + _pistol._range)
                     Destroy(gameObject);
                 break;
 

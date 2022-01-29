@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-using TMPro;
+﻿using TMPro;
 
-public class ShotGun2 : Weapons
+public class ShotGun2 : BaseWeapon
 {
-    public GameObject porjectilePrefab;
     public TextMeshProUGUI ammoCounter;
 
     public ShotGun2()
@@ -22,14 +20,5 @@ public class ShotGun2 : Weapons
     {
         WeaponReloading();
         ammoCounter.text = "Ammo: " + WeaponCurrentAmmo;
-    }
-
-    public override void Fire()
-    {
-        if (!IsReloading)
-        {
-            Instantiate(porjectilePrefab, transform.position, transform.rotation);
-            WeaponCurrentAmmo--;
-        }
     }
 }

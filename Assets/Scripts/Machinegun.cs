@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-using TMPro;
+﻿using TMPro;
 
-public class Machinegun : Weapons
+public class Machinegun : BaseWeapon
 {
-	public GameObject projectilePrefab;
 	public TextMeshProUGUI ammoCounter;
 
 	public Machinegun()
@@ -21,17 +19,5 @@ public class Machinegun : Weapons
 	{
 		WeaponReloading();
 		ammoCounter.text = "Ammo: " + WeaponCurrentAmmo;
-	}
-
-	public override void Fire()
-	{
-		if (!IsReloading)
-        {
-			if (!IsReloading)
-			{
-				Instantiate(projectilePrefab, transform.position, transform.rotation);
-				WeaponCurrentAmmo--;
-			}
-		}
 	}
 }

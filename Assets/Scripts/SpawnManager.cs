@@ -3,8 +3,9 @@ using TMPro;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject[] enemyPrefabs;
-    public GameObject[] powerUpsPrefab;
+    [SerializeField] private GameObject[] enemyPrefabs;
+    [SerializeField] private GameObject[] powerUpsPrefab;
+    
     public TextMeshProUGUI waveCounter;
     
     private const float PowerupStartDelay = 8;

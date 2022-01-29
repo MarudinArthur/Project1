@@ -371,8 +371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a918490882c97246938bed22a4722d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  porjectilePrefab: {fileID: 7870846324855640928, guid: f5cea8e49b5dc4002a792b57dbd02162,
-    type: 3}
   ammoCounter: {fileID: 1302895007}
 --- !u!1 &157562290
 GameObject:
@@ -1175,6 +1173,16 @@ MonoBehaviour:
   soundTaser: {fileID: 8300000, guid: f479efddb5f7647338aacc9397bd395e, type: 3}
   soundChangeSkin: {fileID: 8300000, guid: 9ee6fa16d1507404dbad73bc796dd25c, type: 3}
   soundGetPowerUps: {fileID: 8300000, guid: 69575d593f4524383ac9225744c1bc56, type: 3}
+  projectilePistol: {fileID: 7019778604139025116, guid: 07f1578297d6640b1976af3eee9de342,
+    type: 3}
+  projectileShotGun2: {fileID: 7870846324855640928, guid: f5cea8e49b5dc4002a792b57dbd02162,
+    type: 3}
+  projectileMachinegun: {fileID: 7019778604139025116, guid: 53ce4516d3d034aae99f805d136d1a49,
+    type: 3}
+  projectileMachinegun2: {fileID: 8198517380561254719, guid: 55091ebea98b83f4da606f0fdc0a955a,
+    type: 3}
+  projectileTaser: {fileID: 7019778604139025116, guid: 003cbe599464b7042b08c4a7d8d9d7c0,
+    type: 3}
   particleShoot: {fileID: 2098845892}
 --- !u!82 &417996810
 AudioSource:
@@ -1321,8 +1329,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37cf8f986e784744a34ef85328de1c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 8198517380561254719, guid: 55091ebea98b83f4da606f0fdc0a955a,
-    type: 3}
   ammoCounter: {fileID: 1302895007}
 --- !u!1 &712798932
 GameObject:
@@ -2133,8 +2139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4814242c773b34211a1f2bca24fdda55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 7019778604139025116, guid: 53ce4516d3d034aae99f805d136d1a49,
-    type: 3}
   ammoCounter: {fileID: 1302895007}
 --- !u!1 &979888171
 GameObject:
@@ -4432,8 +4436,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ca8852b90c341218c82ba114943a6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 7019778604139025116, guid: 07f1578297d6640b1976af3eee9de342,
-    type: 3}
   ammoCounter: {fileID: 1302895007}
 --- !u!1 &1721003121
 GameObject:
@@ -5285,8 +5287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a9842db3b52439f9e81a46f6269feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  porjectilePrefab: {fileID: 7019778604139025116, guid: 003cbe599464b7042b08c4a7d8d9d7c0,
-    type: 3}
   ammoCounter: {fileID: 1302895007}
 --- !u!1 &2128975095
 GameObject:

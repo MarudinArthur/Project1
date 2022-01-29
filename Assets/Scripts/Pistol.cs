@@ -1,35 +1,36 @@
-﻿using UnityEngine;
+﻿using System;
 using TMPro;
+using UnityEngine;
 
-public class Pistol : Weapons
-{
-    public GameObject projectilePrefab;
+public class Pistol : BaseWeapon
+{ 
+    [Header("Weapon Settings")]
+    [SerializeField] private float _firerate = 10f;
+    [SerializeField] private float _reloadTime = 3f;
+
+    public float _range = 6f;
+    public float _damage = 20f;
     public TextMeshProUGUI ammoCounter;
-
-    public Pistol()
+    
+    private bool _isReloading;
+    private float maxAmmo;
+    private float currentAmmo;
+    
+    /*public Pistol()
     {
         WeaponDamage = 20;
         WeaponFireRate = 10f;
         WeaponReloadTime = 3f;
         WeaponRange = 6f;
-        WeaponSpread = 4f;
         WeaponMaxAmmo = 32f;
 
         WeaponCurrentAmmo = WeaponMaxAmmo;
-    }
+    }*/
+    
 
     private void Update()
     {
         WeaponReloading();
-        ammoCounter.text = "Ammo: " + WeaponCurrentAmmo;
-    }
-
-    public override void Fire() 
-    {
-        if (!IsReloading)
-        {
-            Instantiate(projectilePrefab, transform.position, transform.rotation);
-            WeaponCurrentAmmo--;
-        }
+        ammoCounter.text = "Ammo: " + currentAmmo;
     }
 }

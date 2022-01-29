@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 
-public class ShotGun : Weapons
+public class ShotGun : Weapon
 {
 	public GameObject projectilePrefab;
 	public TextMeshProUGUI ammoCounter;

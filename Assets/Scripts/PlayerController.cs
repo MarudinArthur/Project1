@@ -15,6 +15,13 @@ public class PlayerController : MonoBehaviour
     public AudioClip soundTaser;
     public AudioClip soundChangeSkin;
     public AudioClip soundGetPowerUps;
+
+    public GameObject projectilePistol;
+    public GameObject projectileShotGun2;
+    public GameObject projectileMachinegun;
+    public GameObject projectileMachinegun2;
+    public GameObject projectileTaser;
+    
     private Animator _animatorSkin1;
     private Animator _animatorSkin2;
     public ParticleSystem particleShoot;
@@ -105,7 +112,7 @@ public class PlayerController : MonoBehaviour
                     switch (_switchWeapon.selectedWeapon)
                     {
                         case 0:
-                            _pistol.Fire();
+                            _pistol.Fire(projectilePistol);
                             if (!_gameManager.soundDisable)
                                 _playerAudio.PlayOneShot(soundPistol, 1);
                             break;
@@ -115,22 +122,22 @@ public class PlayerController : MonoBehaviour
                                 _playerAudio.PlayOneShot(soundShotGun, 1);
                             break;
                         case 2:
-                            _shotGun2.Fire();
+                            _shotGun2.Fire(projectileShotGun2);
                             if (!_gameManager.soundDisable)
                                 _playerAudio.PlayOneShot(soundShotGun, 1);
                             break;
                         case 3:
-                            _machinegun.Fire();
+                            _machinegun.Fire(projectileMachinegun);
                             if (!_gameManager.soundDisable)
                                 _playerAudio.PlayOneShot(soundMachinegun, 1);
                             break;
                         case 4:
-                            _machinegun2.Fire();
+                            _machinegun2.Fire(projectileMachinegun2);
                             if (!_gameManager.soundDisable)
                                 _playerAudio.PlayOneShot(soundMachinegun, 1);
                             break;
                         case 5:
-                            _taser.Fire();
+                            _taser.Fire(projectileTaser);
                             if (!_gameManager.soundDisable)
                                 _playerAudio.PlayOneShot(soundTaser, 1);
                             break;
