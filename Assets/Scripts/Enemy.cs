@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
@@ -83,7 +82,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeTaserDamageEnemy()
     { 
-        enemyCurrentHealth -= _taser.WeaponDamage;
+        enemyCurrentHealth -= _taser.damage;
         Debug.Log(enemyCurrentHealth);
         enemyHealthBar.SetHealth(enemyCurrentHealth);
 
@@ -96,7 +95,7 @@ public class Enemy : MonoBehaviour
         // дамаг соответствует выбранной пушки (пули):
         if (collision.gameObject.CompareTag("PistolProjectile"))
         {
-            TakeDamageEnemy(_pistol.WeaponDamage);
+            TakeDamageEnemy(_pistol.damage);
             Destroy(collision.gameObject);
             particleHit.Play();
             if (!_gameManager.soundDisable)
@@ -104,7 +103,7 @@ public class Enemy : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("ShotgunProjectile"))
         {
-            TakeDamageEnemy(_shotGun.WeaponDamage);
+            TakeDamageEnemy(_shotGun.damage);
             Destroy(collision.gameObject);
             particleHit.Play();
             if (!_gameManager.soundDisable)
@@ -113,7 +112,7 @@ public class Enemy : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("MachinegunProjectile"))
         {
-            TakeDamageEnemy(_machinegun.WeaponDamage);
+            TakeDamageEnemy(_machinegun.damage);
             Destroy(collision.gameObject);
             particleHit.Play();
             if (!_gameManager.soundDisable)

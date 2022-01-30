@@ -8,33 +8,33 @@ public class ShotGun : Weapon
 
 	public ShotGun()
 	{
-		WeaponFireRate = 30f;
-		WeaponRange = 8f;
-		WeaponDamage = 15;
-		WeaponMaxAmmo = 12f;
-		WeaponReloadTime = 3f;
-
-		WeaponCurrentAmmo = WeaponMaxAmmo;
+		firerate = 30f; 
+		_reloadTime = 3f; 
+		range = 8f; 
+		damage = 15;
+		maxAmmo = 12f;
+        
+		currentAmmo = maxAmmo;
 	}
 
-    private void Update()
+	private void Update()
 	{
 		WeaponReloading();
-		ammoCounter.text = "Ammo: " + WeaponCurrentAmmo;
+		ammoCounter.text = "Ammo: " + currentAmmo;
 	}
 
 	public override void Fire()
 	{
-		WeaponSpread = -20f;
+		_spread = -20f;
 
-		if (!IsReloading)
+		if (!isReloading)
         {
 			for (var i = 0; i < 3; i++)
 			{
-				WeaponSpread += 10;
-				var offset = new Vector3(0, WeaponSpread, 0);
+				_spread += 10;
+				var offset = new Vector3(0, _spread, 0);
 				Instantiate(projectilePrefab, transform.position, Quaternion.Euler(offset));
-				WeaponCurrentAmmo--;
+				currentAmmo--;
 			}
 		}
 	}

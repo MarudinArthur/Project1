@@ -1,4 +1,5 @@
 ﻿using TMPro;
+using UnityEngine;
 
 public class ShotGun2 : BaseWeapon
 {
@@ -6,19 +7,19 @@ public class ShotGun2 : BaseWeapon
 
     public ShotGun2()
     {
-        WeaponDamage = 20;
-        WeaponFireRate = 10f;
-        WeaponReloadTime = 3f;
-        WeaponRange = 6f;
-        WeaponSpread = 4f;
-        WeaponMaxAmmo = 32f;
-
-        WeaponCurrentAmmo = WeaponMaxAmmo;
+        firerate = 10f; 
+        _reloadTime = 3f; 
+        range = 6f; 
+        damage = 20;
+        maxAmmo = 32f;
+        maxAmmo = 16f;
+        
+        currentAmmo = maxAmmo;
     }
 
     private void Update()
     {
         WeaponReloading();
-        ammoCounter.text = "Ammo: " + WeaponCurrentAmmo;
+        ammoCounter.text = "Ammo: " + currentAmmo;
     }
 }

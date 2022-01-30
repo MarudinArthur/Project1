@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
                 
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Space) && _switchWeapon.selectedWeapon == 3) 
             { 
-                if (!_pistol.IsReloading && !_shotGun.IsReloading && !_machinegun.IsReloading && !_taser.IsReloading && !_shotGun2.IsReloading && !_machinegun2.IsReloading) 
+                if (!_pistol.isReloading && !_shotGun.isReloading && !_machinegun.isReloading && !_taser.isReloading && !_shotGun2.isReloading && !_machinegun2.isReloading) 
                 { 
                     particleShoot.Play();
                     _animationState = 4;

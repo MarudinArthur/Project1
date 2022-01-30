@@ -6,18 +6,18 @@ public class Machinegun : BaseWeapon
 
 	public Machinegun()
 	{
-		WeaponFireRate = 40f;
-		WeaponRange = 10;
-		WeaponDamage = 1;
-		WeaponMaxAmmo = 500;
-		WeaponReloadTime = 4f;
-
-		WeaponCurrentAmmo = WeaponMaxAmmo;
+		firerate = 40f; 
+		_reloadTime = 4f; 
+		range = 10f; 
+		damage = 1;
+		maxAmmo = 500f;
+        
+		currentAmmo = maxAmmo;
 	}
-
+	
 	private void Update()
 	{
 		WeaponReloading();
-		ammoCounter.text = "Ammo: " + WeaponCurrentAmmo;
+		ammoCounter.text = "Ammo: " + currentAmmo;
 	}
 }

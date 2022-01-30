@@ -2,22 +2,23 @@
 using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
-{
-    [SerializeField] protected float _firerate;
-    [SerializeField] protected float _range;
-    [SerializeField] protected float _damage;
+{ 	
+    [Header("Weapon Settings")]
     [SerializeField] protected float _reloadTime;
     [SerializeField] protected float _spread;
-    
-    protected bool _isReloading;
-    protected float maxAmmo;
-    protected float currentAmmo;
+    [SerializeField] protected float maxAmmo;
+    [SerializeField] protected float currentAmmo;
+
+    public int damage;
+    public float firerate;
+    public float range;
+    public bool isReloading;
 
     public virtual void Fire() { }
 
     protected void WeaponReloading()
     {
-        if (_isReloading)
+        if (isReloading)
         {
             return;
         }
@@ -31,7 +32,7 @@ public abstract class Weapon : MonoBehaviour
 
     private IEnumerator Reload()
     {
-        _isReloading = true;
+        isReloading = true;
 
         var reloadText = GameObject.Find("Canvas").transform.GetChild(13);
         reloadText.gameObject.SetActive(true);
@@ -39,6 +40,6 @@ public abstract class Weapon : MonoBehaviour
 
         reloadText.gameObject.SetActive(false);
         currentAmmo = maxAmmo;
-        _isReloading = false;
+        isReloading = false;
     }
 }
