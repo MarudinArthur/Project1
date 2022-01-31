@@ -1,25 +1,19 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
 public class ShotGun2 : BaseWeapon
 {
     public TextMeshProUGUI ammoCounter;
 
-    public ShotGun2()
+    private void Start()
     {
-        firerate = 10f; 
-        _reloadTime = 3f; 
-        range = 6f; 
-        damage = 20;
-        maxAmmo = 32f;
-        maxAmmo = 16f;
-        
-        currentAmmo = maxAmmo;
+        _currentAmmo = _maxAmmo;
     }
 
     private void Update()
     {
         WeaponReloading();
-        ammoCounter.text = "Ammo: " + currentAmmo;
+        ammoCounter.text = "Ammo: " + _currentAmmo;
     }
 }

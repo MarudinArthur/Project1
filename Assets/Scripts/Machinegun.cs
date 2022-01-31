@@ -1,23 +1,18 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 
 public class Machinegun : BaseWeapon
 {
 	public TextMeshProUGUI ammoCounter;
 
-	public Machinegun()
+	private void Start()
 	{
-		firerate = 40f; 
-		_reloadTime = 4f; 
-		range = 10f; 
-		damage = 1;
-		maxAmmo = 500f;
-        
-		currentAmmo = maxAmmo;
+		_currentAmmo = _maxAmmo;
 	}
-	
+
 	private void Update()
 	{
 		WeaponReloading();
-		ammoCounter.text = "Ammo: " + currentAmmo;
+		ammoCounter.text = "Ammo: " + _currentAmmo;
 	}
 }

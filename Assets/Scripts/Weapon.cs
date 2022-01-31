@@ -6,8 +6,8 @@ public abstract class Weapon : MonoBehaviour
     [Header("Weapon Settings")]
     [SerializeField] protected float _reloadTime;
     [SerializeField] protected float _spread;
-    [SerializeField] protected float maxAmmo;
-    [SerializeField] protected float currentAmmo;
+    [SerializeField] protected float _maxAmmo;
+    [SerializeField] protected float _currentAmmo;
 
     public int damage;
     public float firerate;
@@ -23,7 +23,7 @@ public abstract class Weapon : MonoBehaviour
             return;
         }
 
-        if (currentAmmo <= 0)
+        if (_currentAmmo <= 0)
         {
             StartCoroutine(Reload());
             return;
@@ -39,7 +39,7 @@ public abstract class Weapon : MonoBehaviour
         yield return new WaitForSeconds(_reloadTime);
 
         reloadText.gameObject.SetActive(false);
-        currentAmmo = maxAmmo;
+       _currentAmmo = _maxAmmo;
         isReloading = false;
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using TMPro;
 
 public class ShotGun : Weapon
@@ -6,21 +7,15 @@ public class ShotGun : Weapon
 	public GameObject projectilePrefab;
 	public TextMeshProUGUI ammoCounter;
 
-	public ShotGun()
+	private void Start()
 	{
-		firerate = 30f; 
-		_reloadTime = 3f; 
-		range = 8f; 
-		damage = 15;
-		maxAmmo = 12f;
-        
-		currentAmmo = maxAmmo;
+		_currentAmmo = _maxAmmo;
 	}
 
 	private void Update()
 	{
 		WeaponReloading();
-		ammoCounter.text = "Ammo: " + currentAmmo;
+		ammoCounter.text = "Ammo: " + _currentAmmo;
 	}
 
 	public override void Fire()
@@ -34,7 +29,7 @@ public class ShotGun : Weapon
 				_spread += 10;
 				var offset = new Vector3(0, _spread, 0);
 				Instantiate(projectilePrefab, transform.position, Quaternion.Euler(offset));
-				currentAmmo--;
+				_currentAmmo--;
 			}
 		}
 	}
