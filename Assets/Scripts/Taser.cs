@@ -1,6 +1,4 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
+﻿using TMPro;
 
 public class Taser : BaseWeapon
 {
@@ -8,12 +6,12 @@ public class Taser : BaseWeapon
 
 	private void Start()
     {
-	    _currentAmmo = _maxAmmo;
+	    currentAmmo = maxAmmo;
     }
 
     private void Update()
     {
         WeaponReloading();
-        ammoCounter.text = "Ammo: " + _currentAmmo;
+        ammoCounter.text = "Ammo: " + currentAmmo;
     }
 }

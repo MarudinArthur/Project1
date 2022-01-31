@@ -3,7 +3,17 @@ guid: 23fec3ad1255343ddbcc0ab032e2bbc2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - projectilePistol: {fileID: 7019778604139025116, guid: 07f1578297d6640b1976af3eee9de342,
+      type: 3}
+  - projectileShotGun2: {fileID: 7870846324855640928, guid: f5cea8e49b5dc4002a792b57dbd02162,
+      type: 3}
+  - projectileMachinegun: {fileID: 7019778604139025116, guid: 53ce4516d3d034aae99f805d136d1a49,
+      type: 3}
+  - projectileMachinegun2: {fileID: 8198517380561254719, guid: 55091ebea98b83f4da606f0fdc0a955a,
+      type: 3}
+  - projectileTaser: {fileID: 7019778604139025116, guid: 003cbe599464b7042b08c4a7d8d9d7c0,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

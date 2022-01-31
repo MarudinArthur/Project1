@@ -3,7 +3,7 @@ using TMPro;
 
 public class SwitchWeapon : MonoBehaviour
 {
-    [HideInInspector] public int selectedWeapon; 
+    public int selectedWeapon; 
     public TextMeshProUGUI weaponName;
     public TextMeshProUGUI ammoCounter;
 
@@ -16,18 +16,14 @@ public class SwitchWeapon : MonoBehaviour
 
     private void Start()
     {
-        _pistol = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(0).GetComponent<Pistol>();
-        _shotGun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(1).GetComponent<ShotGun>();
-        _shotGun2 = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(2).GetComponent<ShotGun2>();
-        _machinegun = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(3).GetComponent<Machinegun>();
-        _machinegun2 = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(4).GetComponent<Machinegun2>();
-        _taser = GameObject.Find("Player").transform.GetChild(2).gameObject.transform.
-            GetChild(5).GetComponent<Taser>();
+        var weaponHolder = GameObject.Find("Player").transform.GetChild(2);
+        
+        _pistol = weaponHolder.gameObject.transform.GetChild(0).GetComponent<Pistol>();
+        _shotGun = weaponHolder.gameObject.transform.GetChild(1).GetComponent<ShotGun>();
+        _shotGun2 = weaponHolder.gameObject.transform.GetChild(2).GetComponent<ShotGun2>();
+        _machinegun = weaponHolder.gameObject.transform.GetChild(3).GetComponent<Machinegun>();
+        _machinegun2 = weaponHolder.gameObject.transform.GetChild(4).GetComponent<Machinegun2>();
+        _taser = weaponHolder.gameObject.transform.GetChild(5).GetComponent<Taser>();
     }
 
     private void Update()
@@ -47,30 +43,22 @@ public class SwitchWeapon : MonoBehaviour
         if (!_pistol.isReloading && !_shotGun.isReloading && !_machinegun.isReloading && !_taser.isReloading && !_shotGun2.isReloading && !_machinegun2.isReloading)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
                 selectedWeapon = 0;
-            }
+            
             if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
                 selectedWeapon = 1;
-            }
 
             if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
                 selectedWeapon = 2;
-            }
+            
             if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
                 selectedWeapon = 3;
-            }
+            
             if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
                 selectedWeapon = 4;
-            }
+            
             if (Input.GetKeyDown(KeyCode.Alpha6))
-            {
                 selectedWeapon = 5;
-            }
         }
     }
 }

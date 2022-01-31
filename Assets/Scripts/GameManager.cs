@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -10,7 +9,6 @@ public class GameManager : MonoBehaviour
 
     public float score = 0f;
     public float time = 120f;
-    public static GameManager Instance;
     public TextMeshProUGUI timerCounter;
     public TextMeshProUGUI scoreCounter;
     public TextMeshProUGUI playerName;
@@ -21,20 +19,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _canvas = GameObject.Find("Canvas");
-    }
-
-    private void Awake()
-    {
-        /* if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-      
-        Instance = this;
-        DontDestroyOnLoad(transform.gameObject);
-        */
-        //nameInput = MainManager.Instance.playerName.text;
     }
 
     private void Update()
@@ -49,7 +33,7 @@ public class GameManager : MonoBehaviour
     {
         if (stopGame == true) return;
         
-        if (time > (int)0)
+        if (time > 0)
         {
             time -= Time.deltaTime;
             var totalTime = ((int)(time * 100)) / 100f;

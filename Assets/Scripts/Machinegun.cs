@@ -7,12 +7,12 @@ public class Machinegun : BaseWeapon
 
 	private void Start()
 	{
-		_currentAmmo = _maxAmmo;
+		currentAmmo = maxAmmo;
 	}
 
 	private void Update()
 	{
 		WeaponReloading();
-		ammoCounter.text = "Ammo: " + _currentAmmo;
+		ammoCounter.text = "Ammo: " + currentAmmo;
 	}
 }

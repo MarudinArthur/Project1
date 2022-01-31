@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class MoveForward : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     private GameObject _player;
     private SwitchWeapon _switchWeapon;
