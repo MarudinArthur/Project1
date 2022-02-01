@@ -5,8 +5,7 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private GameObject[] powerUpsPrefab;
-    
-    public TextMeshProUGUI waveCounter;
+    [SerializeField] private TextMeshProUGUI waveCounter;
     
     private const float PowerupStartDelay = 8;
     private const float PowerupRepeatRate = 7;

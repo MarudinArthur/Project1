@@ -4,21 +4,21 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [HideInInspector] public int currentHealth;
-
-    private const float Speed = 10f;
-    public int maxHealth = 100;
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private Image fill;
+    [SerializeField] private AudioClip soundPistol;
+    [SerializeField] private AudioClip soundShotGun;
+    [SerializeField] private AudioClip soundMachinegun;
+    [SerializeField] private AudioClip soundTaser;
+    [SerializeField] private AudioClip soundChangeSkin;
+    [SerializeField] private AudioClip soundGetPowerUps;
+    [SerializeField] private ParticleSystem particleShoot;
+    
     public HealthBar healthBar;
-    public Image fill;
-    public AudioClip soundPistol;
-    public AudioClip soundShotGun;
-    public AudioClip soundMachinegun;
-    public AudioClip soundTaser;
-    public AudioClip soundChangeSkin;
-    public AudioClip soundGetPowerUps;
-
+    
+    private const float Speed = 10f;
     private Animator _animatorSkin1;
     private Animator _animatorSkin2;
-    public ParticleSystem particleShoot;
     private ParticleHolder _particleHolder;
 
     private GameManager _gameManager;

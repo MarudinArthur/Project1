@@ -3,14 +3,14 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
     [HideInInspector] public int enemyMaxHealth = 60;
     [HideInInspector] public int enemyCurrentHealth;
-    public AudioClip soundEnemyDeath;
-    public AudioClip soundEnemyHit;
-    public Image fill;
-    public ParticleSystem particleHit;
-    public HealthBar enemyHealthBar;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private AudioClip soundEnemyDeath;
+    [SerializeField] private AudioClip soundEnemyHit;
+    [SerializeField] private Image fill;
+    [SerializeField] private ParticleSystem particleHit;
+    [SerializeField] private HealthBar enemyHealthBar;
     
     private int _counter = 3;
     private int _animationState;

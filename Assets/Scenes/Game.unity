@@ -371,17 +371,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a918490882c97246938bed22a4722d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmmo: 9
-  reloadTime: 0
-  damage: 0
-  firerate: 0
-  range: 0
+  maxAmmo: 16
+  reloadTime: 3
+  damage: 20
+  firerate: 10
+  range: 6
   isReloading: 0
-  projectilePistol: {fileID: 0}
-  projectileShotGun2: {fileID: 0}
-  projectileMachinegun: {fileID: 0}
-  projectileMachinegun2: {fileID: 0}
-  projectileTaser: {fileID: 0}
+  projectile: {fileID: 7870846324855640928, guid: f5cea8e49b5dc4002a792b57dbd02162,
+    type: 3}
   ammoCounter: {fileID: 1302895007}
 --- !u!1 &157562290
 GameObject:
@@ -1331,16 +1328,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAmmo: 100
-  reloadTime: 0
-  damage: 0
-  firerate: 0
-  range: 0
+  reloadTime: 4
+  damage: 1
+  firerate: 50
+  range: 10
   isReloading: 0
-  projectilePistol: {fileID: 0}
-  projectileShotGun2: {fileID: 0}
-  projectileMachinegun: {fileID: 0}
-  projectileMachinegun2: {fileID: 0}
-  projectileTaser: {fileID: 0}
+  projectile: {fileID: 8198517380561254719, guid: 55091ebea98b83f4da606f0fdc0a955a,
+    type: 3}
   ammoCounter: {fileID: 1302895007}
 --- !u!1 &712798932
 GameObject:
@@ -2152,16 +2146,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAmmo: 500
-  reloadTime: 0
-  damage: 0
-  firerate: 0
-  range: 0
+  reloadTime: 4
+  damage: 1
+  firerate: 40
+  range: 10
   isReloading: 0
-  projectilePistol: {fileID: 0}
-  projectileShotGun2: {fileID: 0}
-  projectileMachinegun: {fileID: 0}
-  projectileMachinegun2: {fileID: 0}
-  projectileTaser: {fileID: 0}
+  projectile: {fileID: 7019778604139025116, guid: 53ce4516d3d034aae99f805d136d1a49,
+    type: 3}
   ammoCounter: {fileID: 1302895007}
 --- !u!1 &979888171
 GameObject:
@@ -3919,11 +3910,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f44472bb37acd244b758d7ec84af550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmmo: 9
+  maxAmmo: 12
   reloadTime: 3
   damage: 15
   firerate: 30
-  range: 10
+  range: 8
   isReloading: 0
   _spread: -20
   projectilePrefab: {fileID: 7019778604139025116, guid: 9b8602c64ddb5c44a9405502815d4755,
@@ -4467,20 +4458,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAmmo: 16
-  reloadTime: 0
+  reloadTime: 3
   damage: 20
-  firerate: 10
-  range: 10
+  firerate: 20
+  range: 6
   isReloading: 0
-  projectilePistol: {fileID: 7019778604139025116, guid: 07f1578297d6640b1976af3eee9de342,
-    type: 3}
-  projectileShotGun2: {fileID: 7870846324855640928, guid: f5cea8e49b5dc4002a792b57dbd02162,
-    type: 3}
-  projectileMachinegun: {fileID: 7019778604139025116, guid: 53ce4516d3d034aae99f805d136d1a49,
-    type: 3}
-  projectileMachinegun2: {fileID: 8198517380561254719, guid: 55091ebea98b83f4da606f0fdc0a955a,
-    type: 3}
-  projectileTaser: {fileID: 7019778604139025116, guid: 003cbe599464b7042b08c4a7d8d9d7c0,
+  projectile: {fileID: 7019778604139025116, guid: 07f1578297d6640b1976af3eee9de342,
     type: 3}
   ammoCounter: {fileID: 1302895007}
 --- !u!1 &1721003121
@@ -5333,17 +5316,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a9842db3b52439f9e81a46f6269feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAmmo: 20
-  reloadTime: 0
-  damage: 0
-  firerate: 0
-  range: 0
+  maxAmmo: 12
+  reloadTime: 4
+  damage: 10
+  firerate: 10
+  range: 10
   isReloading: 0
-  projectilePistol: {fileID: 0}
-  projectileShotGun2: {fileID: 0}
-  projectileMachinegun: {fileID: 0}
-  projectileMachinegun2: {fileID: 0}
-  projectileTaser: {fileID: 0}
+  projectile: {fileID: 7019778604139025116, guid: 003cbe599464b7042b08c4a7d8d9d7c0,
+    type: 3}
   ammoCounter: {fileID: 1302895007}
 --- !u!1 &2128975095
 GameObject:

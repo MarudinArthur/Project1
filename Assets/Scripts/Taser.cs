@@ -1,8 +1,9 @@
 ﻿using TMPro;
+using UnityEngine;
 
 public class Taser : BaseWeapon
 {
-	public TextMeshProUGUI ammoCounter;
+	[SerializeField] private TextMeshProUGUI ammoCounter;
 
 	private void Start()
     {

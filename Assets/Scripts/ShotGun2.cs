@@ -1,6 +1,4 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
+﻿using TMPro;
 
 public class ShotGun2 : BaseWeapon
 {

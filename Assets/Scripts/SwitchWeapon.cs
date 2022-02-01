@@ -3,9 +3,10 @@ using TMPro;
 
 public class SwitchWeapon : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI weaponName;
+    [SerializeField] private TextMeshProUGUI ammoCounter;
+    
     public int selectedWeapon; 
-    public TextMeshProUGUI weaponName;
-    public TextMeshProUGUI ammoCounter;
 
     private Pistol _pistol;
     private ShotGun _shotGun;

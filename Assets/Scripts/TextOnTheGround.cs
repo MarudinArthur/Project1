@@ -4,7 +4,7 @@ using System.Collections;
 
 public class TextOnTheGround : MonoBehaviour
 {
-    public TMP_Text textOnTheGround;
+    [SerializeField] private TMP_Text textOnTheGround;
 
     private const float Speed = 1.5f;
     private GameManager _gameManager;

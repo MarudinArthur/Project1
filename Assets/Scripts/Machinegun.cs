@@ -1,9 +1,9 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
+using UnityEngine;
 
 public class Machinegun : BaseWeapon
 {
-	public TextMeshProUGUI ammoCounter;
+	[SerializeField] private TextMeshProUGUI ammoCounter;
 
 	private void Start()
 	{

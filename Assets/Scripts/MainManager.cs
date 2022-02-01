@@ -5,7 +5,7 @@ public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
 
-    public TMP_InputField playerName;
+    [SerializeField] private TMP_InputField playerName;
 
     private void Awake()
     {

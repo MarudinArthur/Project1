@@ -6,14 +6,13 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool gameOver = false;
     [HideInInspector] public bool stopGame = false;
     [HideInInspector] public bool soundDisable = false;
+    [HideInInspector] public float score = 0f;
+    [SerializeField] private TextMeshProUGUI timerCounter;
+    [SerializeField] private TextMeshProUGUI scoreCounter;
+    [SerializeField] private TextMeshProUGUI playerName;
+    [SerializeField] private TMP_InputField nameInput;
 
-    public float score = 0f;
     public float time = 120f;
-    public TextMeshProUGUI timerCounter;
-    public TextMeshProUGUI scoreCounter;
-    public TextMeshProUGUI playerName;
-    public TMP_InputField nameInput;
-
     private GameObject _canvas;
 
     private void Start()
