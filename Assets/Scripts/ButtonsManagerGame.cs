@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class ButtonsManagerGame : MonoBehaviour
 {
+    #region Fields
+
     private GameManager _gameManager;
     private Transform _homePopUp;
     private Transform _settingsPopUp;
@@ -12,6 +14,8 @@ public class ButtonsManagerGame : MonoBehaviour
     private Animator _animator2;
     private GameObject _player;
     private GameObject _canvas;
+
+    #endregion
 
     private void Start()
     { 
@@ -89,5 +93,8 @@ public class ButtonsManagerGame : MonoBehaviour
     public void EnterPlayerName()
     {
         _canvas.transform.GetChild(17).gameObject.SetActive(false);
+        _gameManager.stopGame = false;
+        _animator1.enabled = true;
+        _animator2.enabled = true;
     }
 }

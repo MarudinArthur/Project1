@@ -3,6 +3,8 @@ using TMPro;
 
 public class SwitchWeapon : MonoBehaviour
 {
+    #region Fields
+
     [SerializeField] private TextMeshProUGUI weaponName;
     [SerializeField] private TextMeshProUGUI ammoCounter;
     
@@ -14,6 +16,8 @@ public class SwitchWeapon : MonoBehaviour
     private Machinegun _machinegun;
     private Machinegun2 _machinegun2;
     private Taser _taser;
+
+    #endregion
 
     private void Start()
     {

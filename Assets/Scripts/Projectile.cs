@@ -2,6 +2,8 @@
 
 public class Projectile : MonoBehaviour
 {
+    #region Fields
+
     private GameObject _player;
     private SwitchWeapon _switchWeapon;
     private Pistol _pistol;
@@ -10,6 +12,8 @@ public class Projectile : MonoBehaviour
     private Machinegun2 _machinegun2;
     private Machinegun _machinegun;
     private Taser _taser;
+
+    #endregion
 
 	public void Start()
 	{

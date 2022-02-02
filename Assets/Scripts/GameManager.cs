@@ -3,8 +3,10 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    [HideInInspector] public bool gameOver = false;
-    [HideInInspector] public bool stopGame = false;
+    #region Fields
+
+    [HideInInspector] public bool gameOver;
+    [HideInInspector] public bool stopGame;
     [HideInInspector] public bool soundDisable = false;
     [HideInInspector] public float score = 0f;
     [SerializeField] private TextMeshProUGUI timerCounter;
@@ -15,8 +17,11 @@ public class GameManager : MonoBehaviour
     public float time = 120f;
     private GameObject _canvas;
 
+    #endregion
+    
     private void Start()
     {
+        stopGame = true;
         _canvas = GameObject.Find("Canvas");
     }
 

@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+    #region Fields
+
     [HideInInspector] public int enemyMaxHealth = 60;
     [HideInInspector] public int enemyCurrentHealth;
     [SerializeField] private float speed = 5f;
@@ -23,6 +25,8 @@ public class Enemy : MonoBehaviour
     private Taser _taser;
     private AudioSource _audioSource;
     private static readonly int State = Animator.StringToHash("state");
+
+    #endregion
 
     private void Start()
     {

@@ -692,7 +692,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Player
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -958,7 +958,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: wave 0 of 0
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1173,7 +1173,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
-  healthBar: {fileID: 1531776389}
   fill: {fileID: 62398383}
   soundPistol: {fileID: 8300000, guid: 9c87f285d32fa4569b77ddf3a7e6df5e, type: 3}
   soundShotGun: {fileID: 8300000, guid: eb8998f3b3d3a49db96a634bf39ed153, type: 3}
@@ -1182,6 +1181,7 @@ MonoBehaviour:
   soundChangeSkin: {fileID: 8300000, guid: 9ee6fa16d1507404dbad73bc796dd25c, type: 3}
   soundGetPowerUps: {fileID: 8300000, guid: 69575d593f4524383ac9225744c1bc56, type: 3}
   particleShoot: {fileID: 2098845892}
+  healthBar: {fileID: 1531776389}
 --- !u!82 &417996810
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1712,11 +1712,11 @@ MonoBehaviour:
   stopGame: 0
   soundDisable: 0
   score: 0
-  time: 60
   timerCounter: {fileID: 1177126711}
   scoreCounter: {fileID: 768741378}
   playerName: {fileID: 220857277}
   nameInput: {fileID: 4811773772373516321}
+  time: 60
 --- !u!4 &835350730
 Transform:
   m_ObjectHideFlags: 0
@@ -3179,7 +3179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00:00
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3738,10 +3738,11 @@ MonoBehaviour:
   - {fileID: 8111282298951623842, guid: 13d8ca27a56a0424496ecd2e4d65146a, type: 3}
   - {fileID: 8091861729460440880, guid: c0f0c75890327472f8db2cdfd9f9f545, type: 3}
   powerUpsPrefab:
-  - {fileID: 3068313548792732906, guid: f00de8bb7153f424487b51bcb799b88d, type: 3}
   - {fileID: 7292101835800443756, guid: f7398cef7b73c48b2b1544f6b52787cc, type: 3}
+  - {fileID: 3068313548792732906, guid: f00de8bb7153f424487b51bcb799b88d, type: 3}
   - {fileID: 6033492400120316565, guid: a6dc04f879e784d919cc26d4fe8a3091, type: 3}
   waveCounter: {fileID: 305765432}
+  gameManager: {fileID: 835350729}
 --- !u!1 &1369326499
 GameObject:
   m_ObjectHideFlags: 0
@@ -4460,7 +4461,7 @@ MonoBehaviour:
   maxAmmo: 16
   reloadTime: 3
   damage: 20
-  firerate: 20
+  firerate: 10
   range: 6
   isReloading: 0
   projectile: {fileID: 7019778604139025116, guid: 07f1578297d6640b1976af3eee9de342,
@@ -5039,9 +5040,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8768fb67df6a2c6439553d089715d66d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedWeapon: 0
   weaponName: {fileID: 1721003123}
   ammoCounter: {fileID: 1302895007}
+  selectedWeapon: 0
 --- !u!4 &1982900120
 Transform:
   m_ObjectHideFlags: 0

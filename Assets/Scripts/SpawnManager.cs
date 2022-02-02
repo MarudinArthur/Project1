@@ -3,9 +3,13 @@ using TMPro;
 
 public class SpawnManager : MonoBehaviour
 {
+    #region Fields
+
     [SerializeField] private GameObject[] enemyPrefabs;
-    [SerializeField] private GameObject[] powerUpsPrefab;
+    [SerializeField] private GameObject[] powerUpsPrefab = new GameObject[3];
     [SerializeField] private TextMeshProUGUI waveCounter;
+    
+    public GameManager gameManager;
     
     private const float PowerupStartDelay = 8;
     private const float PowerupRepeatRate = 7;
@@ -15,11 +19,11 @@ public class SpawnManager : MonoBehaviour
     private int _spawnedPowerUp3;
     private int _waveNumber;
     private const int MaxWave = 9;
-    private GameManager _gameManager;
+
+    #endregion
 
     private void Start()
     {
-        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         InvokeRepeating(nameof(SpawnPowerUps), PowerupStartDelay, PowerupRepeatRate);
     }
 
@@ -27,7 +31,7 @@ public class SpawnManager : MonoBehaviour
     {
         for (var i = 0; i < enemiesToSpawn; i++)
         {
-            if (!_gameManager.gameOver & !_gameManager.stopGame)
+            if (!gameManager.gameOver & !gameManager.stopGame)
             {
                 var randomEnemyIndex = Random.Range(0, 2);
                 Instantiate(enemyPrefabs[randomEnemyIndex], GenerateSpawnRandomPosition(), 
@@ -54,7 +58,7 @@ public class SpawnManager : MonoBehaviour
         _spawnedPowerUp2 = GameObject.FindGameObjectsWithTag("PowerUpExplosion").Length; 
         _spawnedPowerUp3 = GameObject.FindGameObjectsWithTag("PowerUpTime").Length;
 
-        if (enemyCount == 0 && !_gameManager.stopGame && !_gameManager.gameOver)
+        if (enemyCount == 0 && !gameManager.stopGame && !gameManager.gameOver)
         {
             SpawnEnemies(_enemyToSpawn);
             _waveNumber++;

@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    #region Fields
+
     [HideInInspector] public int currentHealth;
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private Image fill;
@@ -45,6 +47,8 @@ public class PlayerController : MonoBehaviour
     private Transform _startGamePopUp;
     private GameObject _canvas;
     private static readonly int State = Animator.StringToHash("state");
+
+    #endregion
 
     private void Start()
     {
