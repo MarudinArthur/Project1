@@ -1182,6 +1182,16 @@ MonoBehaviour:
   soundGetPowerUps: {fileID: 8300000, guid: 69575d593f4524383ac9225744c1bc56, type: 3}
   particleShoot: {fileID: 2098845892}
   healthBar: {fileID: 1531776389}
+  pistol: {fileID: 1614486602}
+  shotGun: {fileID: 1461917361}
+  shotGun2: {fileID: 125407655}
+  machinegun2: {fileID: 695211179}
+  machinegun: {fileID: 951853391}
+  taser: {fileID: 2110238088}
+  skin1: {fileID: 604906113}
+  skin2: {fileID: 3819331295346219991}
+  animatorSkin1: {fileID: 1138091742801248089}
+  animatorSkin2: {fileID: 8463375708734696900}
 --- !u!82 &417996810
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5870,6 +5880,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59841ba2055a94345bf9a9a7ca425894, type: 3}
+--- !u!95 &1138091742801248089 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6936936511392442450, guid: 59841ba2055a94345bf9a9a7ca425894,
+    type: 3}
+  m_PrefabInstance: {fileID: 1138091742801248088}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1384354866506805284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8117,3 +8133,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbbdf9c94f132445883797fb94e276ed, type: 3}
+--- !u!95 &8463375708734696900 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1485496187776140017, guid: fbbdf9c94f132445883797fb94e276ed,
+    type: 3}
+  m_PrefabInstance: {fileID: 8463375708734696899}
+  m_PrefabAsset: {fileID: 0}

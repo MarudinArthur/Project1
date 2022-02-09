@@ -18,26 +18,30 @@ public class PlayerController : MonoBehaviour
     
     public HealthBar healthBar;
     
+    [Header("Weapons")]
+    public Pistol pistol;
+    public ShotGun shotGun;
+    public ShotGun2 shotGun2;
+    public Machinegun2 machinegun2;
+    public Machinegun machinegun;
+    public Taser taser;
+
+    [Header("Skins")]
+    public Transform skin1;
+    public Transform skin2;
+    
+    [Header("SkinsAnimator")]
+    public Animator animatorSkin1;
+    public Animator animatorSkin2;
+
     private const float Speed = 10f;
-    private Animator _animatorSkin1;
-    private Animator _animatorSkin2;
     private ParticleHolder _particleHolder;
 
     private GameManager _gameManager;
     private SwitchWeapon _switchWeapon;
     private Powerups _powerUps;
     private AudioSource _playerAudio;
-
-    private Pistol _pistol;
-    private ShotGun _shotGun;
-    private ShotGun2 _shotGun2;
-    private Machinegun2 _machinegun2;
-    private Machinegun _machinegun;
-    private Taser _taser;
-
-    private Transform _skin1;
-    private Transform _skin2;
-
+    
     private float _horizontalInput;
     private float _verticalInput;
     private const float HorizontalBounds = 9f;
@@ -48,6 +52,8 @@ public class PlayerController : MonoBehaviour
     private GameObject _canvas;
     private static readonly int State = Animator.StringToHash("state");
 
+    private Weapon.WeaponType _weaponType;
+
     #endregion
 
     private void Start()
@@ -56,33 +62,10 @@ public class PlayerController : MonoBehaviour
         _canvas = GameObject.Find("Canvas");
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         _particleHolder = GameObject.Find("Particle Holder").GetComponent<ParticleHolder>();
-/*
-        var scripts = gameObject.GetComponents<MonoBehaviour>();
-
-        for (var i  = 0; i  < weaponHolder.childCount; i ++)
-        {
-            for (var k = 0; k < scripts.Length; k++)
-            {
-                var data = scripts[k];
-                weaponHolder.GetChild(k).GetComponent<MonoBehaviour>();
-            }
-        }
-*/
-        _pistol = weaponHolder.GetChild(0).GetComponent<Pistol>();
-        _shotGun = weaponHolder.GetChild(1).GetComponent<ShotGun>();
-        _shotGun2 = weaponHolder.GetChild(2).GetComponent<ShotGun2>();
-        _machinegun = weaponHolder.GetChild(3).GetComponent<Machinegun>();
-        _machinegun2 = weaponHolder.GetChild(4).GetComponent<Machinegun2>();
-        _taser = weaponHolder.GetChild(5).GetComponent<Taser>();
 
         _switchWeapon = weaponHolder.GetComponent<SwitchWeapon>();
         _powerUps = _gameManager.GetComponent<Powerups>();
-
-        _skin1 = gameObject.transform.GetChild(0);
-        _skin2 = gameObject.transform.GetChild(1);
         
-        _animatorSkin1 = transform.GetChild(0).GetComponent<Animator>();
-        _animatorSkin2 = transform.GetChild(1).GetComponent<Animator>();
         _playerAudio = GetComponent<AudioSource>();
 
         currentHealth = maxHealth;
@@ -102,7 +85,7 @@ public class PlayerController : MonoBehaviour
                 
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Space) && _switchWeapon.selectedWeapon == 3) 
             { 
-                if (!_pistol.isReloading && !_shotGun.isReloading && !_machinegun.isReloading && !_taser.isReloading && !_shotGun2.isReloading && !_machinegun2.isReloading) 
+                if (!pistol.isReloading && !shotGun.isReloading && !machinegun.isReloading && !taser.isReloading && !shotGun2.isReloading && !machinegun2.isReloading) 
                 { 
                     particleShoot.Play();
                     _animationState = 4;
@@ -110,32 +93,32 @@ public class PlayerController : MonoBehaviour
                     switch (_switchWeapon.selectedWeapon)
                     {
                         case 0:
-                            _pistol.Fire();
+                            pistol.Fire();
                             if (!_gameManager.soundDisable)
                                 _playerAudio.PlayOneShot(soundPistol, 1);
                             break;
                         case 1:
-                            _shotGun.Fire();
+                            shotGun.Fire();
                             if (!_gameManager.soundDisable)
                                 _playerAudio.PlayOneShot(soundShotGun, 1);
                             break;
                         case 2:
-                            _shotGun2.Fire();
+                            shotGun2.Fire();
                             if (!_gameManager.soundDisable)
                                 _playerAudio.PlayOneShot(soundShotGun, 1);
                             break;
                         case 3:
-                            _machinegun.Fire();
+                            machinegun.Fire();
                             if (!_gameManager.soundDisable)
                                 _playerAudio.PlayOneShot(soundMachinegun, 1);
                             break;
                         case 4:
-                            _machinegun2.Fire();
+                            machinegun2.Fire();
                             if (!_gameManager.soundDisable)
                                 _playerAudio.PlayOneShot(soundMachinegun, 1);
                             break;
                         case 5:
-                            _taser.Fire();
+                            taser.Fire();
                             if (!_gameManager.soundDisable)
                                 _playerAudio.PlayOneShot(soundTaser, 1);
                             break;
@@ -161,17 +144,17 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (_animatorSkin1)
-                _animatorSkin1.GetComponent<Animator>().enabled = false;
-            if (_animatorSkin2)
-                _animatorSkin2.GetComponent<Animator>().enabled = false;
+            if (animatorSkin1)
+                animatorSkin1.GetComponent<Animator>().enabled = false;
+            if (animatorSkin2)
+                animatorSkin2.GetComponent<Animator>().enabled = false;
         }
 
         if (Input.GetKeyDown(KeyCode.T))
         {
             // skin change
-            _skin1.gameObject.SetActive(true);
-            _skin2.gameObject.SetActive(false);
+            skin1.gameObject.SetActive(true);
+            skin2.gameObject.SetActive(false);
 
             // disable clue
             _canvas.transform.GetChild(9).gameObject.SetActive(false);
@@ -203,8 +186,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             _animationState = 3;
 
-        _animatorSkin1.SetInteger(State, _animationState);
-        _animatorSkin2.SetInteger(State, _animationState);
+        animatorSkin1.SetInteger(State, _animationState);
+        animatorSkin2.SetInteger(State, _animationState);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -253,10 +236,10 @@ public class PlayerController : MonoBehaviour
 
     private void SkinChanger()
     {
-        if (_skin1)
+        if (skin1)
         {
-            _skin1.gameObject.SetActive(false);
-            _skin2.gameObject.SetActive(true);
+            skin1.gameObject.SetActive(false);
+            skin2.gameObject.SetActive(true);
             // show clue
             _canvas.transform.GetChild(9).gameObject.SetActive(true);
         }

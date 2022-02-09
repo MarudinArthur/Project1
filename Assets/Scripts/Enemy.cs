@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
 
     private void TakeDamageEnemy(int damage)
     {
-        enemyCurrentHealth -= damage;
+        this.enemyCurrentHealth -= damage;
         enemyHealthBar.SetHealth(enemyCurrentHealth);
         if (enemyCurrentHealth == 0)
 		{

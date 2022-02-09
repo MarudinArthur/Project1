@@ -15,6 +15,11 @@ public abstract class Weapon : MonoBehaviour
     public bool isReloading;
     
     protected float currentAmmo;
+    
+    public enum WeaponType
+    {
+        Pistol, ShotGun, ShotGun2, Machinegun, Machinegun2, Taser
+    }
 
     #endregion
     
